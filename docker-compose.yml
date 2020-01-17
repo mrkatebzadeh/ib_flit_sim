@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  ib_flit_sim:
+    build: .
+    volumes:
+      - ./mlx:/opt/omnetpp/mlx
+    expose:
+      - "22"
+    environment:
+      - VIRTUAL_PORT=22
