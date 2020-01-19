@@ -1,10 +1,10 @@
 version: "2"
 
 services:
-  ib_flit_sim:
+  mlx:
     build: .
     volumes:
-      - ./mlx:/opt/omnetpp/mlx
+      - .:/opt/ib/:rw
     expose:
       - "22"
     environment:

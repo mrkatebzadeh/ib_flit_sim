@@ -8,19 +8,13 @@ RUN apt-get update
 
 # General dependencies
 RUN apt-get install -y \
-    git \
-    wget \
-    vim \
     build-essential \
     g++-multilib=4:4.* \
     gdb \
     bison \
     flex \
     perl \
-    qt5-default \
     python-pip \
-    tcl-dev \
-    tk-dev \
     libxml2-dev \
     zlib1g-dev \
     default-jre \
@@ -28,17 +22,6 @@ RUN apt-get install -y \
     graphviz \
     openssh-server \
     xvfb
-
-# QT
-RUN apt-get install -y \
-    libopenscenegraph-dev \
-    openscenegraph-plugin-osgearth \
-    libosgearth-dev \
-    qt5-default \
-    libxml2-dev \
-    zlib1g-dev \
-    default-jre \
-    libwebkitgtk-3.0-0
 
 
 RUN pip install compiledb
@@ -55,31 +38,30 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 
 # Create working directory
-RUN mkdir -p /opt/omnetpp/omnetpp-4.2.2
-RUN mkdir -p /opt/omnetpp/mlx
-WORKDIR /opt/omnetpp
-COPY . .
+RUN mkdir -p /opt/ib/
+WORKDIR /opt/ib
+#COPY ./mlx /opt/omnetpp/mlx
 
 ENV DISPLAY :0
 # Omnet++ source is already in repository. Copy it to container
-RUN git clone https://github.com/mrkatebzadeh/omnetpp omnetpp-4.2.2/
+#RUN git clone https://github.com/mrkatebzadeh/omnetpp omnetpp-4.2.2/
 
 # Set path for compilation
-ENV PATH $PATH:/opt/omnetpp/omnetpp-4.2.2/bin
+ENV PATH $PATH:/opt/ib/sim/omnetpp/bin
 
 # Configure and compile Omnet++
-RUN cd omnetpp-4.2.2 && git pull && \
-    NO_TCL=1 xvfb-run ./configure && \
-    make
+#RUN cd omnetpp-4.2.2 && git pull && \
+#    NO_TCL=1 xvfb-run ./configure && \
+#    make -j 4
 
 # Ib_flit_sim source is already in repository. Copy it to container
 #RUN git clone https://github.com/mrkatebzadeh/ib_flit_sim /opt/omnetpp/ib_flit_sim/
 
-ENV d /opt/omnetpp/mlx
+ENV d /opt/ib/sim
 
-RUN cd /opt/omnetpp/mlx && git pull && d=`pwd` \
-    make makefiles; \
-    make; make MODE=release; make -Bnwk | compiledb -o compile_commands.json;
+#RUN cd /opt/omnetpp/mlx && d=`pwd` \
+#    make makefiles; \
+#    make -j 4; make MODE=release; make -Bnwk | compiledb -o compile_commands.json;
 
 ENV NEDPATH $d/src:$d/examples
 
