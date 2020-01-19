@@ -4,3 +4,6 @@ out/
 *.anf
 .tkenvrc
 .tkenvlog
+compile_commands.json
+src/ib_flit_sim
+src/Makefile
