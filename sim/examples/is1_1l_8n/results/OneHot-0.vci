@@ -1,0 +1,32 @@
+file 15012 1610041312                                           
+version 2
+run OneHot-0-20210107-17:41:39-65
+attr configname OneHot
+attr datetime 20210107-17:41:39
+attr experiment OneHot
+attr inifile is1_1l_8n.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network ib_model.examples.is1_1l_8n.is1_1l_8n
+attr processid 65
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 0  is1_1l_8n.H_1_U1.app  Dst-Sequence-Index  ETV
+vector 8  is1_1l_8n.H_2_U1.app  Dst-Sequence-Index  ETV
+vector 16  is1_1l_8n.H_3_U1.app  Dst-Sequence-Index  ETV
+vector 24  is1_1l_8n.H_4_U1.app  Dst-Sequence-Index  ETV
+vector 32  is1_1l_8n.H_5_U1.app  Dst-Sequence-Index  ETV
+vector 40  is1_1l_8n.H_6_U1.app  Dst-Sequence-Index  ETV
+vector 48  is1_1l_8n.H_7_U1.app  Dst-Sequence-Index  ETV
+0	785 2273 1 28229928 0 0.019894588076 83 0 9 366 2294
+8	3058 2273 3 28064381 0 0.019777852076 83 0 9 366 2294
+16	5331 2356 5 28070493 0 0.019782204076 83 0 9 366 2294
+24	7687 2356 7 28078883 0 0.019788092076 83 0 9 366 2294
+32	10043 2356 9 28108279 0 0.019808828076 83 0 9 366 2294
+40	12399 2357 11 28152193 0 0.019839804076 83 0 9 366 2294
+48	14756 256 13 1292679 0 0.000900531684 10 1 10 55 385

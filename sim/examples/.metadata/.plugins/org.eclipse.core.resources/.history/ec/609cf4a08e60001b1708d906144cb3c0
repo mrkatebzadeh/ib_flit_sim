@@ -1,0 +1,43 @@
+[General]
+
+**H_1_U1.app.disable  = 1
+**H_1_U1.app.msgSQ = 1
+**H_1_U1.app.msg2msgGap = 1000000ns
+**H_1_U1.app.msgLength = 131072B 
+
+**H_2_U1.app.disable  = 0
+**H_2_U1.app.msgSQ = 1
+**H_2_U1.app.msg2msgGap = 1000000ns
+**H_2_U1.app.msgLength = 13107B
+
+**H_3_U1.app.disable  = 0
+**H_3_U1.app.msgSQ = 1
+**H_3_U1.app.msg2msgGap = 10000000ns
+**H_3_U1.app.msgLength = 131072B 
+
+**H_4_U1.app.disable  = 0
+**H_4_U1.app.msgSQ = 1
+**H_4_U1.app.msg2msgGap = 10000000ns
+**H_4_U1.app.msgLength = 13107B 
+
+**H_5_U1.app.disable  = 0
+**H_5_U1.app.msgSQ = 1
+**H_5_U1.app.msg2msgGap = 100000000ns
+**H_5_U1.app.msgLength = 131072B 
+
+**H_6_U1.app.disable  = 1
+**H_6_U1.app.msgSQ = 1
+**H_6_U1.app.msg2msgGap = 20000000ns
+**H_6_U1.app.msgLength = 13107200B 
+
+**H_7_U1.app.disable  = 1
+**H_7_U1.app.msgSQ = 0
+**H_7_U1.app.msg2msgGap = 1000000ns
+**H_7_U1.app.msgLength = 131072B # 128K messages
+
+
+**H_8_U1.app.disable  = 1
+**H_8_U1.app.msgSQ = 1
+**H_8_U1.app.msg2msgGap = 1000ns
+**H_8_U1.app.msgLength = 131072B # 128K messages
+

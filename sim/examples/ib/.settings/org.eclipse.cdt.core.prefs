@@ -1,0 +1,12 @@
+#Mon Jan 25 19:59:04 GMT 2021
+eclipse.preferences.version=1
+environment/project/org.omnetpp.cdt.gnu.config.debug.972454288/TCL_LIBRARY/delimiter=\:
+environment/project/org.omnetpp.cdt.gnu.config.debug.972454288/TCL_LIBRARY/operation=replace
+environment/project/org.omnetpp.cdt.gnu.config.debug.972454288/TCL_LIBRARY/value=/usr/share/tcltk/tcl8.6
+environment/project/org.omnetpp.cdt.gnu.config.debug.972454288/append=true
+environment/project/org.omnetpp.cdt.gnu.config.debug.972454288/appendContributed=true
+environment/project/org.omnetpp.cdt.gnu.config.release.248078677/TCL_LIBRARY/delimiter=\:
+environment/project/org.omnetpp.cdt.gnu.config.release.248078677/TCL_LIBRARY/operation=append
+environment/project/org.omnetpp.cdt.gnu.config.release.248078677/TCL_LIBRARY/value=/usr/share/tcltk/tcl8.6
+environment/project/org.omnetpp.cdt.gnu.config.release.248078677/append=true
+environment/project/org.omnetpp.cdt.gnu.config.release.248078677/appendContributed=true

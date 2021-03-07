@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench progressCount="22" version="2.0">
+<workbenchAdvisor/>
+<window height="776" maximized="true" width="1018" x="485" y="113">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="160"/>
+</perspectiveBar>
+<coolbarLayout>
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="172" y="36"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="126" y="36"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="110" y="36"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="74" y="36"/>
+<coolItem id="org.omnetpp.neddoc.toolbars.neddocToolbar" itemType="typeToolBarContribution" x="46" y="36"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="36"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.cdt.make.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.omnetpp.ned.editor" itemType="typeToolBarContribution" x="136" y="36"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.omnetpp.inifile.editor.editors.InifileEditor" itemType="typeToolBarContribution" x="102" y="36"/>
+<coolItem id="group.help" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
+</coolbarLayout>
+<page aggregateWorkingSetId="Aggregate for window 1611582706779" focus="true" label="Workspace - Simulation">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
+<part id="20"/>
+<part id="21"/>
+<part id="22"/>
+<part id="23"/>
+<part id="24"/>
+<part id="25"/>
+<part id="26"/>
+<part id="27"/>
+<part id="28"/>
+<part id="29"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_2l_8n.ini" partName="is1_2l_8n.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.ini" title="is1_2l_8n.ini" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="8n_1hot.dstSeq" partName="8n_1hot.dstSeq" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/8n_1hot.dstSeq" title="8n_1hot.dstSeq" tooltip="ib/examples/is1_2l_8n/8n_1hot.dstSeq" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/8n_1hot.dstSeq"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="183" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="8n_1hot.dstSeq.ini" partName="8n_1hot.dstSeq.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/8n_1hot.dstSeq.ini" title="8n_1hot.dstSeq.ini" tooltip="ib/examples/is1_2l_8n/8n_1hot.dstSeq.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/8n_1hot.dstSeq.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="8n_2hot.dstSeq" partName="8n_2hot.dstSeq" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/8n_2hot.dstSeq" title="8n_2hot.dstSeq" tooltip="ib/examples/is1_2l_8n/8n_2hot.dstSeq" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/8n_2hot.dstSeq"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="8n_2hot.dstSeq.ini" partName="8n_2hot.dstSeq.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/8n_2hot.dstSeq.ini" title="8n_2hot.dstSeq.ini" tooltip="ib/examples/is1_2l_8n/8n_2hot.dstSeq.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/8n_2hot.dstSeq.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="ftree.hcas" partName="ftree.hcas" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/ftree.hcas" title="ftree.hcas" tooltip="ib/examples/is1_2l_8n/ftree.hcas" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/ftree.hcas"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="is1_2l_8n.dstSeq" partName="is1_2l_8n.dstSeq" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq" title="is1_2l_8n.dstSeq" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.dstSeq" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_2l_8n.dstSeq.ini" partName="is1_2l_8n.dstSeq.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq.ini" title="is1_2l_8n.dstSeq.ini" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.dstSeq.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="is1_2l_8n.fdbs" partName="is1_2l_8n.fdbs" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.fdbs" title="is1_2l_8n.fdbs" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.fdbs" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.fdbs"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="568" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_2l_8n.fdbs.ini" partName="is1_2l_8n.fdbs.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.fdbs.ini" title="is1_2l_8n.fdbs.ini" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.fdbs.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.fdbs.ini"/>
+</editor>
+<editor id="org.omnetpp.ned.editor" name="is1_2l_8n.ned" partName="is1_2l_8n.ned" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.ned" title="is1_2l_8n.ned" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.ned" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.ned"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_2l_8n.rank.ini" partName="is1_2l_8n.rank.ini" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.rank.ini" title="is1_2l_8n.rank.ini" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.rank.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.rank.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="is1_2l_8n.topo" partName="is1_2l_8n.topo" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/is1_2l_8n.topo" title="is1_2l_8n.topo" tooltip="ib/examples/is1_2l_8n/is1_2l_8n.topo" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/is1_2l_8n.topo"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="184" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="README" partName="README" path="/opt/ib/sim/examples/ib/examples/is1_2l_8n/README" title="README" tooltip="ib/examples/is1_2l_8n/README" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_2l_8n/README"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="167" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.binaryEditor" name="ib_flit_sim" partName="ib_flit_sim" path="/opt/ib/sim/examples/ib/ib_flit_sim" title="ib_flit_sim" tooltip="ib/ib_flit_sim" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/ib_flit_sim"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="modules.ini" partName="modules.ini" path="/opt/ib/sim/examples/ib/modules.ini" title="modules.ini" tooltip="ib/modules.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/modules.ini"/>
+</editor>
+<editor id="org.omnetpp.ned.editor" name="pktfwd_ifc.ned" partName="pktfwd_ifc.ned" path="/opt/ib/sim/examples/ib/pktfwd_ifc.ned" title="pktfwd_ifc.ned" tooltip="ib/pktfwd_ifc.ned" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/pktfwd_ifc.ned"/>
+</editor>
+<editor id="org.omnetpp.ned.editor" name="pktfwd.ned" partName="pktfwd.ned" path="/opt/ib/sim/examples/ib/pktfwd.ned" title="pktfwd.ned" tooltip="ib/pktfwd.ned" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/pktfwd.ned"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pktfwd.cc" partName="pktfwd.cc" path="/opt/ib/sim/examples/ib/pktfwd.cc" title="pktfwd.cc" tooltip="ib/pktfwd.cc" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/pktfwd.cc"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="1298" selectionTopPixel="536"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="obuf.cc" partName="obuf.cc" path="/opt/ib/sim/examples/ib/obuf.cc" title="obuf.cc" tooltip="ib/obuf.cc" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/obuf.cc"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="11371" selectionTopPixel="5853"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ibuf.cc" partName="ibuf.cc" path="/opt/ib/sim/examples/ib/ibuf.cc" title="ibuf.cc" tooltip="ib/ibuf.cc" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/ibuf.cc"/>
+<editorState selectionHorizontalPixel="0" selectionLength="66" selectionOffset="15283" selectionTopPixel="7927"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gen.cc" partName="gen.cc" path="/opt/ib/sim/examples/ib/gen.cc" title="gen.cc" tooltip="ib/gen.cc" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/gen.cc"/>
+<editorState selectionHorizontalPixel="0" selectionLength="66" selectionOffset="11652" selectionTopPixel="6193"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="obuf.h" partName="obuf.h" path="/opt/ib/sim/examples/ib/obuf.h" title="obuf.h" tooltip="ib/obuf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/obuf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4226" selectionTopPixel="1451"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pktfwd.h" partName="pktfwd.h" path="/opt/ib/sim/examples/ib/pktfwd.h" title="pktfwd.h" tooltip="ib/pktfwd.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/pktfwd.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1421" selectionTopPixel="359"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="32n_1hot.dstSeq" partName="32n_1hot.dstSeq" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/32n_1hot.dstSeq" title="32n_1hot.dstSeq" tooltip="ib/examples/is1_3l_32n/32n_1hot.dstSeq" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="32n_1hot.dstSeq.ini" partName="32n_1hot.dstSeq.ini" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini" title="32n_1hot.dstSeq.ini" tooltip="ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini"/>
+</editor>
+<editor activePart="true" focus="true" id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_3l_32n.ini" partName="is1_3l_32n.ini" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/is1_3l_32n.ini" title="is1_3l_32n.ini" tooltip="ib/examples/is1_3l_32n/is1_3l_32n.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/is1_3l_32n.ini"/>
+</editor>
+<editor id="org.omnetpp.ned.editor" name="is1_3l_32n.ned" partName="is1_3l_32n.ned" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/is1_3l_32n.ned" title="is1_3l_32n.ned" tooltip="ib/examples/is1_3l_32n/is1_3l_32n.ned" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/is1_3l_32n.ned"/>
+</editor>
+<editor id="org.omnetpp.inifile.editor.editors.InifileEditor" name="32n_2hot.dstSeq.ini" partName="32n_2hot.dstSeq.ini" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini" title="32n_2hot.dstSeq.ini" tooltip="ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="README" partName="README" path="/opt/ib/sim/examples/ib/examples/is1_3l_32n/README" title="README" tooltip="ib/examples/is1_3l_32n/README" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ib/examples/is1_3l_32n/README"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="167" selectionTopPixel="0"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.ui.views.PropertySheet" partName="Properties">
+<viewState/>
+</view>
+<view id="org.omnetpp.inifile.ModuleHierarchy" partName="Module Hierarchy"/>
+<view id="org.omnetpp.inifile.ModuleParameters" partName="NED Parameters">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="105" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline"/>
+<view id="org.omnetpp.inifile.NedInheritance" partName="NED Inheritance">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
+<viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
+</view>
+</views>
+<perspectives activePart="org.omnetpp.inifile.editor.editors.InifileEditor" activePerspective="org.omnetpp.main.OmnetppPerspective">
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.omnetpp.ide.PerspectiveFactory" id="org.omnetpp.main.OmnetppPerspective" label="Simulation"/>
+<alwaysOnActionSet id="org.eclipse.egit.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.omnetpp.ned.ActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProgressView"/>
+<show_view_action id="org.omnetpp.inifile.ModuleParameters"/>
+<show_view_action id="org.omnetpp.inifile.ModuleHierarchy"/>
+<show_view_action id="org.omnetpp.inifile.NedInheritance"/>
+<show_view_action id="org.omnetpp.scave.DatasetView"/>
+<show_view_action id="org.omnetpp.scave.VectorBrowserView"/>
+<show_view_action id="org.omnetpp.sequencechart.editors.SequenceChartView"/>
+<show_view_action id="org.omnetpp.eventlogtable.editors.EventLogTableView"/>
+<new_wizard_action id="org.omnetpp.main.wizards.NewOmnetppProject"/>
+<new_wizard_action id="org.omnetpp.cdt.wizards.NewOmnetppCCProject"/>
+<new_wizard_action id="org.omnetpp.ned.editor.wizards.NewSimulation"/>
+<new_wizard_action id="org.omnetpp.ned.editor.wizards.NewSimpleModule"/>
+<new_wizard_action id="org.omnetpp.ned.editor.wizards.NewCompoundModule"/>
+<new_wizard_action id="org.omnetpp.ned.editor.wizards.NewNetwork"/>
+<new_wizard_action id="org.omnetpp.ned.editor.wizards.NewNedFile"/>
+<new_wizard_action id="org.omnetpp.msg.editor.wizards.NewMsgFile"/>
+<new_wizard_action id="org.omnetpp.inifile.editor.wizards.NewIniFile"/>
+<new_wizard_action id="org.omnetpp.scave.wizards.NewScaveFile"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<new_wizard_action id="org.eclipse.ui.editors.wizards.UntitledTextFileWizard"/>
+<new_wizard_action id="org.omnetpp.common.wizards.NewWizard"/>
+<new_wizard_action id="org.omnetpp.cdt.wizards.NewOmnetppClass"/>
+<perspective_action id="org.eclipse.cdt.ui.CPerspective"/>
+<perspective_action id="org.eclipse.ui.resourcePerspective"/>
+<perspective_action id="org.omnetpp.main.OmnetppPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.navigator.ProjectExplorer"/>
+<view id="org.eclipse.ui.views.PropertySheet"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.omnetpp.inifile.ModuleHierarchy"/>
+<view id="org.omnetpp.inifile.ModuleParameters"/>
+<view id="org.omnetpp.inifile.NedInheritance"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="left">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="left">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.24950495" ratioLeft="252" ratioRight="758" relationship="2" relative="left"/>
+<info folder="true" part="bottom" ratio="0.6337403" ratioLeft="571" ratioRight="330" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.omnetpp.inifile.ModuleHierarchy" label="Module Hierarchy"/>
+<page content="org.omnetpp.inifile.ModuleParameters" label="NED Parameters"/>
+<page content="org.omnetpp.inifile.NedInheritance" label="NED Inheritance"/>
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.omnetpp.main.NewVersionView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.TaskList" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.ProgressView" label="LabelNotFound"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="leftbottom" ratio="0.49920255" ratioLeft="313" ratioRight="314" relationship="4" relative="left">
+<folder activePageID="org.eclipse.ui.views.PropertySheet" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<workingSets/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_2l_8n/8n_1hot.dstSeq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.dstSeq.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.fdbs"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.fdbs.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.ned.editor" path="/ib/examples/is1_2l_8n/is1_2l_8n.ned"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.rank.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_2l_8n/is1_2l_8n.topo"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ib/pktfwd.cc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ib/pktfwd.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_3l_32n/is1_3l_32n.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.ned.editor" path="/ib/examples/is1_3l_32n/is1_3l_32n.ned"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" path="/ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/ib/examples/is1_3l_32n/README"/>
+</editors>
+<item historyLabel="pktfwd.cc" index="9">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="pktfwd.h" index="10">
+<position info="not_deleted" x="1421" y="0"/>
+</item>
+<item historyLabel="pktfwd.cc" index="9">
+<position info="not_deleted" x="1298" y="11"/>
+</item>
+<item historyLabel="is1_2l_8n.ini" index="0"/>
+<item historyLabel="is1_2l_8n.fdbs" index="4">
+<position/>
+</item>
+<item historyLabel="is1_2l_8n.dstSeq" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.ini" index="0"/>
+<item historyLabel="is1_2l_8n.fdbs.ini" index="5"/>
+<item historyLabel="is1_2l_8n.fdbs" index="4">
+<position/>
+</item>
+<item historyLabel="is1_2l_8n.fdbs.ini" index="5"/>
+<item historyLabel="is1_2l_8n.ned" index="6"/>
+<item historyLabel="is1_2l_8n.dstSeq.ini" index="3"/>
+<item historyLabel="is1_2l_8n.dstSeq" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.ini" index="0"/>
+<item historyLabel="is1_2l_8n.dstSeq" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.dstSeq.ini" index="3"/>
+<item historyLabel="is1_2l_8n.fdbs" index="4">
+<position info="not_deleted" x="568" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.fdbs.ini" index="5"/>
+<item historyLabel="is1_2l_8n.ned" index="6"/>
+<item historyLabel="is1_2l_8n.rank.ini" index="7"/>
+<item historyLabel="is1_2l_8n.topo" index="8">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="8n_1hot.dstSeq" index="1">
+<position info="not_deleted" x="183" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.ini" index="0"/>
+<item historyLabel="8n_1hot.dstSeq" index="1">
+<position info="not_deleted" x="183" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.dstSeq" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.dstSeq.ini" index="3"/>
+<item historyLabel="is1_2l_8n.fdbs" index="4">
+<position info="not_deleted" x="568" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.fdbs.ini" index="5"/>
+<item historyLabel="is1_2l_8n.ned" index="6"/>
+<item historyLabel="is1_2l_8n.rank.ini" index="7"/>
+<item historyLabel="is1_2l_8n.topo" index="8">
+<position info="not_deleted" x="184" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.rank.ini" index="7"/>
+<item historyLabel="is1_2l_8n.ned" index="6"/>
+<item historyLabel="32n_1hot.dstSeq" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="32n_1hot.dstSeq.ini" index="12"/>
+<item historyLabel="is1_3l_32n.ini" index="13"/>
+<item historyLabel="is1_3l_32n.ned" index="14"/>
+<item historyLabel="is1_3l_32n.ini" index="13"/>
+<item historyLabel="32n_1hot.dstSeq" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="32n_1hot.dstSeq.ini" index="12"/>
+<item historyLabel="32n_2hot.dstSeq.ini" index="15"/>
+<item historyLabel="is1_3l_32n.ini" index="13"/>
+<item historyLabel="32n_1hot.dstSeq.ini" index="12"/>
+<item historyLabel="32n_2hot.dstSeq.ini" index="15"/>
+<item historyLabel="is1_3l_32n.ini" index="13"/>
+<item historyLabel="is1_3l_32n.ned" index="14"/>
+<item historyLabel="README" index="16">
+<position info="not_deleted" x="167" y="0"/>
+</item>
+<item historyLabel="is1_2l_8n.ini" index="0"/>
+<item active="true" historyLabel="is1_3l_32n.ini" index="13"/>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+<workbenchWindowAdvisor/>
+<actionBarAdvisor/>
+<trimLayout>
+<trimArea IMemento.internal.id="128">
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
+</trimArea>
+<trimArea IMemento.internal.id="1024">
+<trimItem IMemento.internal.id="org.eclise.ui.internal.FastViewBar"/>
+<trimItem IMemento.internal.id="org.eclipse.jface.action.StatusLineManager"/>
+<trimItem IMemento.internal.id="org.eclipse.ui.internal.progress.ProgressRegion"/>
+</trimArea>
+</trimLayout>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="README" tooltip="ib/examples/is1_3l_32n/README">
+<persistable path="/ib/examples/is1_3l_32n/README"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" name="32n_2hot.dstSeq.ini" tooltip="ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini">
+<persistable path="/ib/examples/is1_3l_32n/32n_2hot.dstSeq.ini"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.ned.editor.launcher" name="is1_3l_32n.ned" tooltip="ib/examples/is1_3l_32n/is1_3l_32n.ned">
+<persistable path="/ib/examples/is1_3l_32n/is1_3l_32n.ned"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" name="is1_3l_32n.ini" tooltip="ib/examples/is1_3l_32n/is1_3l_32n.ini">
+<persistable path="/ib/examples/is1_3l_32n/is1_3l_32n.ini"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.inifile.editor.editors.InifileEditor" name="32n_1hot.dstSeq.ini" tooltip="ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini">
+<persistable path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq.ini"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="32n_1hot.dstSeq" tooltip="ib/examples/is1_3l_32n/32n_1hot.dstSeq">
+<persistable path="/ib/examples/is1_3l_32n/32n_1hot.dstSeq"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pktfwd.h" tooltip="ib/pktfwd.h">
+<persistable path="/ib/pktfwd.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="obuf.h" tooltip="ib/obuf.h">
+<persistable path="/ib/obuf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.make.editor" name="Makefile" tooltip="ib/Makefile">
+<persistable path="/ib/Makefile"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gen.cc" tooltip="ib/gen.cc">
+<persistable path="/ib/gen.cc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ibuf.cc" tooltip="ib/ibuf.cc">
+<persistable path="/ib/ibuf.cc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="obuf.cc" tooltip="ib/obuf.cc">
+<persistable path="/ib/obuf.cc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pktfwd.cc" tooltip="ib/pktfwd.cc">
+<persistable path="/ib/pktfwd.cc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.omnetpp.ned.editor.launcher" name="pktfwd.ned" tooltip="ib/pktfwd.ned">
+<persistable path="/ib/pktfwd.ned"/>
+</file>
+</mruList>
+</workbench>

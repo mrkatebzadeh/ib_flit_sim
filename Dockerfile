@@ -38,7 +38,7 @@ RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 22
 
 # Create working directory
-RUN mkdir -p /opt/ib/
+VOLUME ["/opt/ib"]
 WORKDIR /opt/ib
 #COPY ./mlx /opt/omnetpp/mlx
 

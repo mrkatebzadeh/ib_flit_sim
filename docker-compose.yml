@@ -4,7 +4,7 @@ services:
   mlx:
     build: .
     volumes:
-      - .:/opt/ib/:rw
+      - .:/opt/ib/
     expose:
       - "22"
     environment:

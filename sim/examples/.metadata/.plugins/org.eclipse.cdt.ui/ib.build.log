@@ -1,0 +1,7 @@
+
+**** Build of configuration gcc-debug for project ib ****
+
+make MODE=debug CONFIGNAME=gcc-debug all 
+ln -sf out/gcc-debug//ib .
+
+**** Build Finished ****

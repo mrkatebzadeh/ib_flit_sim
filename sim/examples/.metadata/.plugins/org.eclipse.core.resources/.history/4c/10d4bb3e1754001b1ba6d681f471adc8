@@ -1,0 +1,3146 @@
+//
+// Generated file, do not edit! Created by opp_msgc 4.2 from ib.msg.
+//
+
+// Disable warnings about unused variables, empty switch stmts, etc:
+#ifdef _MSC_VER
+#  pragma warning(disable:4101)
+#  pragma warning(disable:4065)
+#endif
+
+#include <iostream>
+#include <sstream>
+#include "ib_m.h"
+
+// Template rule which fires if a struct or class doesn't have operator<<
+template<typename T>
+std::ostream& operator<<(std::ostream& out,const T&) {return out;}
+
+// Another default rule (prevents compiler from choosing base class' doPacking())
+template<typename T>
+void doPacking(cCommBuffer *, T& t) {
+    throw cRuntimeError("Parsim error: no doPacking() function for type %s or its base class (check .msg and _m.cc/h files!)",opp_typename(typeid(t)));
+}
+
+template<typename T>
+void doUnpacking(cCommBuffer *, T& t) {
+    throw cRuntimeError("Parsim error: no doUnpacking() function for type %s or its base class (check .msg and _m.cc/h files!)",opp_typename(typeid(t)));
+}
+
+
+
+
+EXECUTE_ON_STARTUP(
+    cEnum *e = cEnum::find("IB_MSGS");
+    if (!e) enums.getInstance()->add(e = new cEnum("IB_MSGS"));
+    e->insert(IB_DATA_MSG, "IB_DATA_MSG");
+    e->insert(IB_FLOWCTRL_MSG, "IB_FLOWCTRL_MSG");
+    e->insert(IB_SENT_MSG, "IB_SENT_MSG");
+    e->insert(IB_TXCRED_MSG, "IB_TXCRED_MSG");
+    e->insert(IB_RXCRED_MSG, "IB_RXCRED_MSG");
+    e->insert(IB_MINTIME_MSG, "IB_MINTIME_MSG");
+    e->insert(IB_POP_MSG, "IB_POP_MSG");
+    e->insert(IB_HICCUP_MSG, "IB_HICCUP_MSG");
+    e->insert(IB_FREE_MSG, "IB_FREE_MSG");
+    e->insert(IB_DONE_MSG, "IB_DONE_MSG");
+    e->insert(IB_APP_MSG, "IB_APP_MSG");
+    e->insert(IB_PUSH_MSG, "IB_PUSH_MSG");
+    e->insert(IB_TQ_LOAD_MSG, "IB_TQ_LOAD_MSG");
+);
+
+Register_Class(IBWireMsg);
+
+IBWireMsg::IBWireMsg(const char *name, int kind) : cPacket(name,kind)
+{
+    this->VL_var = 0;
+}
+
+IBWireMsg::IBWireMsg(const IBWireMsg& other) : cPacket(other)
+{
+    copy(other);
+}
+
+IBWireMsg::~IBWireMsg()
+{
+}
+
+IBWireMsg& IBWireMsg::operator=(const IBWireMsg& other)
+{
+    if (this==&other) return *this;
+    cPacket::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBWireMsg::copy(const IBWireMsg& other)
+{
+    this->VL_var = other.VL_var;
+}
+
+void IBWireMsg::parsimPack(cCommBuffer *b)
+{
+    cPacket::parsimPack(b);
+    doPacking(b,this->VL_var);
+}
+
+void IBWireMsg::parsimUnpack(cCommBuffer *b)
+{
+    cPacket::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+}
+
+short IBWireMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBWireMsg::setVL(short VL)
+{
+    this->VL_var = VL;
+}
+
+class IBWireMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBWireMsgDescriptor();
+    virtual ~IBWireMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBWireMsgDescriptor);
+
+IBWireMsgDescriptor::IBWireMsgDescriptor() : cClassDescriptor("IBWireMsg", "cPacket")
+{
+}
+
+IBWireMsgDescriptor::~IBWireMsgDescriptor()
+{
+}
+
+bool IBWireMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBWireMsg *>(obj)!=NULL;
+}
+
+const char *IBWireMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBWireMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int IBWireMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBWireMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int IBWireMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBWireMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "short",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBWireMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBWireMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBWireMsg *pp = (IBWireMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBWireMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBWireMsg *pp = (IBWireMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        default: return "";
+    }
+}
+
+bool IBWireMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBWireMsg *pp = (IBWireMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBWireMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+    };
+    return (field>=0 && field<1) ? fieldStructNames[field] : NULL;
+}
+
+void *IBWireMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBWireMsg *pp = (IBWireMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBDataMsg);
+
+IBDataMsg::IBDataMsg(const char *name, int kind) : IBWireMsg(name,kind)
+{
+    this->appIdx_var = 0;
+    this->msgIdx_var = 0;
+    this->msgLen_var = 0;
+    this->pktIdx_var = 0;
+    this->packetId_var = 0;
+    this->packetSn_var = 0;
+    this->flitSn_var = 0;
+    this->PacketLength_var = 0;
+    this->PacketLengthBytes_var = 0;
+    this->dstLid_var = 0;
+    this->srcLid_var = 0;
+    this->SL_var = 0;
+    this->useStatic_var = 0;
+    this->SwTimeStamp_var = 0;
+    this->injectionTime_var = 0;
+    this->beforeAnySwitch_var = 0;
+}
+
+IBDataMsg::IBDataMsg(const IBDataMsg& other) : IBWireMsg(other)
+{
+    copy(other);
+}
+
+IBDataMsg::~IBDataMsg()
+{
+}
+
+IBDataMsg& IBDataMsg::operator=(const IBDataMsg& other)
+{
+    if (this==&other) return *this;
+    IBWireMsg::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBDataMsg::copy(const IBDataMsg& other)
+{
+    this->appIdx_var = other.appIdx_var;
+    this->msgIdx_var = other.msgIdx_var;
+    this->msgLen_var = other.msgLen_var;
+    this->pktIdx_var = other.pktIdx_var;
+    this->packetId_var = other.packetId_var;
+    this->packetSn_var = other.packetSn_var;
+    this->flitSn_var = other.flitSn_var;
+    this->PacketLength_var = other.PacketLength_var;
+    this->PacketLengthBytes_var = other.PacketLengthBytes_var;
+    this->dstLid_var = other.dstLid_var;
+    this->srcLid_var = other.srcLid_var;
+    this->SL_var = other.SL_var;
+    this->useStatic_var = other.useStatic_var;
+    this->SwTimeStamp_var = other.SwTimeStamp_var;
+    this->injectionTime_var = other.injectionTime_var;
+    this->beforeAnySwitch_var = other.beforeAnySwitch_var;
+}
+
+void IBDataMsg::parsimPack(cCommBuffer *b)
+{
+    IBWireMsg::parsimPack(b);
+    doPacking(b,this->appIdx_var);
+    doPacking(b,this->msgIdx_var);
+    doPacking(b,this->msgLen_var);
+    doPacking(b,this->pktIdx_var);
+    doPacking(b,this->packetId_var);
+    doPacking(b,this->packetSn_var);
+    doPacking(b,this->flitSn_var);
+    doPacking(b,this->PacketLength_var);
+    doPacking(b,this->PacketLengthBytes_var);
+    doPacking(b,this->dstLid_var);
+    doPacking(b,this->srcLid_var);
+    doPacking(b,this->SL_var);
+    doPacking(b,this->useStatic_var);
+    doPacking(b,this->SwTimeStamp_var);
+    doPacking(b,this->injectionTime_var);
+    doPacking(b,this->beforeAnySwitch_var);
+}
+
+void IBDataMsg::parsimUnpack(cCommBuffer *b)
+{
+    IBWireMsg::parsimUnpack(b);
+    doUnpacking(b,this->appIdx_var);
+    doUnpacking(b,this->msgIdx_var);
+    doUnpacking(b,this->msgLen_var);
+    doUnpacking(b,this->pktIdx_var);
+    doUnpacking(b,this->packetId_var);
+    doUnpacking(b,this->packetSn_var);
+    doUnpacking(b,this->flitSn_var);
+    doUnpacking(b,this->PacketLength_var);
+    doUnpacking(b,this->PacketLengthBytes_var);
+    doUnpacking(b,this->dstLid_var);
+    doUnpacking(b,this->srcLid_var);
+    doUnpacking(b,this->SL_var);
+    doUnpacking(b,this->useStatic_var);
+    doUnpacking(b,this->SwTimeStamp_var);
+    doUnpacking(b,this->injectionTime_var);
+    doUnpacking(b,this->beforeAnySwitch_var);
+}
+
+int IBDataMsg::getAppIdx() const
+{
+    return appIdx_var;
+}
+
+void IBDataMsg::setAppIdx(int appIdx)
+{
+    this->appIdx_var = appIdx;
+}
+
+int IBDataMsg::getMsgIdx() const
+{
+    return msgIdx_var;
+}
+
+void IBDataMsg::setMsgIdx(int msgIdx)
+{
+    this->msgIdx_var = msgIdx;
+}
+
+int IBDataMsg::getMsgLen() const
+{
+    return msgLen_var;
+}
+
+void IBDataMsg::setMsgLen(int msgLen)
+{
+    this->msgLen_var = msgLen;
+}
+
+int IBDataMsg::getPktIdx() const
+{
+    return pktIdx_var;
+}
+
+void IBDataMsg::setPktIdx(int pktIdx)
+{
+    this->pktIdx_var = pktIdx;
+}
+
+int IBDataMsg::getPacketId() const
+{
+    return packetId_var;
+}
+
+void IBDataMsg::setPacketId(int packetId)
+{
+    this->packetId_var = packetId;
+}
+
+int IBDataMsg::getPacketSn() const
+{
+    return packetSn_var;
+}
+
+void IBDataMsg::setPacketSn(int packetSn)
+{
+    this->packetSn_var = packetSn;
+}
+
+int IBDataMsg::getFlitSn() const
+{
+    return flitSn_var;
+}
+
+void IBDataMsg::setFlitSn(int flitSn)
+{
+    this->flitSn_var = flitSn;
+}
+
+int IBDataMsg::getPacketLength() const
+{
+    return PacketLength_var;
+}
+
+void IBDataMsg::setPacketLength(int PacketLength)
+{
+    this->PacketLength_var = PacketLength;
+}
+
+int IBDataMsg::getPacketLengthBytes() const
+{
+    return PacketLengthBytes_var;
+}
+
+void IBDataMsg::setPacketLengthBytes(int PacketLengthBytes)
+{
+    this->PacketLengthBytes_var = PacketLengthBytes;
+}
+
+int IBDataMsg::getDstLid() const
+{
+    return dstLid_var;
+}
+
+void IBDataMsg::setDstLid(int dstLid)
+{
+    this->dstLid_var = dstLid;
+}
+
+int IBDataMsg::getSrcLid() const
+{
+    return srcLid_var;
+}
+
+void IBDataMsg::setSrcLid(int srcLid)
+{
+    this->srcLid_var = srcLid;
+}
+
+int IBDataMsg::getSL() const
+{
+    return SL_var;
+}
+
+void IBDataMsg::setSL(int SL)
+{
+    this->SL_var = SL;
+}
+
+int IBDataMsg::getUseStatic() const
+{
+    return useStatic_var;
+}
+
+void IBDataMsg::setUseStatic(int useStatic)
+{
+    this->useStatic_var = useStatic;
+}
+
+simtime_t IBDataMsg::getSwTimeStamp() const
+{
+    return SwTimeStamp_var;
+}
+
+void IBDataMsg::setSwTimeStamp(simtime_t SwTimeStamp)
+{
+    this->SwTimeStamp_var = SwTimeStamp;
+}
+
+simtime_t IBDataMsg::getInjectionTime() const
+{
+    return injectionTime_var;
+}
+
+void IBDataMsg::setInjectionTime(simtime_t injectionTime)
+{
+    this->injectionTime_var = injectionTime;
+}
+
+bool IBDataMsg::getBeforeAnySwitch() const
+{
+    return beforeAnySwitch_var;
+}
+
+void IBDataMsg::setBeforeAnySwitch(bool beforeAnySwitch)
+{
+    this->beforeAnySwitch_var = beforeAnySwitch;
+}
+
+class IBDataMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBDataMsgDescriptor();
+    virtual ~IBDataMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBDataMsgDescriptor);
+
+IBDataMsgDescriptor::IBDataMsgDescriptor() : cClassDescriptor("IBDataMsg", "IBWireMsg")
+{
+}
+
+IBDataMsgDescriptor::~IBDataMsgDescriptor()
+{
+}
+
+bool IBDataMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBDataMsg *>(obj)!=NULL;
+}
+
+const char *IBDataMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBDataMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 16+basedesc->getFieldCount(object) : 16;
+}
+
+unsigned int IBDataMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<16) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBDataMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "appIdx",
+        "msgIdx",
+        "msgLen",
+        "pktIdx",
+        "packetId",
+        "packetSn",
+        "flitSn",
+        "PacketLength",
+        "PacketLengthBytes",
+        "dstLid",
+        "srcLid",
+        "SL",
+        "useStatic",
+        "SwTimeStamp",
+        "injectionTime",
+        "beforeAnySwitch",
+    };
+    return (field>=0 && field<16) ? fieldNames[field] : NULL;
+}
+
+int IBDataMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='a' && strcmp(fieldName, "appIdx")==0) return base+0;
+    if (fieldName[0]=='m' && strcmp(fieldName, "msgIdx")==0) return base+1;
+    if (fieldName[0]=='m' && strcmp(fieldName, "msgLen")==0) return base+2;
+    if (fieldName[0]=='p' && strcmp(fieldName, "pktIdx")==0) return base+3;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetId")==0) return base+4;
+    if (fieldName[0]=='p' && strcmp(fieldName, "packetSn")==0) return base+5;
+    if (fieldName[0]=='f' && strcmp(fieldName, "flitSn")==0) return base+6;
+    if (fieldName[0]=='P' && strcmp(fieldName, "PacketLength")==0) return base+7;
+    if (fieldName[0]=='P' && strcmp(fieldName, "PacketLengthBytes")==0) return base+8;
+    if (fieldName[0]=='d' && strcmp(fieldName, "dstLid")==0) return base+9;
+    if (fieldName[0]=='s' && strcmp(fieldName, "srcLid")==0) return base+10;
+    if (fieldName[0]=='S' && strcmp(fieldName, "SL")==0) return base+11;
+    if (fieldName[0]=='u' && strcmp(fieldName, "useStatic")==0) return base+12;
+    if (fieldName[0]=='S' && strcmp(fieldName, "SwTimeStamp")==0) return base+13;
+    if (fieldName[0]=='i' && strcmp(fieldName, "injectionTime")==0) return base+14;
+    if (fieldName[0]=='b' && strcmp(fieldName, "beforeAnySwitch")==0) return base+15;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBDataMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "int",
+        "simtime_t",
+        "simtime_t",
+        "bool",
+    };
+    return (field>=0 && field<16) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBDataMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBDataMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDataMsg *pp = (IBDataMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBDataMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDataMsg *pp = (IBDataMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getAppIdx());
+        case 1: return long2string(pp->getMsgIdx());
+        case 2: return long2string(pp->getMsgLen());
+        case 3: return long2string(pp->getPktIdx());
+        case 4: return long2string(pp->getPacketId());
+        case 5: return long2string(pp->getPacketSn());
+        case 6: return long2string(pp->getFlitSn());
+        case 7: return long2string(pp->getPacketLength());
+        case 8: return long2string(pp->getPacketLengthBytes());
+        case 9: return long2string(pp->getDstLid());
+        case 10: return long2string(pp->getSrcLid());
+        case 11: return long2string(pp->getSL());
+        case 12: return long2string(pp->getUseStatic());
+        case 13: return double2string(pp->getSwTimeStamp());
+        case 14: return double2string(pp->getInjectionTime());
+        case 15: return bool2string(pp->getBeforeAnySwitch());
+        default: return "";
+    }
+}
+
+bool IBDataMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDataMsg *pp = (IBDataMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setAppIdx(string2long(value)); return true;
+        case 1: pp->setMsgIdx(string2long(value)); return true;
+        case 2: pp->setMsgLen(string2long(value)); return true;
+        case 3: pp->setPktIdx(string2long(value)); return true;
+        case 4: pp->setPacketId(string2long(value)); return true;
+        case 5: pp->setPacketSn(string2long(value)); return true;
+        case 6: pp->setFlitSn(string2long(value)); return true;
+        case 7: pp->setPacketLength(string2long(value)); return true;
+        case 8: pp->setPacketLengthBytes(string2long(value)); return true;
+        case 9: pp->setDstLid(string2long(value)); return true;
+        case 10: pp->setSrcLid(string2long(value)); return true;
+        case 11: pp->setSL(string2long(value)); return true;
+        case 12: pp->setUseStatic(string2long(value)); return true;
+        case 13: pp->setSwTimeStamp(string2double(value)); return true;
+        case 14: pp->setInjectionTime(string2double(value)); return true;
+        case 15: pp->setBeforeAnySwitch(string2bool(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBDataMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<16) ? fieldStructNames[field] : NULL;
+}
+
+void *IBDataMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDataMsg *pp = (IBDataMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBFlowControl);
+
+IBFlowControl::IBFlowControl(const char *name, int kind) : IBWireMsg(name,kind)
+{
+    this->FCTBS_var = 0;
+    this->FCCL_var = 0;
+}
+
+IBFlowControl::IBFlowControl(const IBFlowControl& other) : IBWireMsg(other)
+{
+    copy(other);
+}
+
+IBFlowControl::~IBFlowControl()
+{
+}
+
+IBFlowControl& IBFlowControl::operator=(const IBFlowControl& other)
+{
+    if (this==&other) return *this;
+    IBWireMsg::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBFlowControl::copy(const IBFlowControl& other)
+{
+    this->FCTBS_var = other.FCTBS_var;
+    this->FCCL_var = other.FCCL_var;
+}
+
+void IBFlowControl::parsimPack(cCommBuffer *b)
+{
+    IBWireMsg::parsimPack(b);
+    doPacking(b,this->FCTBS_var);
+    doPacking(b,this->FCCL_var);
+}
+
+void IBFlowControl::parsimUnpack(cCommBuffer *b)
+{
+    IBWireMsg::parsimUnpack(b);
+    doUnpacking(b,this->FCTBS_var);
+    doUnpacking(b,this->FCCL_var);
+}
+
+long IBFlowControl::getFCTBS() const
+{
+    return FCTBS_var;
+}
+
+void IBFlowControl::setFCTBS(long FCTBS)
+{
+    this->FCTBS_var = FCTBS;
+}
+
+long IBFlowControl::getFCCL() const
+{
+    return FCCL_var;
+}
+
+void IBFlowControl::setFCCL(long FCCL)
+{
+    this->FCCL_var = FCCL;
+}
+
+class IBFlowControlDescriptor : public cClassDescriptor
+{
+  public:
+    IBFlowControlDescriptor();
+    virtual ~IBFlowControlDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBFlowControlDescriptor);
+
+IBFlowControlDescriptor::IBFlowControlDescriptor() : cClassDescriptor("IBFlowControl", "IBWireMsg")
+{
+}
+
+IBFlowControlDescriptor::~IBFlowControlDescriptor()
+{
+}
+
+bool IBFlowControlDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBFlowControl *>(obj)!=NULL;
+}
+
+const char *IBFlowControlDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBFlowControlDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+}
+
+unsigned int IBFlowControlDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBFlowControlDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "FCTBS",
+        "FCCL",
+    };
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+}
+
+int IBFlowControlDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='F' && strcmp(fieldName, "FCTBS")==0) return base+0;
+    if (fieldName[0]=='F' && strcmp(fieldName, "FCCL")==0) return base+1;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBFlowControlDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "long",
+        "long",
+    };
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBFlowControlDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBFlowControlDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFlowControl *pp = (IBFlowControl *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBFlowControlDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFlowControl *pp = (IBFlowControl *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getFCTBS());
+        case 1: return long2string(pp->getFCCL());
+        default: return "";
+    }
+}
+
+bool IBFlowControlDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFlowControl *pp = (IBFlowControl *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setFCTBS(string2long(value)); return true;
+        case 1: pp->setFCCL(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBFlowControlDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<2) ? fieldStructNames[field] : NULL;
+}
+
+void *IBFlowControlDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFlowControl *pp = (IBFlowControl *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBTQLoadUpdateMsg);
+
+IBTQLoadUpdateMsg::IBTQLoadUpdateMsg(const char *name, int kind) : IBWireMsg(name,kind)
+{
+    this->load_var = 0;
+    this->srcRank_var = 0;
+    this->firstLid_var = 0;
+    this->lastLid_var = 0;
+}
+
+IBTQLoadUpdateMsg::IBTQLoadUpdateMsg(const IBTQLoadUpdateMsg& other) : IBWireMsg(other)
+{
+    copy(other);
+}
+
+IBTQLoadUpdateMsg::~IBTQLoadUpdateMsg()
+{
+}
+
+IBTQLoadUpdateMsg& IBTQLoadUpdateMsg::operator=(const IBTQLoadUpdateMsg& other)
+{
+    if (this==&other) return *this;
+    IBWireMsg::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBTQLoadUpdateMsg::copy(const IBTQLoadUpdateMsg& other)
+{
+    this->load_var = other.load_var;
+    this->srcRank_var = other.srcRank_var;
+    this->firstLid_var = other.firstLid_var;
+    this->lastLid_var = other.lastLid_var;
+}
+
+void IBTQLoadUpdateMsg::parsimPack(cCommBuffer *b)
+{
+    IBWireMsg::parsimPack(b);
+    doPacking(b,this->load_var);
+    doPacking(b,this->srcRank_var);
+    doPacking(b,this->firstLid_var);
+    doPacking(b,this->lastLid_var);
+}
+
+void IBTQLoadUpdateMsg::parsimUnpack(cCommBuffer *b)
+{
+    IBWireMsg::parsimUnpack(b);
+    doUnpacking(b,this->load_var);
+    doUnpacking(b,this->srcRank_var);
+    doUnpacking(b,this->firstLid_var);
+    doUnpacking(b,this->lastLid_var);
+}
+
+int IBTQLoadUpdateMsg::getLoad() const
+{
+    return load_var;
+}
+
+void IBTQLoadUpdateMsg::setLoad(int load)
+{
+    this->load_var = load;
+}
+
+int IBTQLoadUpdateMsg::getSrcRank() const
+{
+    return srcRank_var;
+}
+
+void IBTQLoadUpdateMsg::setSrcRank(int srcRank)
+{
+    this->srcRank_var = srcRank;
+}
+
+int IBTQLoadUpdateMsg::getFirstLid() const
+{
+    return firstLid_var;
+}
+
+void IBTQLoadUpdateMsg::setFirstLid(int firstLid)
+{
+    this->firstLid_var = firstLid;
+}
+
+int IBTQLoadUpdateMsg::getLastLid() const
+{
+    return lastLid_var;
+}
+
+void IBTQLoadUpdateMsg::setLastLid(int lastLid)
+{
+    this->lastLid_var = lastLid;
+}
+
+class IBTQLoadUpdateMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBTQLoadUpdateMsgDescriptor();
+    virtual ~IBTQLoadUpdateMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBTQLoadUpdateMsgDescriptor);
+
+IBTQLoadUpdateMsgDescriptor::IBTQLoadUpdateMsgDescriptor() : cClassDescriptor("IBTQLoadUpdateMsg", "IBWireMsg")
+{
+}
+
+IBTQLoadUpdateMsgDescriptor::~IBTQLoadUpdateMsgDescriptor()
+{
+}
+
+bool IBTQLoadUpdateMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBTQLoadUpdateMsg *>(obj)!=NULL;
+}
+
+const char *IBTQLoadUpdateMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBTQLoadUpdateMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 4+basedesc->getFieldCount(object) : 4;
+}
+
+unsigned int IBTQLoadUpdateMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<4) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBTQLoadUpdateMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "load",
+        "srcRank",
+        "firstLid",
+        "lastLid",
+    };
+    return (field>=0 && field<4) ? fieldNames[field] : NULL;
+}
+
+int IBTQLoadUpdateMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='l' && strcmp(fieldName, "load")==0) return base+0;
+    if (fieldName[0]=='s' && strcmp(fieldName, "srcRank")==0) return base+1;
+    if (fieldName[0]=='f' && strcmp(fieldName, "firstLid")==0) return base+2;
+    if (fieldName[0]=='l' && strcmp(fieldName, "lastLid")==0) return base+3;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBTQLoadUpdateMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",
+        "int",
+        "int",
+        "int",
+    };
+    return (field>=0 && field<4) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBTQLoadUpdateMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBTQLoadUpdateMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTQLoadUpdateMsg *pp = (IBTQLoadUpdateMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBTQLoadUpdateMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTQLoadUpdateMsg *pp = (IBTQLoadUpdateMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getLoad());
+        case 1: return long2string(pp->getSrcRank());
+        case 2: return long2string(pp->getFirstLid());
+        case 3: return long2string(pp->getLastLid());
+        default: return "";
+    }
+}
+
+bool IBTQLoadUpdateMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTQLoadUpdateMsg *pp = (IBTQLoadUpdateMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setLoad(string2long(value)); return true;
+        case 1: pp->setSrcRank(string2long(value)); return true;
+        case 2: pp->setFirstLid(string2long(value)); return true;
+        case 3: pp->setLastLid(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBTQLoadUpdateMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<4) ? fieldStructNames[field] : NULL;
+}
+
+void *IBTQLoadUpdateMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTQLoadUpdateMsg *pp = (IBTQLoadUpdateMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBTxCredMsg);
+
+IBTxCredMsg::IBTxCredMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->VL_var = 0;
+    this->FCCL_var = 0;
+    this->FCTBS_var = 0;
+}
+
+IBTxCredMsg::IBTxCredMsg(const IBTxCredMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBTxCredMsg::~IBTxCredMsg()
+{
+}
+
+IBTxCredMsg& IBTxCredMsg::operator=(const IBTxCredMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBTxCredMsg::copy(const IBTxCredMsg& other)
+{
+    this->VL_var = other.VL_var;
+    this->FCCL_var = other.FCCL_var;
+    this->FCTBS_var = other.FCTBS_var;
+}
+
+void IBTxCredMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->VL_var);
+    doPacking(b,this->FCCL_var);
+    doPacking(b,this->FCTBS_var);
+}
+
+void IBTxCredMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+    doUnpacking(b,this->FCCL_var);
+    doUnpacking(b,this->FCTBS_var);
+}
+
+int IBTxCredMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBTxCredMsg::setVL(int VL)
+{
+    this->VL_var = VL;
+}
+
+long IBTxCredMsg::getFCCL() const
+{
+    return FCCL_var;
+}
+
+void IBTxCredMsg::setFCCL(long FCCL)
+{
+    this->FCCL_var = FCCL;
+}
+
+long IBTxCredMsg::getFCTBS() const
+{
+    return FCTBS_var;
+}
+
+void IBTxCredMsg::setFCTBS(long FCTBS)
+{
+    this->FCTBS_var = FCTBS;
+}
+
+class IBTxCredMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBTxCredMsgDescriptor();
+    virtual ~IBTxCredMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBTxCredMsgDescriptor);
+
+IBTxCredMsgDescriptor::IBTxCredMsgDescriptor() : cClassDescriptor("IBTxCredMsg", "cMessage")
+{
+}
+
+IBTxCredMsgDescriptor::~IBTxCredMsgDescriptor()
+{
+}
+
+bool IBTxCredMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBTxCredMsg *>(obj)!=NULL;
+}
+
+const char *IBTxCredMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBTxCredMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+}
+
+unsigned int IBTxCredMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBTxCredMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+        "FCCL",
+        "FCTBS",
+    };
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+}
+
+int IBTxCredMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    if (fieldName[0]=='F' && strcmp(fieldName, "FCCL")==0) return base+1;
+    if (fieldName[0]=='F' && strcmp(fieldName, "FCTBS")==0) return base+2;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBTxCredMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",
+        "long",
+        "long",
+    };
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBTxCredMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBTxCredMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTxCredMsg *pp = (IBTxCredMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBTxCredMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTxCredMsg *pp = (IBTxCredMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        case 1: return long2string(pp->getFCCL());
+        case 2: return long2string(pp->getFCTBS());
+        default: return "";
+    }
+}
+
+bool IBTxCredMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTxCredMsg *pp = (IBTxCredMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        case 1: pp->setFCCL(string2long(value)); return true;
+        case 2: pp->setFCTBS(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBTxCredMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<3) ? fieldStructNames[field] : NULL;
+}
+
+void *IBTxCredMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBTxCredMsg *pp = (IBTxCredMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBRxCredMsg);
+
+IBRxCredMsg::IBRxCredMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->VL_var = 0;
+    this->FCCL_var = 0;
+}
+
+IBRxCredMsg::IBRxCredMsg(const IBRxCredMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBRxCredMsg::~IBRxCredMsg()
+{
+}
+
+IBRxCredMsg& IBRxCredMsg::operator=(const IBRxCredMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBRxCredMsg::copy(const IBRxCredMsg& other)
+{
+    this->VL_var = other.VL_var;
+    this->FCCL_var = other.FCCL_var;
+}
+
+void IBRxCredMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->VL_var);
+    doPacking(b,this->FCCL_var);
+}
+
+void IBRxCredMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+    doUnpacking(b,this->FCCL_var);
+}
+
+int IBRxCredMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBRxCredMsg::setVL(int VL)
+{
+    this->VL_var = VL;
+}
+
+long IBRxCredMsg::getFCCL() const
+{
+    return FCCL_var;
+}
+
+void IBRxCredMsg::setFCCL(long FCCL)
+{
+    this->FCCL_var = FCCL;
+}
+
+class IBRxCredMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBRxCredMsgDescriptor();
+    virtual ~IBRxCredMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBRxCredMsgDescriptor);
+
+IBRxCredMsgDescriptor::IBRxCredMsgDescriptor() : cClassDescriptor("IBRxCredMsg", "cMessage")
+{
+}
+
+IBRxCredMsgDescriptor::~IBRxCredMsgDescriptor()
+{
+}
+
+bool IBRxCredMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBRxCredMsg *>(obj)!=NULL;
+}
+
+const char *IBRxCredMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBRxCredMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 2+basedesc->getFieldCount(object) : 2;
+}
+
+unsigned int IBRxCredMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<2) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBRxCredMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+        "FCCL",
+    };
+    return (field>=0 && field<2) ? fieldNames[field] : NULL;
+}
+
+int IBRxCredMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    if (fieldName[0]=='F' && strcmp(fieldName, "FCCL")==0) return base+1;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBRxCredMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "int",
+        "long",
+    };
+    return (field>=0 && field<2) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBRxCredMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBRxCredMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBRxCredMsg *pp = (IBRxCredMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBRxCredMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBRxCredMsg *pp = (IBRxCredMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        case 1: return long2string(pp->getFCCL());
+        default: return "";
+    }
+}
+
+bool IBRxCredMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBRxCredMsg *pp = (IBRxCredMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        case 1: pp->setFCCL(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBRxCredMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<2) ? fieldStructNames[field] : NULL;
+}
+
+void *IBRxCredMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBRxCredMsg *pp = (IBRxCredMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBSentMsg);
+
+IBSentMsg::IBSentMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->VL_var = 0;
+    this->usedStatic_var = 0;
+    this->wasLast_var = 0;
+}
+
+IBSentMsg::IBSentMsg(const IBSentMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBSentMsg::~IBSentMsg()
+{
+}
+
+IBSentMsg& IBSentMsg::operator=(const IBSentMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBSentMsg::copy(const IBSentMsg& other)
+{
+    this->VL_var = other.VL_var;
+    this->usedStatic_var = other.usedStatic_var;
+    this->wasLast_var = other.wasLast_var;
+}
+
+void IBSentMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->VL_var);
+    doPacking(b,this->usedStatic_var);
+    doPacking(b,this->wasLast_var);
+}
+
+void IBSentMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+    doUnpacking(b,this->usedStatic_var);
+    doUnpacking(b,this->wasLast_var);
+}
+
+short IBSentMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBSentMsg::setVL(short VL)
+{
+    this->VL_var = VL;
+}
+
+short IBSentMsg::getUsedStatic() const
+{
+    return usedStatic_var;
+}
+
+void IBSentMsg::setUsedStatic(short usedStatic)
+{
+    this->usedStatic_var = usedStatic;
+}
+
+short IBSentMsg::getWasLast() const
+{
+    return wasLast_var;
+}
+
+void IBSentMsg::setWasLast(short wasLast)
+{
+    this->wasLast_var = wasLast;
+}
+
+class IBSentMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBSentMsgDescriptor();
+    virtual ~IBSentMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBSentMsgDescriptor);
+
+IBSentMsgDescriptor::IBSentMsgDescriptor() : cClassDescriptor("IBSentMsg", "cMessage")
+{
+}
+
+IBSentMsgDescriptor::~IBSentMsgDescriptor()
+{
+}
+
+bool IBSentMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBSentMsg *>(obj)!=NULL;
+}
+
+const char *IBSentMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBSentMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 3+basedesc->getFieldCount(object) : 3;
+}
+
+unsigned int IBSentMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<3) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBSentMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+        "usedStatic",
+        "wasLast",
+    };
+    return (field>=0 && field<3) ? fieldNames[field] : NULL;
+}
+
+int IBSentMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    if (fieldName[0]=='u' && strcmp(fieldName, "usedStatic")==0) return base+1;
+    if (fieldName[0]=='w' && strcmp(fieldName, "wasLast")==0) return base+2;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBSentMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "short",
+        "short",
+        "short",
+    };
+    return (field>=0 && field<3) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBSentMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBSentMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBSentMsg *pp = (IBSentMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBSentMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBSentMsg *pp = (IBSentMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        case 1: return long2string(pp->getUsedStatic());
+        case 2: return long2string(pp->getWasLast());
+        default: return "";
+    }
+}
+
+bool IBSentMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBSentMsg *pp = (IBSentMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        case 1: pp->setUsedStatic(string2long(value)); return true;
+        case 2: pp->setWasLast(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBSentMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<3) ? fieldStructNames[field] : NULL;
+}
+
+void *IBSentMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBSentMsg *pp = (IBSentMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBFreeMsg);
+
+IBFreeMsg::IBFreeMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->VL_var = 0;
+}
+
+IBFreeMsg::IBFreeMsg(const IBFreeMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBFreeMsg::~IBFreeMsg()
+{
+}
+
+IBFreeMsg& IBFreeMsg::operator=(const IBFreeMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBFreeMsg::copy(const IBFreeMsg& other)
+{
+    this->VL_var = other.VL_var;
+}
+
+void IBFreeMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->VL_var);
+}
+
+void IBFreeMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+}
+
+short IBFreeMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBFreeMsg::setVL(short VL)
+{
+    this->VL_var = VL;
+}
+
+class IBFreeMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBFreeMsgDescriptor();
+    virtual ~IBFreeMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBFreeMsgDescriptor);
+
+IBFreeMsgDescriptor::IBFreeMsgDescriptor() : cClassDescriptor("IBFreeMsg", "cMessage")
+{
+}
+
+IBFreeMsgDescriptor::~IBFreeMsgDescriptor()
+{
+}
+
+bool IBFreeMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBFreeMsg *>(obj)!=NULL;
+}
+
+const char *IBFreeMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBFreeMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int IBFreeMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBFreeMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int IBFreeMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBFreeMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "short",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBFreeMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBFreeMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFreeMsg *pp = (IBFreeMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBFreeMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFreeMsg *pp = (IBFreeMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        default: return "";
+    }
+}
+
+bool IBFreeMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFreeMsg *pp = (IBFreeMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBFreeMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+    };
+    return (field>=0 && field<1) ? fieldStructNames[field] : NULL;
+}
+
+void *IBFreeMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBFreeMsg *pp = (IBFreeMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBDoneMsg);
+
+IBDoneMsg::IBDoneMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->VL_var = 0;
+}
+
+IBDoneMsg::IBDoneMsg(const IBDoneMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBDoneMsg::~IBDoneMsg()
+{
+}
+
+IBDoneMsg& IBDoneMsg::operator=(const IBDoneMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBDoneMsg::copy(const IBDoneMsg& other)
+{
+    this->VL_var = other.VL_var;
+}
+
+void IBDoneMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->VL_var);
+}
+
+void IBDoneMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->VL_var);
+}
+
+short IBDoneMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBDoneMsg::setVL(short VL)
+{
+    this->VL_var = VL;
+}
+
+class IBDoneMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBDoneMsgDescriptor();
+    virtual ~IBDoneMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBDoneMsgDescriptor);
+
+IBDoneMsgDescriptor::IBDoneMsgDescriptor() : cClassDescriptor("IBDoneMsg", "cMessage")
+{
+}
+
+IBDoneMsgDescriptor::~IBDoneMsgDescriptor()
+{
+}
+
+bool IBDoneMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBDoneMsg *>(obj)!=NULL;
+}
+
+const char *IBDoneMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBDoneMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 1+basedesc->getFieldCount(object) : 1;
+}
+
+unsigned int IBDoneMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<1) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBDoneMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "VL",
+    };
+    return (field>=0 && field<1) ? fieldNames[field] : NULL;
+}
+
+int IBDoneMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+0;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBDoneMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "short",
+    };
+    return (field>=0 && field<1) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBDoneMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBDoneMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDoneMsg *pp = (IBDoneMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBDoneMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDoneMsg *pp = (IBDoneMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return long2string(pp->getVL());
+        default: return "";
+    }
+}
+
+bool IBDoneMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDoneMsg *pp = (IBDoneMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setVL(string2long(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBDoneMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+    };
+    return (field>=0 && field<1) ? fieldStructNames[field] : NULL;
+}
+
+void *IBDoneMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBDoneMsg *pp = (IBDoneMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+Register_Class(IBAppMsg);
+
+IBAppMsg::IBAppMsg(const char *name, int kind) : cMessage(name,kind)
+{
+    this->appIdx_var = 0;
+    this->msgIdx_var = 0;
+    this->SQ_var = 0;
+    this->lenBytes_var = 0;
+    this->lenPkts_var = 0;
+    this->dstLid_var = 0;
+    this->mtuBytes_var = 0;
+    this->pktLenFlits_var = 0;
+    this->pktLenBytes_var = 0;
+    this->pktIdx_var = 0;
+    this->flitIdx_var = 0;
+    this->VL_var = 0;
+}
+
+IBAppMsg::IBAppMsg(const IBAppMsg& other) : cMessage(other)
+{
+    copy(other);
+}
+
+IBAppMsg::~IBAppMsg()
+{
+}
+
+IBAppMsg& IBAppMsg::operator=(const IBAppMsg& other)
+{
+    if (this==&other) return *this;
+    cMessage::operator=(other);
+    copy(other);
+    return *this;
+}
+
+void IBAppMsg::copy(const IBAppMsg& other)
+{
+    this->appIdx_var = other.appIdx_var;
+    this->msgIdx_var = other.msgIdx_var;
+    this->SQ_var = other.SQ_var;
+    this->lenBytes_var = other.lenBytes_var;
+    this->lenPkts_var = other.lenPkts_var;
+    this->dstLid_var = other.dstLid_var;
+    this->mtuBytes_var = other.mtuBytes_var;
+    this->pktLenFlits_var = other.pktLenFlits_var;
+    this->pktLenBytes_var = other.pktLenBytes_var;
+    this->pktIdx_var = other.pktIdx_var;
+    this->flitIdx_var = other.flitIdx_var;
+    this->VL_var = other.VL_var;
+}
+
+void IBAppMsg::parsimPack(cCommBuffer *b)
+{
+    cMessage::parsimPack(b);
+    doPacking(b,this->appIdx_var);
+    doPacking(b,this->msgIdx_var);
+    doPacking(b,this->SQ_var);
+    doPacking(b,this->lenBytes_var);
+    doPacking(b,this->lenPkts_var);
+    doPacking(b,this->dstLid_var);
+    doPacking(b,this->mtuBytes_var);
+    doPacking(b,this->pktLenFlits_var);
+    doPacking(b,this->pktLenBytes_var);
+    doPacking(b,this->pktIdx_var);
+    doPacking(b,this->flitIdx_var);
+    doPacking(b,this->VL_var);
+}
+
+void IBAppMsg::parsimUnpack(cCommBuffer *b)
+{
+    cMessage::parsimUnpack(b);
+    doUnpacking(b,this->appIdx_var);
+    doUnpacking(b,this->msgIdx_var);
+    doUnpacking(b,this->SQ_var);
+    doUnpacking(b,this->lenBytes_var);
+    doUnpacking(b,this->lenPkts_var);
+    doUnpacking(b,this->dstLid_var);
+    doUnpacking(b,this->mtuBytes_var);
+    doUnpacking(b,this->pktLenFlits_var);
+    doUnpacking(b,this->pktLenBytes_var);
+    doUnpacking(b,this->pktIdx_var);
+    doUnpacking(b,this->flitIdx_var);
+    doUnpacking(b,this->VL_var);
+}
+
+unsigned int IBAppMsg::getAppIdx() const
+{
+    return appIdx_var;
+}
+
+void IBAppMsg::setAppIdx(unsigned int appIdx)
+{
+    this->appIdx_var = appIdx;
+}
+
+unsigned int IBAppMsg::getMsgIdx() const
+{
+    return msgIdx_var;
+}
+
+void IBAppMsg::setMsgIdx(unsigned int msgIdx)
+{
+    this->msgIdx_var = msgIdx;
+}
+
+unsigned int IBAppMsg::getSQ() const
+{
+    return SQ_var;
+}
+
+void IBAppMsg::setSQ(unsigned int SQ)
+{
+    this->SQ_var = SQ;
+}
+
+unsigned int IBAppMsg::getLenBytes() const
+{
+    return lenBytes_var;
+}
+
+void IBAppMsg::setLenBytes(unsigned int lenBytes)
+{
+    this->lenBytes_var = lenBytes;
+}
+
+unsigned int IBAppMsg::getLenPkts() const
+{
+    return lenPkts_var;
+}
+
+void IBAppMsg::setLenPkts(unsigned int lenPkts)
+{
+    this->lenPkts_var = lenPkts;
+}
+
+unsigned int IBAppMsg::getDstLid() const
+{
+    return dstLid_var;
+}
+
+void IBAppMsg::setDstLid(unsigned int dstLid)
+{
+    this->dstLid_var = dstLid;
+}
+
+unsigned int IBAppMsg::getMtuBytes() const
+{
+    return mtuBytes_var;
+}
+
+void IBAppMsg::setMtuBytes(unsigned int mtuBytes)
+{
+    this->mtuBytes_var = mtuBytes;
+}
+
+unsigned int IBAppMsg::getPktLenFlits() const
+{
+    return pktLenFlits_var;
+}
+
+void IBAppMsg::setPktLenFlits(unsigned int pktLenFlits)
+{
+    this->pktLenFlits_var = pktLenFlits;
+}
+
+unsigned int IBAppMsg::getPktLenBytes() const
+{
+    return pktLenBytes_var;
+}
+
+void IBAppMsg::setPktLenBytes(unsigned int pktLenBytes)
+{
+    this->pktLenBytes_var = pktLenBytes;
+}
+
+unsigned int IBAppMsg::getPktIdx() const
+{
+    return pktIdx_var;
+}
+
+void IBAppMsg::setPktIdx(unsigned int pktIdx)
+{
+    this->pktIdx_var = pktIdx;
+}
+
+unsigned int IBAppMsg::getFlitIdx() const
+{
+    return flitIdx_var;
+}
+
+void IBAppMsg::setFlitIdx(unsigned int flitIdx)
+{
+    this->flitIdx_var = flitIdx;
+}
+
+unsigned int IBAppMsg::getVL() const
+{
+    return VL_var;
+}
+
+void IBAppMsg::setVL(unsigned int VL)
+{
+    this->VL_var = VL;
+}
+
+class IBAppMsgDescriptor : public cClassDescriptor
+{
+  public:
+    IBAppMsgDescriptor();
+    virtual ~IBAppMsgDescriptor();
+
+    virtual bool doesSupport(cObject *obj) const;
+    virtual const char *getProperty(const char *propertyname) const;
+    virtual int getFieldCount(void *object) const;
+    virtual const char *getFieldName(void *object, int field) const;
+    virtual int findField(void *object, const char *fieldName) const;
+    virtual unsigned int getFieldTypeFlags(void *object, int field) const;
+    virtual const char *getFieldTypeString(void *object, int field) const;
+    virtual const char *getFieldProperty(void *object, int field, const char *propertyname) const;
+    virtual int getArraySize(void *object, int field) const;
+
+    virtual std::string getFieldAsString(void *object, int field, int i) const;
+    virtual bool setFieldAsString(void *object, int field, int i, const char *value) const;
+
+    virtual const char *getFieldStructName(void *object, int field) const;
+    virtual void *getFieldStructPointer(void *object, int field, int i) const;
+};
+
+Register_ClassDescriptor(IBAppMsgDescriptor);
+
+IBAppMsgDescriptor::IBAppMsgDescriptor() : cClassDescriptor("IBAppMsg", "cMessage")
+{
+}
+
+IBAppMsgDescriptor::~IBAppMsgDescriptor()
+{
+}
+
+bool IBAppMsgDescriptor::doesSupport(cObject *obj) const
+{
+    return dynamic_cast<IBAppMsg *>(obj)!=NULL;
+}
+
+const char *IBAppMsgDescriptor::getProperty(const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? basedesc->getProperty(propertyname) : NULL;
+}
+
+int IBAppMsgDescriptor::getFieldCount(void *object) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    return basedesc ? 12+basedesc->getFieldCount(object) : 12;
+}
+
+unsigned int IBAppMsgDescriptor::getFieldTypeFlags(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeFlags(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static unsigned int fieldTypeFlags[] = {
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+        FD_ISEDITABLE,
+    };
+    return (field>=0 && field<12) ? fieldTypeFlags[field] : 0;
+}
+
+const char *IBAppMsgDescriptor::getFieldName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldNames[] = {
+        "appIdx",
+        "msgIdx",
+        "SQ",
+        "lenBytes",
+        "lenPkts",
+        "dstLid",
+        "mtuBytes",
+        "pktLenFlits",
+        "pktLenBytes",
+        "pktIdx",
+        "flitIdx",
+        "VL",
+    };
+    return (field>=0 && field<12) ? fieldNames[field] : NULL;
+}
+
+int IBAppMsgDescriptor::findField(void *object, const char *fieldName) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    int base = basedesc ? basedesc->getFieldCount(object) : 0;
+    if (fieldName[0]=='a' && strcmp(fieldName, "appIdx")==0) return base+0;
+    if (fieldName[0]=='m' && strcmp(fieldName, "msgIdx")==0) return base+1;
+    if (fieldName[0]=='S' && strcmp(fieldName, "SQ")==0) return base+2;
+    if (fieldName[0]=='l' && strcmp(fieldName, "lenBytes")==0) return base+3;
+    if (fieldName[0]=='l' && strcmp(fieldName, "lenPkts")==0) return base+4;
+    if (fieldName[0]=='d' && strcmp(fieldName, "dstLid")==0) return base+5;
+    if (fieldName[0]=='m' && strcmp(fieldName, "mtuBytes")==0) return base+6;
+    if (fieldName[0]=='p' && strcmp(fieldName, "pktLenFlits")==0) return base+7;
+    if (fieldName[0]=='p' && strcmp(fieldName, "pktLenBytes")==0) return base+8;
+    if (fieldName[0]=='p' && strcmp(fieldName, "pktIdx")==0) return base+9;
+    if (fieldName[0]=='f' && strcmp(fieldName, "flitIdx")==0) return base+10;
+    if (fieldName[0]=='V' && strcmp(fieldName, "VL")==0) return base+11;
+    return basedesc ? basedesc->findField(object, fieldName) : -1;
+}
+
+const char *IBAppMsgDescriptor::getFieldTypeString(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldTypeString(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldTypeStrings[] = {
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+        "unsigned int",
+    };
+    return (field>=0 && field<12) ? fieldTypeStrings[field] : NULL;
+}
+
+const char *IBAppMsgDescriptor::getFieldProperty(void *object, int field, const char *propertyname) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldProperty(object, field, propertyname);
+        field -= basedesc->getFieldCount(object);
+    }
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+int IBAppMsgDescriptor::getArraySize(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getArraySize(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBAppMsg *pp = (IBAppMsg *)object; (void)pp;
+    switch (field) {
+        default: return 0;
+    }
+}
+
+std::string IBAppMsgDescriptor::getFieldAsString(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldAsString(object,field,i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBAppMsg *pp = (IBAppMsg *)object; (void)pp;
+    switch (field) {
+        case 0: return ulong2string(pp->getAppIdx());
+        case 1: return ulong2string(pp->getMsgIdx());
+        case 2: return ulong2string(pp->getSQ());
+        case 3: return ulong2string(pp->getLenBytes());
+        case 4: return ulong2string(pp->getLenPkts());
+        case 5: return ulong2string(pp->getDstLid());
+        case 6: return ulong2string(pp->getMtuBytes());
+        case 7: return ulong2string(pp->getPktLenFlits());
+        case 8: return ulong2string(pp->getPktLenBytes());
+        case 9: return ulong2string(pp->getPktIdx());
+        case 10: return ulong2string(pp->getFlitIdx());
+        case 11: return ulong2string(pp->getVL());
+        default: return "";
+    }
+}
+
+bool IBAppMsgDescriptor::setFieldAsString(void *object, int field, int i, const char *value) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->setFieldAsString(object,field,i,value);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBAppMsg *pp = (IBAppMsg *)object; (void)pp;
+    switch (field) {
+        case 0: pp->setAppIdx(string2ulong(value)); return true;
+        case 1: pp->setMsgIdx(string2ulong(value)); return true;
+        case 2: pp->setSQ(string2ulong(value)); return true;
+        case 3: pp->setLenBytes(string2ulong(value)); return true;
+        case 4: pp->setLenPkts(string2ulong(value)); return true;
+        case 5: pp->setDstLid(string2ulong(value)); return true;
+        case 6: pp->setMtuBytes(string2ulong(value)); return true;
+        case 7: pp->setPktLenFlits(string2ulong(value)); return true;
+        case 8: pp->setPktLenBytes(string2ulong(value)); return true;
+        case 9: pp->setPktIdx(string2ulong(value)); return true;
+        case 10: pp->setFlitIdx(string2ulong(value)); return true;
+        case 11: pp->setVL(string2ulong(value)); return true;
+        default: return false;
+    }
+}
+
+const char *IBAppMsgDescriptor::getFieldStructName(void *object, int field) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructName(object, field);
+        field -= basedesc->getFieldCount(object);
+    }
+    static const char *fieldStructNames[] = {
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+        NULL,
+    };
+    return (field>=0 && field<12) ? fieldStructNames[field] : NULL;
+}
+
+void *IBAppMsgDescriptor::getFieldStructPointer(void *object, int field, int i) const
+{
+    cClassDescriptor *basedesc = getBaseClassDescriptor();
+    if (basedesc) {
+        if (field < basedesc->getFieldCount(object))
+            return basedesc->getFieldStructPointer(object, field, i);
+        field -= basedesc->getFieldCount(object);
+    }
+    IBAppMsg *pp = (IBAppMsg *)object; (void)pp;
+    switch (field) {
+        default: return NULL;
+    }
+}
+
+

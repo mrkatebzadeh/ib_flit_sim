@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.omnetpp.launch.simulationLaunchConfigurationType">
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_ID" value="org.eclipse.cdt.debug.mi.core.CDebuggerNew"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_REGISTER_GROUPS" value=""/>
+<booleanAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN" value="true"/>
+<stringAttribute key="org.eclipse.cdt.launch.DEBUGGER_STOP_AT_MAIN_SYMBOL" value="main"/>
+<stringAttribute key="org.eclipse.cdt.launch.FORMAT" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&lt;contentList/&gt;"/>
+<stringAttribute key="org.eclipse.cdt.launch.GLOBAL_VARIABLES" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;globalVariableList/&gt;&#10;"/>
+<stringAttribute key="org.eclipse.cdt.launch.MEMORY_BLOCKS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;memoryBlockExpressionList/&gt;&#10;"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/ib/examples/is1_1l_8n/is1_1l_8n.ini"/>
+<listEntry value="/ib/examples/is1_2l_8n/omnetpp.ini"/>
+<listEntry value="/ib/omnetpp.ini"/>
+<listEntry value="/ib/examples/is1_2l_8n/examples/is1_1l_8n/is1_1l_8n.ini"/>
+<listEntry value="/ib/examples/is1_3l_32n/is1_2l_8n.ini"/>
+<listEntry value="/ib/examples/is1_3l_32n/is1_3l_32n.ini"/>
+<listEntry value="/ib/examples/is1_2l_8n/is1_2l_8n.ini"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+<listEntry value="1"/>
+<listEntry value="1"/>
+<listEntry value="1"/>
+<listEntry value="1"/>
+<listEntry value="1"/>
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="TCL_LIBRARY" value="/usr/share/tcltk/tcl8.6"/>
+</mapAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="org.omnetpp.launch.ADDITIONAL_ARG" value=""/>
+<stringAttribute key="org.omnetpp.launch.CONFIG_NAME" value="OneHot"/>
+<stringAttribute key="org.omnetpp.launch.DEBUG_ON_ERRORS" value=""/>
+<stringAttribute key="org.omnetpp.launch.EXECUTABLE" value="/ib/out/gcc-debug/ib"/>
+<stringAttribute key="org.omnetpp.launch.INI_FILES" value="is1_3l_32n.ini"/>
+<stringAttribute key="org.omnetpp.launch.NED_PATH" value="${opp_ned_path:/ib/examples/is1_3l_32n}"/>
+<intAttribute key="org.omnetpp.launch.NUM_CONCURRENT_PROCESSES" value="1"/>
+<stringAttribute key="org.omnetpp.launch.RECORD_EVENTLOG" value=""/>
+<stringAttribute key="org.omnetpp.launch.RUN" value=""/>
+<stringAttribute key="org.omnetpp.launch.SHARED_LIBS" value="${opp_shared_libs:/ib/examples/is1_3l_32n}"/>
+<booleanAttribute key="org.omnetpp.launch.SHOW_DEBUG_VIEW" value="false"/>
+<stringAttribute key="org.omnetpp.launch.USER_INTERFACE" value="Tkenv"/>
+<stringAttribute key="org.omnetpp.launch.WORKING_DIRECTORY" value="/ib/examples/is1_3l_32n"/>
+</launchConfiguration>
