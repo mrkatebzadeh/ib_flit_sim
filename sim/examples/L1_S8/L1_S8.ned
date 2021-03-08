@@ -1,8 +1,8 @@
-package ib_model.examples.is1_2l_8n;
+package ib_model.examples.L1_S8;
 
 import ib_model.*;
 
-network is1_2l_8n
+network L1_S8
 {
     @display("bgb=592,287");
     submodules:
