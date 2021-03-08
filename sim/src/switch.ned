@@ -33,11 +33,13 @@ module SwitchPort
     submodules:
         obuf: IBOutBuf {
             parameters:
+                maxVL = 7;
                 @display("i=block/boundedqueue;p=76,80");
         }
         ibuf: IBInBuf {
             parameters:
                 isHcaIBuf = 0;
+                maxVL = 7;
                 numPorts = numSwitchPorts;
                 @display("i=block/subqueue;p=191,80");
             gates:
@@ -48,8 +50,11 @@ module SwitchPort
             parameters:
                 isHcaArbiter = 0;
                 numPorts = numSwitchPorts;
-		useFCFSRQArb = true;
-		maxVL = 8;
+                useFCFSRQArb = true;
+                maxVL = 8;
+                highVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
+                lowVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
+                vlHighLimit = 4;
                 @display("p=191,156;i=block/dispatch");
             gates:
                 in[numSwitchPorts];
@@ -83,20 +88,20 @@ module Switch
         double numSwitchPorts;     // Total num of switch ports
         double ISWDelay @unit(ns); // Delay brought by IBUF in SWitch
         double VSWDelay @unit(ns); // Delay in ns brought by IBUF in SWitch
-		  string pktFwdType;         // The type of the packet forwarding engine to use
+        string pktFwdType;         // The type of the packet forwarding engine to use
         @display("i=abstract/router");
     gates:
         inout port[];
 
     submodules:
-        pktfwd : < pktFwdType > like ib_model.PktFwd_Ifc {
+        pktfwd: <pktFwdType> like ib_model.PktFwd_Ifc {
             parameters:
                 numPorts = numSwitchPorts;
         }
         port[numSwitchPorts]: SwitchPort {
             parameters:
                 numSwitchPorts = numSwitchPorts;
-                @display("p=90,44;b=48,32");
+                //@display("p=170,44;b=208,32");
             gates:
                 sw_port[numSwitchPorts];
                 sw_sent_port[numSwitchPorts];

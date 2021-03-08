@@ -123,10 +123,14 @@ class IBApp : public cSimpleModule
 
   // - destination
   int disable; // is this app active or not
+
   dstSelModes msgDstMode;    // mode for selecting destination
   std::string dstSeqVecFile; // the vector file name that contain the sequences
   unsigned int dstSeqVecIdx; // the index of the generator in the file
   std::vector<int> *dstSeq; // a destination lid sequence
+
+  simtime_t start;
+  simtime_t lastSendTime;
 
   // - length
   msgLenModes msgLenMode;          // possible values: param|set

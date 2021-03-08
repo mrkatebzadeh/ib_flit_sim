@@ -476,15 +476,18 @@ void IBInBuf::handleMessage(cMessage *p_msg)
 
 void IBInBuf::finish()
 {
+    if(VERBOSE){
+    ev << "IBUF STAT ---------------------------------------" << endl;
   for (unsigned int vl = 0; vl < maxVL+1; vl++ ) {
-       ev << "STAT: " << getFullPath() << " VL:" << vl;
-       ev << " Used Static Credits num/avg/max/std:"
-             << staticUsageHist[vl].getCount()
-             << " / " << staticUsageHist[vl].getMean()
-             << " / " << staticUsageHist[vl].getMax()
-             << " / " << staticUsageHist[vl].getStddev()
-             << endl;
+       ev << getFullPath() << " VL:" << vl;
+       ev << "      Used Static Credits" <<endl;
+       ev << "Num: " << staticUsageHist[vl].getCount() <<endl;
+       ev << "Avg: " << staticUsageHist[vl].getMean() << endl;
+       ev << "Max: " << staticUsageHist[vl].getMax() << endl;
+       ev << "Std: " << staticUsageHist[vl].getStddev() << endl;
+
   } 
   if (lossyMode)
 	 recordScalar("numDroppedCredits", numDroppedCredits);
+    }
 }

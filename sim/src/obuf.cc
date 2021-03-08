@@ -358,11 +358,15 @@ void IBOutBuf::handleMessage(cMessage *p_msg)
 
 void IBOutBuf::finish()
 {
-   EV << "STAT: " << getFullPath() << " Data Packet Q time num/avg/max/std:"
-     << packetStoreHist.getCount() << " / "
-     << packetStoreHist.getMean() << " / "
-     << packetStoreHist.getMax() << " / "
-     << packetStoreHist.getStddev() << endl;
+    if(VERBOSE) {
+    EV << "OBUF STAT ---------------------------------------" << endl;
+   int microsecond = 1000000;
+   EV << getFullPath() << endl;
+   EV << "   Data Packet Q time " << simTime().getScale() << endl;
+   EV << "Num: "  << packetStoreHist.getCount() << endl;
+   EV << "Avg: "  << packetStoreHist.getMean() * microsecond << endl;
+   EV << "Max: "  << packetStoreHist.getMax()* microsecond << endl;
+   EV << "Std: "  << packetStoreHist.getStddev()* microsecond << endl;
      // EV << "STAT: " << getFullPath() << " Q depth num/avg/max/std:"
      // << qDepthHist.getCount() << " / "
      // << qDepthHist.getMean() << " / "
@@ -375,8 +379,10 @@ void IBOutBuf::finish()
      // << flowControlDelay.getStddev() << endl;
 
 	double oBW = totalBytesSent / (simTime() - firstPktSendTime);
-	recordScalar("Output BW (Byte/Sec)", oBW);
+	recordScalar("Output BW (Byte/s)", oBW);
+	recordScalar("Output BW (MB/s)", oBW / (1024 * 1024));
 	flitsSources.record();
+    }
 	// EV << "STAT: " << getFullPath() << " Flit Sources:" << endl << flitsSources.detailedInfo() << endl;
 }
 

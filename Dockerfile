@@ -43,29 +43,17 @@ WORKDIR /opt/ib
 #COPY ./mlx /opt/omnetpp/mlx
 
 ENV DISPLAY :0
-# Omnet++ source is already in repository. Copy it to container
-#RUN git clone https://github.com/mrkatebzadeh/omnetpp omnetpp-4.2.2/
 
 # Set path for compilation
 ENV PATH $PATH:/opt/ib/sim/omnetpp/bin
 
-# Configure and compile Omnet++
-#RUN cd omnetpp-4.2.2 && git pull && \
-#    NO_TCL=1 xvfb-run ./configure && \
-#    make -j 4
-
-# Ib_flit_sim source is already in repository. Copy it to container
-#RUN git clone https://github.com/mrkatebzadeh/ib_flit_sim /opt/omnetpp/ib_flit_sim/
 
 ENV d /opt/ib/sim
 
-#RUN cd /opt/omnetpp/mlx && d=`pwd` \
-#    make makefiles; \
-#    make -j 4; make MODE=release; make -Bnwk | compiledb -o compile_commands.json;
-
 ENV NEDPATH $d/src:$d/examples
 
-ENTRYPOINT service ssh restart && bash
+#ENTRYPOINT service ssh restart && bash
+ENTRYPOINT bash
 
 # Cleanup
 RUN apt-get clean && \

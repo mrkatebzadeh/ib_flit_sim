@@ -59,6 +59,7 @@ void IBApp::initialize(){
   dstSeqIdx = 0;
   dstSeqDone = 0;
   msgIdx = 0;
+  lastSendTime = 0;
 
   //  destination mode
   const char *dstModePar = par("dstMode");
@@ -229,9 +230,16 @@ void IBApp::handleMessage(cMessage *p_msg){
     EV << "-I- " << getFullPath()
        << " sending new app message " << p_new->getName()
        << endl;
+
+  } else if (lastSendTime == 0) {
+      lastSendTime = simTime();
   }
 }
 
 void IBApp::finish()
 {
+
+    EV << "APP STAT ----------------------------------------" << endl;
+    EV << getFullPath()
+           << " app finished at " << lastSendTime << endl;
 }

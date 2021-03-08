@@ -92,7 +92,7 @@
 
 #include <omnetpp.h>
 
-
+#define VERBOSE 0
 //
 // Generates IB Packet Credit (messages); see NED file for more info.
 //

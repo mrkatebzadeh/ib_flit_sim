@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - .:/opt/ib/
+      - /tmp/.X11-unix:/tmp/.X11-unix
     expose:
       - "22"
     environment:
