@@ -56,6 +56,7 @@
 #include <omnetpp.h>
 #include <vector>
 #include "ib_m.h"
+#define VERBOSE 1
 //
 // Output Buffer for sending IB FLITs and VL credit updates
 //
