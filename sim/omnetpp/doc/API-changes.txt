@@ -277,7 +277,7 @@ OMNeT++ 4.0
           This applies to message fields within .msg files as well: some of
           the "double" ones may need to be changed to "simtime_t".
         - when conversion to double is still needed, use SIMTIME_DBL(t) or t.dbl().
-        - ev << simtimeToStr(t) is to be changed to: ev << t;
+        - EV << simtimeToStr(t) is to be changed to: EV << t;
 
         Gate handling:
         - introduced inout gates, which resulted in some changes listed below
@@ -949,7 +949,7 @@ Simulation library:
 (-)     deprecated genk_* functions. The RNG should be given as an extra
         optional attribute of "genk"-less functions instead.
 
-(-)     rarely-used methods cSimpleModule::error(), opp_error() and opp_warning()
+(-)     rarely-used methods cSimpleModule::error(), error() and opp_warning()
         were deprecated; they will be removed at some point in the future.
 
 (+)     cWatch now supports 'bool'

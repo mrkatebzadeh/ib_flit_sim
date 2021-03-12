@@ -26,7 +26,7 @@ void JUtil::initJVM()
     int n = 0;
     const char *classpath = getenv("CLASSPATH");
     if (!classpath)
-        opp_error("CLASSPATH environment variable is not set");
+        error("CLASSPATH environment variable is not set");
     // FIXME remove hack once IDE builds the classpath corretcly
     const char *classpath2 = getenv("CLASSPATH2");
     std::string classpathOption = std::string("-Djava.class.path=")+(classpath2 ? classpath2 : "")+PATH_SEP+(classpath ? classpath : "");
@@ -43,7 +43,7 @@ void JUtil::initJVM()
 
     int res = JNI_CreateJavaVM(&vm, (void **)&jenv, &vm_args);
     if (res<0)
-        opp_error("Could not create Java VM: JNI_CreateJavaVM returned %d", res);
+        error("Could not create Java VM: JNI_CreateJavaVM returned %d", res);
 
     DEBUGPRINTF("Registering native methods...\n");
     SimkernelJNI_registerNatives(jenv);
@@ -73,7 +73,7 @@ void JUtil::checkExceptions()
         jclass throwableClass = JUtil::jenv->GetObjectClass(exceptionObject);
         jmethodID method = JUtil::jenv->GetMethodID(throwableClass, "toString", "()Ljava/lang/String;");
         jstring msg = (jstring)JUtil::jenv->CallObjectMethod(exceptionObject, method);
-        opp_error(eCUSTOM, fromJavaString(msg).c_str());
+        error(eCUSTOM, fromJavaString(msg).c_str());
     }
 }
 
@@ -82,7 +82,7 @@ jmethodID JUtil::findMethod(jclass clazz, const char *clazzName, const char *met
     jmethodID ret = jenv->GetMethodID(clazz, methodName, methodSig);
     jenv->ExceptionClear();
     if (!ret)
-        opp_error("No `%s' %s method in Java class `%s'", methodName, methodSig, clazzName);
+        error("No `%s' %s method in Java class `%s'", methodName, methodSig, clazzName);
     return ret;
 }
 
@@ -121,7 +121,7 @@ void JObjectAccess::getMethodOrField(const char *fieldName, const char *methodPr
                                 jmethodID& methodID, jfieldID& fieldID) const
 {
     if (!fieldName || !fieldName[0] || strlen(fieldName)>80)
-        opp_error("field name empty or too long: `%s'", fieldName);
+        error("field name empty or too long: `%s'", fieldName);
     char methodName[100];
     strcpy(methodName, methodPrefix);
     char *p = methodName + strlen(methodName);
@@ -139,7 +139,7 @@ void JObjectAccess::getMethodOrField(const char *fieldName, const char *methodPr
     if (fieldID)
         return;
     jenv->ExceptionClear();
-    opp_error("Java object has neither method `%s' nor field `%s' with the given type",
+    error("Java object has neither method `%s' nor field `%s' with the given type",
               methodName, fieldName);
 }
 

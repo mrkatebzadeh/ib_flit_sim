@@ -25,7 +25,7 @@
 #include "ib_m.h"
 #include "ibuf.h"
 #include "vlarb.h"
-#include <vec_file.h>
+#include "vec_file.h"
 
 Define_Module( IBInBuf );
 
@@ -71,6 +71,7 @@ void IBInBuf::initialize()
   totalBufferSize = totalBufferSize*width/4;
   
   hcaIBuf = par("isHcaIBuf");
+  auto simulation = getSimulation(); 
   if (hcaIBuf) {
     EV << "-I- " << getFullPath() << " is HCA IBuf" << endl;
     pktfwd = NULL;
@@ -78,11 +79,11 @@ void IBInBuf::initialize()
     EV << "-I- " << getFullPath() << " is Switch IBuf " << getId() <<  endl;
     Switch = getParentModule()->getParentModule();
     if (Switch == NULL) {
-      opp_error("Could not find parent Switch module");
+      error("Could not find parent Switch module");
     }
-    pktfwd = dynamic_cast<Pktfwd*>(simulation.getModule(Switch->findSubmodule("pktfwd")));
+    pktfwd = dynamic_cast<Pktfwd*>(simulation->getModule(Switch->findSubmodule("pktfwd")));
     if (pktfwd == NULL) {
-      opp_error("Could not find Packet FWDer");
+      error("Could not find Packet FWDer");
     }
     ISWDelay = Switch->par("ISWDelay");
   }
@@ -104,7 +105,7 @@ void IBInBuf::initialize()
   }
   
   if (totStatic > totalBufferSize) {
-    opp_error("-E- can not define total static (%d) > (%d) total buffer size",
+    error("-E- can not define total static (%d) > (%d) total buffer size",
               totStatic, totalBufferSize);
   }
   
@@ -188,7 +189,7 @@ void IBInBuf::updateVLAHoQ(short int portNum, short vl)
     int remotePortNum = p_gate->getIndex();
     IBVLArb *p_vla = dynamic_cast<IBVLArb *>(p_gate->getOwnerModule());
     if ((p_vla == NULL) || strcmp(p_vla->getName(), "vlarb")) {
-      opp_error("-E- fail to get VLA from out port: %d", portNum);
+      error("-E- fail to get VLA from out port: %d", portNum);
     }
     if (! p_vla->isHoQFree(remotePortNum, vl))
       return;
@@ -242,10 +243,10 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
     
     // update ABR and send RxCred
     if (ABR[vl] > p_flowMsg->getFCTBS()) {
-      ev << "-E- " << getFullPath() << " how come we have ABR:" << ABR[vl] 
+      EV << "-E- " << getFullPath() << " how come we have ABR:" << ABR[vl] 
          << " > wire FCTBS" << p_flowMsg->getFCTBS() << "?" << endl;
     } else if (ABR[vl] < p_flowMsg->getFCTBS()) {
-      ev << "-W- " << getFullPath() << " how come we have ABR:" << ABR[vl] 
+      EV << "-W- " << getFullPath() << " how come we have ABR:" << ABR[vl] 
          << " < wire FCTBS" << p_flowMsg->getFCTBS()
          << " in lossles wires?" << endl;
       ABR[vl] = p_flowMsg->getFCTBS();
@@ -269,17 +270,17 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
       unsigned short dLid = p_dataMsg->getDstLid();
       
       if (dLid == 0) {
-        opp_error("Error: dLid should not be 0 for %s", p_dataMsg->getName());
+        error("Error: dLid should not be 0 for %s", p_dataMsg->getName());
       }
       
       if ((curPacketVL < 0) || (curPacketVL > (int)maxVL+1)) {
-        opp_error("VL out of range: %d", curPacketVL);
+        error("VL out of range: %d", curPacketVL);
       }
       
       // do we have enough credits?
 		if (!lossyMode) {
 		  if (curPacketCredits > staticFree[curPacketVL]) {
-			 opp_error(" Credits overflow. Required: %d available: %d",
+			 error(" Credits overflow. Required: %d available: %d",
 						  curPacketCredits, staticFree[curPacketVL]);
 		  }
 		} else {
@@ -298,7 +299,7 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
     		  curPacketOutPort = pktfwd->getPortByLID(dLid);
 			  if (!p_dataMsg->getBeforeAnySwitch() &&
 					(curPacketOutPort == (int)thisPortNum)) {
-				 opp_error("loopback ! packet %s from lid:%d to dlid %d is sent back throgh port: %d ",
+				 error("loopback ! packet %s from lid:%d to dlid %d is sent back throgh port: %d ",
 							  p_dataMsg->getName(), 
 							  p_dataMsg->getSrcLid(),
 							  p_dataMsg->getDstLid(),
@@ -325,7 +326,7 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
       // check the packet is the expected one:
       if ((curPacketId != p_dataMsg->getPacketId()) ||
           (curPacketSrcLid != p_dataMsg->getSrcLid())) {
-        opp_error("got unexpected packet: %s from:%d id: %d "
+        error("got unexpected packet: %s from:%d id: %d "
                   "during packet: %s from: %d %d",
                   p_dataMsg->getName(), 
                   p_dataMsg->getSrcLid(), p_dataMsg->getPacketId(), 
@@ -339,7 +340,7 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
     
     // check out port is valid
     if ((curPacketOutPort < 0) ||  (curPacketOutPort >= (int)numPorts) ) {
-      ev << "-E- " << getFullPath() << " dropping packet:"
+      EV << "-E- " << getFullPath() << " dropping packet:"
          << p_dataMsg->getName() << " by FDB mapping to port:" << curPacketOutPort << endl;
       cancelAndDelete(p_dataMsg);
       return;
@@ -368,7 +369,7 @@ void IBInBuf::handlePush(IBWireMsg *p_msg)
     //   all output ports, Note this also dequeue and send
     updateVLAHoQ(curPacketOutPort, curPacketVL);
   } else {
-    ev << "-E- " << getFullPath() << " push does not know how to handle message:"
+    EV << "-E- " << getFullPath() << " push does not know how to handle message:"
        << msgType << endl;
     cancelAndDelete(p_msg);
   }
@@ -383,7 +384,7 @@ void IBInBuf::simpleCredFree(int vl)
     // need to update the OBUF we have one free... 
     sendRxCred(vl);
   } else {
-    opp_error("Error: got a credit leak? trying to add credits to full buffer on vl  %d", vl);
+    error("Error: got a credit leak? trying to add credits to full buffer on vl  %d", vl);
   }
 }
 
@@ -415,9 +416,9 @@ void IBInBuf::handleSent(IBSentMsg *p_msg)
     if (p_msg->getWasLast()) {
       // first we decrement the number of outstanding sends
       if (numBeingSent <= 0) {
-        ev << "-E- " << getFullPath() << " got last message when numBeingSent:" 
+        EV << "-E- " << getFullPath() << " got last message when numBeingSent:" 
            << numBeingSent << endl;
-        ev.flush();
+        EV.flush();
         exit(1);
       }
       
@@ -466,7 +467,7 @@ void IBInBuf::handleMessage(cMessage *p_msg)
     } else if (msgType == IB_TQ_LOAD_MSG) {
         handleTQLoadMsg((IBTQLoadUpdateMsg*)p_msg);
     } else {
-        ev << "-E- " << getFullPath() << " does not know how to handle message:" << msgType << endl;
+        EV << "-E- " << getFullPath() << " does not know how to handle message:" << msgType << endl;
         if (p_msg->isSelfMessage())
             cancelAndDelete(p_msg);
         else
@@ -477,14 +478,14 @@ void IBInBuf::handleMessage(cMessage *p_msg)
 void IBInBuf::finish()
 {
     if(VERBOSE){
-    ev << "IBUF STAT ---------------------------------------" << endl;
+    EV << "IBUF STAT ---------------------------------------" << endl;
   for (unsigned int vl = 0; vl < maxVL+1; vl++ ) {
-       ev << getFullPath() << " VL:" << vl;
-       ev << "      Used Static Credits" <<endl;
-       ev << "Num: " << staticUsageHist[vl].getCount() <<endl;
-       ev << "Avg: " << staticUsageHist[vl].getMean() << endl;
-       ev << "Max: " << staticUsageHist[vl].getMax() << endl;
-       ev << "Std: " << staticUsageHist[vl].getStddev() << endl;
+       EV << getFullPath() << " VL:" << vl;
+       EV << "      Used Static Credits" <<endl;
+       EV << "Num: " << staticUsageHist[vl].getCount() <<endl;
+       EV << "Avg: " << staticUsageHist[vl].getMean() << endl;
+       EV << "Max: " << staticUsageHist[vl].getMax() << endl;
+       EV << "Std: " << staticUsageHist[vl].getStddev() << endl;
 
   } 
   if (lossyMode)

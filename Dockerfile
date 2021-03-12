@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM omnetpp/omnetpp-gui:u18.04-5.5.1
 
 MAINTAINER M.R. Siavash Katebzadeh <mr.katebzadeh@gmail.com>
 
@@ -9,7 +9,6 @@ RUN apt-get update
 # General dependencies
 RUN apt-get install -y \
     build-essential \
-    g++-multilib=4:4.* \
     gdb \
     bison \
     flex \
@@ -24,7 +23,7 @@ RUN apt-get install -y \
     xvfb
 
 
-RUN pip install compiledb
+#RUN pip install compiledb
 
 # sshd
 RUN mkdir /var/run/sshd

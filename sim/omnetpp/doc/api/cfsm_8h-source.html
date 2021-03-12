@@ -61,9 +61,9 @@
 <a name="l00088"></a><a class="code" href="group__MacrosFSM.html#g08ffc02054cc56d5ae887e25e37ac093">00088</a> <span class="preprocessor">#define FSM_Switch(fsm)  \</span>
 <a name="l00089"></a>00089 <span class="preprocessor">   for (int __i=1, __savedstate;  \</span>
 <a name="l00090"></a>00090 <span class="preprocessor">        (__i&lt;3 || (__i&amp;1)==0 || (fsm).isInTransientState()) &amp;&amp;  \</span>
-<a name="l00091"></a>00091 <span class="preprocessor">        (__i&lt;2*FSM_MAXT || (opp_error(eINFLOOP,(fsm).getStateName()),0));  \</span>
+<a name="l00091"></a>00091 <span class="preprocessor">        (__i&lt;2*FSM_MAXT || (error(eINFLOOP,(fsm).getStateName()),0));  \</span>
 <a name="l00092"></a>00092 <span class="preprocessor">        ((__i&amp;1)==0 &amp;&amp; __savedstate!=(fsm).getState() &amp;&amp;  \</span>
-<a name="l00093"></a>00093 <span class="preprocessor">         (opp_error(eSTATECHG,(fsm).getStateName()),0)),  \</span>
+<a name="l00093"></a>00093 <span class="preprocessor">         (error(eSTATECHG,(fsm).getStateName()),0)),  \</span>
 <a name="l00094"></a>00094 <span class="preprocessor">         __savedstate=(fsm).getState(),++__i)  \</span>
 <a name="l00095"></a>00095 <span class="preprocessor">     switch (FSM_Print(fsm,__i&amp;1),(((fsm).getState()&lt;&lt;1)|(__i&amp;1)))</span>
 <a name="l00096"></a>00096 <span class="preprocessor"></span>

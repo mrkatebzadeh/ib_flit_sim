@@ -6,30 +6,30 @@ test cPacketQueue basic operation
 cPacketQueue q;
 
 q.insert(new cPacket("one", 0, 10));
-ev << q.info() << "\n";
+EV << q.info() << "\n";
 
 q.insert(new cPacket("two", 0, 200));
-ev << q.info() << "\n";
+EV << q.info() << "\n";
 
 q.insert(new cPacket("three", 0, 3000));
-ev << q.info() << "\n";
+EV << q.info() << "\n";
 
 cPacketQueue copy;
 copy = q;
-ev << "copy: " << q.info() << "\n";
+EV << "copy: " << q.info() << "\n";
 
 cPacketQueue *dup;
 dup = q.dup();
-ev << "dup: " << dup->info() << "\n";
+EV << "dup: " << dup->info() << "\n";
 delete dup;
 
 delete q.pop();
-ev << q.info() << "\n";
+EV << q.info() << "\n";
 
 delete q.pop();
-ev << q.info() << "\n";
+EV << q.info() << "\n";
 
-ev << ".\n";
+EV << ".\n";
 
 %contains: stdout
 len=1, 10 bits (2 bytes)

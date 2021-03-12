@@ -91,6 +91,7 @@
 #define __GEN_H
 
 #include <omnetpp.h>
+using namespace omnetpp;
 
 #define VERBOSE 0
 //

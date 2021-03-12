@@ -9,4 +9,7 @@ services:
     expose:
       - "22"
     environment:
+      - XSOCKET:$XSOCKET
       - VIRTUAL_PORT=22
+      - DISPLAY=$DISPLAY
+      - XAUTHORITY=$XAUTHORITY

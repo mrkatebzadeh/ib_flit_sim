@@ -136,7 +136,7 @@ SIM_API char *opp_strprettytrunc(char *dest, const char *src, unsigned maxlen);
  *
  * Terminates the simulation with an error message.
  */
-SIM_API void opp_error(OppErrorCode errcode,...);
+SIM_API void error(OppErrorCode errcode,...);
 
 /**
  * DEPRECATED: use <tt>throw cRuntimeError(...)</tt> instead!
@@ -144,7 +144,7 @@ SIM_API void opp_error(OppErrorCode errcode,...);
  * Same as function with the same name, but using custom message string.
  * To be called like printf().
  */
-SIM_API void opp_error(const char *msg,...);
+SIM_API void error(const char *msg,...);
 
 /**
  * This method can be used to report non-fatal discrepancies to the user.

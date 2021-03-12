@@ -243,7 +243,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
   {
       cClassDescriptor *desc = p->getDescriptor();
       if (!desc)
-          opp_error("no descriptor for class %s", p->getClassName());
+          error("no descriptor for class %s", p->getClassName());
       return desc;
   }
 
@@ -260,7 +260,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
   {
       int id = findField(desc, object, fieldName);
       if (id==-1)
-          opp_error("no `%s' field in class %s", fieldName, desc->getName());
+          error("no `%s' field in class %s", fieldName, desc->getName());
       return id;
   }
 
@@ -31696,7 +31696,7 @@ SWIGEXPORT void Java_org_omnetpp_simkernel_SimkernelJNI_opp_1error_1_1SWIG_10(JN
   arg1 = (OppErrorCode)jarg1; 
   {
     try {
-      opp_error(arg1,arg2);
+      error(arg1,arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, const_cast<char*>(e.what()));
       return ;
@@ -31718,7 +31718,7 @@ SWIGEXPORT void Java_org_omnetpp_simkernel_SimkernelJNI_opp_1error_1_1SWIG_11(JN
   }
   {
     try {
-      opp_error((char const *)arg1,arg2);
+      error((char const *)arg1,arg2);
     } catch (std::exception& e) {
       SWIG_JavaThrowException(jenv, SWIG_JavaRuntimeException, const_cast<char*>(e.what()));
       return ;

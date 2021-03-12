@@ -100,7 +100,7 @@
 #define __APP_H
 
 #include <omnetpp.h>
-
+using namespace omnetpp;
 //
 // Generates IB Application Messages
 //

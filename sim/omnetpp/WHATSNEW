@@ -2339,7 +2339,7 @@ Simulation kernel refactoring:
     immediately even when called from handleMessage(). In earlier versions,
     handleMessage() had to go through in any case.
   * you can now safely use C++ libraries that throw exceptions, e.g. STL.
-  Methods like cSimpleModule::error() and opp_error() are remained for backward
+  Methods like cSimpleModule::error() and error() are remained for backward
   compatibility, but they simply throw cException. opp_warning() remained but
   its use is discouraged.
 

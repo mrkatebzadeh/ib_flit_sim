@@ -299,14 +299,14 @@ void Tkenv::run()
 
 void Tkenv::printUISpecificHelp()
 {
-    ev << "Tkenv-specific options:\n";
-    ev << "  -c <configname>\n";
-    ev << "                Select a given configuration for execution. With inifile-based\n";
-    ev << "                configuration database, this selects the [Config <configname>]\n";
-    ev << "                section; the default is the [General] section.\n";
-    ev << "                See also: -r.\n";
-    ev << "  -r <run>      Set up the specified run number in the configuration selected with\n";
-    ev << "                the -c option\n";
+    EV << "Tkenv-specific options:\n";
+    EV << "  -c <configname>\n";
+    EV << "                Select a given configuration for execution. With inifile-based\n";
+    EV << "                configuration database, this selects the [Config <configname>]\n";
+    EV << "                section; the default is the [General] section.\n";
+    EV << "                See also: -r.\n";
+    EV << "  -r <run>      Set up the specified run number in the configuration selected with\n";
+    EV << "                the -c option\n";
 }
 
 void Tkenv::rebuildSim()
@@ -1410,7 +1410,7 @@ void Tkenv::componentMethodBegin(cComponent *fromComp, cComponent *toComp, const
             // ascent
             cModule *mod = i->from;
             cModule *enclosingmod = mod->getParentModule();
-            //ev << "DBG: animate ascent inside " << enclosingmod->getFullPath()
+            //EV << "DBG: animate ascent inside " << enclosingmod->getFullPath()
             //   << " from " << mod->getFullPath() << endl;
             TInspector *insp = findInspector(enclosingmod,INSP_GRAPHICAL);
             if (insp)
@@ -1432,7 +1432,7 @@ void Tkenv::componentMethodBegin(cComponent *fromComp, cComponent *toComp, const
             // animate descent towards destmod
             cModule *mod = i->to;
             cModule *enclosingmod = mod->getParentModule();
-            //ev << "DBG: animate descent in " << enclosingmod->getFullPath() <<
+            //EV << "DBG: animate descent in " << enclosingmod->getFullPath() <<
             //   " to " << mod->getFullPath() << endl;
 
             TInspector *insp = findInspector(enclosingmod,INSP_GRAPHICAL);

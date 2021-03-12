@@ -264,14 +264,14 @@ bool EnvirBase::simulationRequired()
     if (args->optionGiven('v'))
     {
         struct opp_stat_t statbuf;
-        ev << "\n";
-        ev << "Build: " OMNETPP_RELEASE " " OMNETPP_BUILDID << "\n";
-        ev << "Compiler: " << compilerInfo << "\n";
-        ev << "Options: " << opp_stringf(buildInfoFormat,
+        EV << "\n";
+        EV << "Build: " OMNETPP_RELEASE " " OMNETPP_BUILDID << "\n";
+        EV << "Compiler: " << compilerInfo << "\n";
+        EV << "Options: " << opp_stringf(buildInfoFormat,
                                          8*sizeof(void*),
                                          opp_typename(typeid(simtime_t)),
                                          sizeof(statbuf.st_size)>=8 ? "yes" : "no");
-        ev << buildOptions << "\n";
+        EV << buildOptions << "\n";
         return false;
     }
 
@@ -441,46 +441,46 @@ bool EnvirBase::setup()
 
 void EnvirBase::printHelp()
 {
-    ev << "\n";
-    ev << "Command line options:\n";
-    ev << "  <inifile> or -f <inifile>\n";
-    ev << "                Use the given ini file instead of omnetpp.ini. More than one\n";
-    ev << "                ini files can be loaded this way.\n";
-    ev << "  -u <ui>       Selects the user interface. Standard choices are Cmdenv\n";
-    ev << "                and Tkenv. To make a user interface available, you need\n";
-    ev << "                to link the simulation executable with the Cmdenv/Tkenv\n";
-    ev << "                library, or load it as shared library via the -l option.\n";
-    ev << "  -n <nedpath>  When present, overrides the NEDPATH environment variable.\n";
-    ev << "  -l <library>  Load the specified shared library (.so or .dll) on startup.\n";
-    ev << "                The file name should be given without the .so or .dll suffix\n";
-    ev << "                (it will be appended automatically.) The loaded module may\n";
-    ev << "                contain simple modules, plugins, etc. Multiple -l options\n";
-    ev << "                can be present.\n";
-    ev << "  --<configuration-key>=<value>\n";
-    ev << "                Any configuration option can be specified on the command\n";
-    ev << "                line, and it takes precedence over settings specified in the\n";
-    ev << "                ini file(s). Examples:\n";
-    ev << "                      --debug-on-errors=true\n";
-    ev << "                      --record-eventlog=true\n";
-    ev << "                      --sim-time-limit=1000s\n";
-    ev << "  -v            Print version and build info.\n";
-    ev << "  -h            Print this help and exit.\n";
-    ev << "  -h <category> Lists registered components:\n";
-    ev << "    -h config         Prints the list of available config options\n";
-    ev << "    -h configdetails  Prints the list of available config options, with\n";
-    ev << "                      their documentation\n";
-    ev << "    -h userinterfaces Lists available user interfaces (see -u option)\n";
-    ev << "    -h classes        Lists registered C++ classes (including module classes)\n";
-    ev << "    -h classdesc      Lists C++ classes that have associated reflection\n";
-    ev << "                      information (needed for Tkenv inspectors)\n";
-    ev << "    -h nedfunctions   Lists registered NED functions\n";
-    ev << "    -h neddecls       Lists built-in NED component declarations\n";
-    ev << "    -h units          Lists recognized physical units\n";
-    ev << "    -h enums          Lists registered enums\n";
-    ev << "    -h resultfilters  Lists result filters\n";
-    ev << "    -h resultrecorders Lists result recorders\n";
-    ev << "    -h all            Union of all the above\n";
-    ev << "\n";
+    EV << "\n";
+    EV << "Command line options:\n";
+    EV << "  <inifile> or -f <inifile>\n";
+    EV << "                Use the given ini file instead of omnetpp.ini. More than one\n";
+    EV << "                ini files can be loaded this way.\n";
+    EV << "  -u <ui>       Selects the user interface. Standard choices are Cmdenv\n";
+    EV << "                and Tkenv. To make a user interface available, you need\n";
+    EV << "                to link the simulation executable with the Cmdenv/Tkenv\n";
+    EV << "                library, or load it as shared library via the -l option.\n";
+    EV << "  -n <nedpath>  When present, overrides the NEDPATH environment variable.\n";
+    EV << "  -l <library>  Load the specified shared library (.so or .dll) on startup.\n";
+    EV << "                The file name should be given without the .so or .dll suffix\n";
+    EV << "                (it will be appended automatically.) The loaded module may\n";
+    EV << "                contain simple modules, plugins, etc. Multiple -l options\n";
+    EV << "                can be present.\n";
+    EV << "  --<configuration-key>=<value>\n";
+    EV << "                Any configuration option can be specified on the command\n";
+    EV << "                line, and it takes precedence over settings specified in the\n";
+    EV << "                ini file(s). Examples:\n";
+    EV << "                      --debug-on-errors=true\n";
+    EV << "                      --record-eventlog=true\n";
+    EV << "                      --sim-time-limit=1000s\n";
+    EV << "  -v            Print version and build info.\n";
+    EV << "  -h            Print this help and exit.\n";
+    EV << "  -h <category> Lists registered components:\n";
+    EV << "    -h config         Prints the list of available config options\n";
+    EV << "    -h configdetails  Prints the list of available config options, with\n";
+    EV << "                      their documentation\n";
+    EV << "    -h userinterfaces Lists available user interfaces (see -u option)\n";
+    EV << "    -h classes        Lists registered C++ classes (including module classes)\n";
+    EV << "    -h classdesc      Lists C++ classes that have associated reflection\n";
+    EV << "                      information (needed for Tkenv inspectors)\n";
+    EV << "    -h nedfunctions   Lists registered NED functions\n";
+    EV << "    -h neddecls       Lists built-in NED component declarations\n";
+    EV << "    -h units          Lists recognized physical units\n";
+    EV << "    -h enums          Lists registered enums\n";
+    EV << "    -h resultfilters  Lists result filters\n";
+    EV << "    -h resultrecorders Lists result recorders\n";
+    EV << "    -h all            Union of all the above\n";
+    EV << "\n";
 
     // print specific help for each user interface
     cRegistrationList *table = omnetapps.getInstance();
@@ -504,7 +504,7 @@ void EnvirBase::dumpComponentList(const char *category)
     if (wantAll || !strcmp(category, "config") || !strcmp(category, "configdetails"))
     {
         processed = true;
-        ev << "Supported configuration options:\n";
+        EV << "Supported configuration options:\n";
         bool printDescriptions = strcmp(category, "configdetails")==0;
 
         cRegistrationList *table = configOptions.getInstance();
@@ -513,39 +513,39 @@ void EnvirBase::dumpComponentList(const char *category)
         {
             cConfigOption *obj = dynamic_cast<cConfigOption *>(table->get(i));
             ASSERT(obj);
-            if (!printDescriptions) ev << "  ";
-            if (obj->isPerObject()) ev << "<object-full-path>.";
-            ev << obj->getName() << "=";
-            ev << "<" << cConfigOption::getTypeName(obj->getType()) << ">";
+            if (!printDescriptions) EV << "  ";
+            if (obj->isPerObject()) EV << "<object-full-path>.";
+            EV << obj->getName() << "=";
+            EV << "<" << cConfigOption::getTypeName(obj->getType()) << ">";
             if (obj->getUnit())
-                ev << ", unit=\"" << obj->getUnit() << "\"";
+                EV << ", unit=\"" << obj->getUnit() << "\"";
             if (obj->getDefaultValue())
-                ev << ", default:" << obj->getDefaultValue() << "";
-            ev << "; " << (obj->isGlobal() ? "global" : obj->isPerObject() ? "per-object" : "per-run") << " setting";
-            ev << "\n";
+                EV << ", default:" << obj->getDefaultValue() << "";
+            EV << "; " << (obj->isGlobal() ? "global" : obj->isPerObject() ? "per-object" : "per-run") << " setting";
+            EV << "\n";
             if (printDescriptions && !opp_isempty(obj->getDescription()))
-                ev << opp_indentlines(opp_breaklines(obj->getDescription(),75).c_str(), "    ") << "\n";
-            if (printDescriptions) ev << "\n";
+                EV << opp_indentlines(opp_breaklines(obj->getDescription(),75).c_str(), "    ") << "\n";
+            if (printDescriptions) EV << "\n";
         }
-        ev << "\n";
+        EV << "\n";
 
-        ev << "Predefined variables that can be used in config values:\n";
+        EV << "Predefined variables that can be used in config values:\n";
         std::vector<const char *> v = getConfigEx()->getPredefinedVariableNames();
         for (int i=0; i<(int)v.size(); i++)
         {
-            if (!printDescriptions) ev << "  ";
-            ev << "${" << v[i] << "}\n";
+            if (!printDescriptions) EV << "  ";
+            EV << "${" << v[i] << "}\n";
             const char *desc = getConfigEx()->getVariableDescription(v[i]);
             if (printDescriptions && !opp_isempty(desc))
-                ev << opp_indentlines(opp_breaklines(desc,75).c_str(), "    ") << "\n";
+                EV << opp_indentlines(opp_breaklines(desc,75).c_str(), "    ") << "\n";
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (!strcmp(category, "jconfig")) // internal undocumented option, for maintenance purposes
     {
         // generate Java code for ConfigurationRegistry.java in the IDE
         processed = true;
-        ev << "Supported configuration options (as Java code):\n";
+        EV << "Supported configuration options (as Java code):\n";
         cRegistrationList *table = configOptions.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
@@ -588,20 +588,20 @@ void EnvirBase::dumpComponentList(const char *category)
             }
             #undef CASE
 
-            ev << "    public static final ConfigOption " << id << " = ";
-            ev << method << (key->getUnit() ? "U" : "") << "(\n";
-            ev << "        \"" << key->getName() << "\", ";
+            EV << "    public static final ConfigOption " << id << " = ";
+            EV << method << (key->getUnit() ? "U" : "") << "(\n";
+            EV << "        \"" << key->getName() << "\", ";
             if (key->isPerObject())
-                ev << kindstring << ", ";
+                EV << kindstring << ", ";
             if (!key->getUnit())
-                ev << typestring << ", ";
+                EV << typestring << ", ";
             else
-                ev << "\"" << key->getUnit() << "\", ";
+                EV << "\"" << key->getUnit() << "\", ";
             if (!key->getDefaultValue())
-                ev << "null";
+                EV << "null";
             else
-                ev << "\"" << opp_replacesubstring(key->getDefaultValue(), "\"", "\\\"", true) << "\"";
-            ev << ",\n";
+                EV << "\"" << opp_replacesubstring(key->getDefaultValue(), "\"", "\\\"", true) << "\"";
+            EV << ",\n";
 
             std::string desc = key->getDescription();
             desc = opp_replacesubstring(desc.c_str(), "\n", "\\n\n", true); // keep explicit line breaks
@@ -611,9 +611,9 @@ void EnvirBase::dumpComponentList(const char *category)
             desc = opp_replacesubstring(desc.c_str(), "\\n \"", "\\n\"", true); // remove bogus space after explicit line breaks
             desc = "\"" + desc + "\"";
 
-            ev << opp_indentlines(desc.c_str(), "        ") << ");\n";
+            EV << opp_indentlines(desc.c_str(), "        ") << ");\n";
         }
-        ev << "\n";
+        EV << "\n";
 
         std::vector<const char *> vars = getConfigEx()->getPredefinedVariableNames();
         for (int i=0; i<(int)vars.size(); i++)
@@ -621,43 +621,43 @@ void EnvirBase::dumpComponentList(const char *category)
             opp_string id = vars[i];
             opp_strupr(id.buffer());
             const char *desc = getConfigEx()->getVariableDescription(vars[i]);
-            ev << "    public static final String CFGVAR_" << id << " = addConfigVariable(";
-            ev << "\"" << vars[i] << "\", \"" << opp_replacesubstring(desc, "\"", "\\\"", true) << "\");\n";
+            EV << "    public static final String CFGVAR_" << id << " = addConfigVariable(";
+            EV << "\"" << vars[i] << "\", \"" << opp_replacesubstring(desc, "\"", "\\\"", true) << "\");\n";
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "classes"))
     {
         processed = true;
-        ev << "Registered C++ classes, including modules, channels and messages:\n";
+        EV << "Registered C++ classes, including modules, channels and messages:\n";
         cRegistrationList *table = classes.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  class " << obj->getFullName() << "\n";
+            EV << "  class " << obj->getFullName() << "\n";
         }
-        ev << "Note: if your class is not listed, it needs to be registered in the\n";
-        ev << "C++ code using Define_Module(), Define_Channel() or Register_Class().\n";
-        ev << "\n";
+        EV << "Note: if your class is not listed, it needs to be registered in the\n";
+        EV << "C++ code using Define_Module(), Define_Channel() or Register_Class().\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "classdesc"))
     {
         processed = true;
-        ev << "Classes that have associated reflection information (needed for Tkenv inspectors):\n";
+        EV << "Classes that have associated reflection information (needed for Tkenv inspectors):\n";
         cRegistrationList *table = classDescriptors.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  class " << obj->getFullName() << "\n";
+            EV << "  class " << obj->getFullName() << "\n";
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "nedfunctions"))
     {
         processed = true;
-        ev << "Functions that can be used in NED expressions and in omnetpp.ini:\n";
+        EV << "Functions that can be used in NED expressions and in omnetpp.ini:\n";
         cRegistrationList *table = nedFunctions.getInstance();
         table->sort();
         std::set<std::string> categories;
@@ -670,7 +670,7 @@ void EnvirBase::dumpComponentList(const char *category)
         for (std::set<std::string>::iterator ci=categories.begin(); ci!=categories.end(); ++ci)
         {
             std::string category = (*ci);
-            ev << "\n Category \"" << category << "\":\n";
+            EV << "\n Category \"" << category << "\":\n";
             for (int i=0; i<table->size(); i++)
             {
                 cObject *obj = table->get(i);
@@ -680,89 +680,89 @@ void EnvirBase::dumpComponentList(const char *category)
                 const char *desc = nf ? nf->getDescription() : mf ? mf->getDescription() : "???";
                 if (fcat==category)
                 {
-                    ev << "  " << obj->getFullName() << " : " << obj->info() << "\n";
+                    EV << "  " << obj->getFullName() << " : " << obj->info() << "\n";
                     if (desc)
-                        ev << "    " << desc << "\n";
+                        EV << "    " << desc << "\n";
                 }
             }
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "neddecls"))
     {
         processed = true;
-        ev << "Built-in NED declarations:\n\n";
-        ev << "---START---\n";
-        ev << NEDParser::getBuiltInDeclarations();
-        ev << "---END---\n";
-        ev << "\n";
+        EV << "Built-in NED declarations:\n\n";
+        EV << "---START---\n";
+        EV << NEDParser::getBuiltInDeclarations();
+        EV << "---END---\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "units"))
     {
         processed = true;
-        ev << "Recognized physical units (note: other units can be used as well, only\n";
-        ev << "no automatic conversion will be available for them):\n";
+        EV << "Recognized physical units (note: other units can be used as well, only\n";
+        EV << "no automatic conversion will be available for them):\n";
         std::vector<const char *> units = UnitConversion::getAllUnits();
         for (int i=0; i<(int)units.size(); i++)
         {
             const char *u = units[i];
             const char *bu = UnitConversion::getBaseUnit(u);
-            ev << "  " << u << "\t" << UnitConversion::getLongName(u);
+            EV << "  " << u << "\t" << UnitConversion::getLongName(u);
             if (opp_strcmp(u,bu)!=0)
-                ev << "\t" << UnitConversion::convertUnit(1,u,bu) << bu;
-            ev << "\n";
+                EV << "\t" << UnitConversion::convertUnit(1,u,bu) << bu;
+            EV << "\n";
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "enums"))
     {
         processed = true;
-        ev << "Enums defined in .msg files\n";
+        EV << "Enums defined in .msg files\n";
         cRegistrationList *table = enums.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  " << obj->getFullName() << " : " << obj->info() << "\n";
+            EV << "  " << obj->getFullName() << " : " << obj->info() << "\n";
         }
-        ev << "\n";
+        EV << "\n";
     }
     if (wantAll || !strcmp(category, "userinterfaces"))
     {
         processed = true;
-        ev << "User interfaces loaded:\n";
+        EV << "User interfaces loaded:\n";
         cRegistrationList *table = omnetapps.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  " << obj->getFullName() << " : " << obj->info() << "\n";
+            EV << "  " << obj->getFullName() << " : " << obj->info() << "\n";
         }
     }
 
     if (wantAll || !strcmp(category, "resultfilters"))
     {
         processed = true;
-        ev << "Result filters that can be used in @statistic properties:\n";
+        EV << "Result filters that can be used in @statistic properties:\n";
         cRegistrationList *table = resultFilters.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  " << obj->getFullName() << " : " << obj->info() << "\n";
+            EV << "  " << obj->getFullName() << " : " << obj->info() << "\n";
         }
     }
 
     if (wantAll || !strcmp(category, "resultrecorders"))
     {
         processed = true;
-        ev << "Result recorders that can be used in @statistic properties:\n";
+        EV << "Result recorders that can be used in @statistic properties:\n";
         cRegistrationList *table = resultRecorders.getInstance();
         table->sort();
         for (int i=0; i<table->size(); i++)
         {
             cObject *obj = table->get(i);
-            ev << "  " << obj->getFullName() << " : " << obj->info() << "\n";
+            EV << "  " << obj->getFullName() << " : " << obj->info() << "\n";
         }
     }
 
@@ -1057,11 +1057,11 @@ void EnvirBase::dumpResultRecorders(cComponent *component)
         for (unsigned int j = 0; j < listeners.size(); j++) {
             if (dynamic_cast<cResultListener*>(listeners[j])) {
                 if (!componentPathPrinted) {
-                    ev << component->getFullPath() << " (" << component->getNedTypeName() << "):\n";
+                    EV << component->getFullPath() << " (" << component->getNedTypeName() << "):\n";
                     componentPathPrinted = true;
                 }
                 if (!signalNamePrinted) {
-                    ev << "    \"" << cComponent::getSignalName(signalID) << "\" (signalID="  << signalID << "):\n";
+                    EV << "    \"" << cComponent::getSignalName(signalID) << "\" (signalID="  << signalID << "):\n";
                     signalNamePrinted = true;
                 }
                 dumpResultRecorderChain((cResultListener *)listeners[j], 0);
@@ -1073,11 +1073,11 @@ void EnvirBase::dumpResultRecorders(cComponent *component)
 void EnvirBase::dumpResultRecorderChain(cResultListener *listener, int depth)
 {
     for (int i = 0; i < depth+2; i++)
-        ev << "    ";
-    ev << listener->str();
+        EV << "    ";
+    EV << listener->str();
     if (dynamic_cast<cResultRecorder*>(listener))
-        ev << " ==> " << ((cResultRecorder*)listener)->getResultName();
-    ev << "\n";
+        EV << " ==> " << ((cResultRecorder*)listener)->getResultName();
+    EV << "\n";
 
     if (dynamic_cast<cResultFilter *>(listener))
     {

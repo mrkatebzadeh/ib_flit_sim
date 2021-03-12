@@ -88,9 +88,9 @@ NAMESPACE_BEGIN
 #define FSM_Switch(fsm)  \
    for (int __i=1, __savedstate;  \
         (__i<3 || (__i&1)==0 || (fsm).isInTransientState()) &&  \
-        (__i<2*FSM_MAXT || (opp_error(eINFLOOP,(fsm).getStateName()),0));  \
+        (__i<2*FSM_MAXT || (error(eINFLOOP,(fsm).getStateName()),0));  \
         ((__i&1)==0 && __savedstate!=(fsm).getState() &&  \
-         (opp_error(eSTATECHG,(fsm).getStateName()),0)),  \
+         (error(eSTATECHG,(fsm).getStateName()),0)),  \
          __savedstate=(fsm).getState(),++__i)  \
      switch (FSM_Print(fsm,__i&1),(((fsm).getState()<<1)|(__i&1)))
 
@@ -164,7 +164,7 @@ NAMESPACE_BEGIN
  * @see FSM_Switch
  */
 #define FSM_Print(fsm,exiting) \
-    (ev << "FSM " << (fsm).getName() \
+    (EV << "FSM " << (fsm).getName() \
         << ((exiting) ? ": leaving state  " : ": entering state ") \
         << (fsm).getStateName() << endl)
 // this may also be useful as third line:

@@ -21,7 +21,7 @@
 #define __IB_MODEL_AR_PKTFWD_H_
 
 #include <omnetpp.h>
-
+using namespace omnetpp;
 //
 // The packet forwarder is responsible for output port selection
 //

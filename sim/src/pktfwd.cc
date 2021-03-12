@@ -18,7 +18,7 @@
 //
 ///////////////////////////////////////////////////////////////////////////
 #include "pktfwd.h"
-#include <vec_file.h>
+#include "vec_file.h"
 #include "obuf.h"
 
 Define_Module(Pktfwd);
@@ -27,17 +27,16 @@ void Pktfwd::initialize() {
 
 	Switch = getParentModule();
 	if (!Switch) {
-		opp_error("-E- Failed to obtain an parent Switch module");
+		error("-E- Failed to obtain an parent Switch module");
 	}
 	numPorts = Switch->par("numSwitchPorts");
 
 	// setup pointer to FDB
 	const char *fdbsFile = par("fdbsVecFile");
-	int fdbIdx = par("fdbIndex");
 	vecFiles *vecMgr = vecFiles::get();
 	FDB = vecMgr->getIntVec(fdbsFile, fdbIdx);
 	if (FDB == NULL) {
-		opp_error("-E- Failed to obtain an FDB %s, %d", fdbsFile, fdbIdx);
+		error("-E- Failed to obtain an FDB %s, %d", fdbsFile, fdbIdx);
 	} else {
 		EV<< "-I- " << getFullPath() << " Obtained FDB of size:"
 		<< FDB->size() << endl;
@@ -49,7 +48,7 @@ int Pktfwd::getPortByLID(unsigned int lid) {
 	Enter_Method("getPortByLID LID: %d", lid);
 	unsigned int outPort; // the resulting output port
 	if (lid >= FDB->size()) {
-		opp_error("-E- getPortByLID: LID %d is out of available FDB range %d",
+		error("-E- getPortByLID: LID %d is out of available FDB range %d",
 				lid, FDB->size() - 1);
 	}
 

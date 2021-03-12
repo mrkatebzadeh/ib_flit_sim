@@ -35,7 +35,7 @@
 #include "ib_m.h"
 #include "gen.h"
 #include "vlarb.h"
-#include <vec_file.h>
+#include "vec_file.h"
 
 Define_Module(IBGenerator);
 
@@ -380,9 +380,9 @@ void IBGenerator::finish()
 
     if(VERBOSE) {
   double oBW = totalBytesSent / (simTime() - firstPktSendTime);
-  ev << "GEN STAT ----------------------------------------" << endl;
-  ev << "Output BW (B/s):" << oBW <<endl;
-  ev << "Output BW (MB/s):" << oBW / (1024 * 1024) <<endl;
+  EV << "GEN STAT ----------------------------------------" << endl;
+  EV << "Output BW (B/s):" << oBW <<endl;
+  EV << "Output BW (MB/s):" << oBW / (1024 * 1024) <<endl;
     }
 
 }

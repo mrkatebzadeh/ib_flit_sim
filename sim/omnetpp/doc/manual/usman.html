@@ -10530,8 +10530,8 @@ ini file entry lets you do that -- check it in section
 <a href="#sec328">[9.2]</a>  .
 
 <p>If you detect an error condition in your code, you can stop the
-simulation with an error message using the <tt>opp_error()</tt> function.
-<tt>opp_error()</tt>'s argument list works like <tt>printf()</tt>: the
+simulation with an error message using the <tt>error()</tt> function.
+<tt>error()</tt>'s argument list works like <tt>printf()</tt>: the
 first argument is a format string which can contain <tt>"%s"</tt>, <tt>"%d"</tt> etc,
 filled in using subsequent arguments.
 
@@ -10539,7 +10539,7 @@ filled in using subsequent arguments.
 
 <pre class="cpp">
 if (msg-&gt;getControlInfo()==NULL)
-    opp_error("message (%s)%s has no control info attached",
+    error("message (%s)%s has no control info attached",
               msg-&gt;getClassName(), msg-&gt;getName());
 </pre>
 <p>

@@ -80,7 +80,7 @@ void IBOutBuf::initialize()
     // when we get first packets
     scheduleAt(simTime() , p_minTimeMsg);
   } else {
-	 ev << "-I- " << getFullPath() << " port DISABLED " << endl;
+	 EV << "-I- " << getFullPath() << " port DISABLED " << endl;
   }
 } // initialize
 
@@ -151,7 +151,7 @@ IBOutBuf::qMessage(IBDataMsg *p_msg) {
 
   if ( p_popMsg->isScheduled() ) {
     if ( qSize <= queue.length() ) {
-      opp_error("-E- %s  need to insert into a full Q. qSize:%d qLength:%d",
+      error("-E- %s  need to insert into a full Q. qSize:%d qLength:%d",
                 getFullPath().c_str(), qSize, queue.length());
     }
 

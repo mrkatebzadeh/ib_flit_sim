@@ -60,10 +60,10 @@
 
 #ifndef NDEBUG
 #define ASSERT(expr) \
-  ((void) ((expr) ? 0 : (opp_error("ASSERT: condition %s false in function %s, %s line %d", \
+  ((void) ((expr) ? 0 : (error("ASSERT: condition %s false in function %s, %s line %d", \
                                    #expr, __FUNCTION__, __FILE__, __LINE__), 0)))
 #define ASSERT2(expr,text) \
-  ((void) ((expr) ? 0 : (opp_error("ASSERT: %s in function %s, %s line %d", \
+  ((void) ((expr) ? 0 : (error("ASSERT: %s in function %s, %s line %d", \
                                    text, __FUNCTION__, __FILE__, __LINE__), 0)))
 #else
 #define ASSERT(expr)        ((void)0)

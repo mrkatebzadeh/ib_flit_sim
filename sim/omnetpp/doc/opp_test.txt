@@ -90,8 +90,8 @@ file cMessage_properties_1.test:
   cMessage msg;
   msg.setName("Joe");
   msg.setLength(456);
-  ev << "name: " << msg.name() << endl;
-  ev << "length: " << msg.length() << endl;
+  EV << "name: " << msg.name() << endl;
+  EV << "length: " << msg.length() << endl;
 
   %contains: stdout
   name: Joe

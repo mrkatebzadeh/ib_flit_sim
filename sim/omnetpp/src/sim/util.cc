@@ -175,14 +175,14 @@ char *opp_strprettytrunc(char *dest, const char *src, unsigned maxlen)
 
 #define BUFLEN 512
 
-void opp_error(OppErrorCode errorcode...)
+void error(OppErrorCode errorcode...)
 {
     char message[BUFLEN];
     VSNPRINTF2(message, BUFLEN, errorcode, cErrorMessages::get(errorcode));
     throw cRuntimeError(errorcode, message);
 }
 
-void opp_error(const char *msgformat...)
+void error(const char *msgformat...)
 {
     char message[BUFLEN];
     VSNPRINTF(message, BUFLEN, msgformat);

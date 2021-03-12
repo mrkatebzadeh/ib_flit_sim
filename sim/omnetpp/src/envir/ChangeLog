@@ -47,7 +47,7 @@
 	* Result filter/recorder stuff moved into the simkernel, so that
 	users can contribute their own result filters and recorders.
 
-2011-05-26  Levente Mészáros
+2011-05-26  Levente Mï¿½szï¿½ros
 
 	* Implemented number filter expressions using multiple inputs for
 	statistics source expressions. Enhanced error reporting for constant
@@ -1329,7 +1329,7 @@
 
 1998-05-20  Andras Varga
 
-	* `ev << ..' conversions for doubles changed
+	* `EV << ..' conversions for doubles changed
 
 1998-05-12  Andras Varga
 
@@ -1380,7 +1380,7 @@
 
 1997-10-10  Andras Varga
 
-	* added endl to cenvir.h. Example: ev << "Hello!" << endl;
+	* added endl to cenvir.h. Example: EV << "Hello!" << endl;
 
 1997-10-06  Andras Varga
 

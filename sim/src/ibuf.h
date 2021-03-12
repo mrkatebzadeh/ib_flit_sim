@@ -87,10 +87,10 @@
 #include <omnetpp.h>
 #include <map>
 #include <vector>
-#include <pktfwd.h>
+#include "pktfwd.h"
 #define MAX_LIDS 10
 #define VERBOSE 1
-
+using namespace omnetpp;
 // Store packet specific information to store the packet state  
 class PacketState {
   int outPort; // the out port

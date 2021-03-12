@@ -85,20 +85,20 @@ module SwitchPort
 module Switch
 {
     parameters:
-        double numSwitchPorts;     // Total num of switch ports
+        int numSwitchPorts;     // Total num of switch ports
         double ISWDelay @unit(ns); // Delay brought by IBUF in SWitch
         double VSWDelay @unit(ns); // Delay in ns brought by IBUF in SWitch
         string pktFwdType;         // The type of the packet forwarding engine to use
         @display("i=abstract/router");
     gates:
-        inout port[];
+        inout ports[];
 
     submodules:
         pktfwd: <pktFwdType> like ib_model.PktFwd_Ifc {
             parameters:
                 numPorts = numSwitchPorts;
         }
-        port[numSwitchPorts]: SwitchPort {
+        ports[numSwitchPorts]: SwitchPort {
             parameters:
                 numSwitchPorts = numSwitchPorts;
                 //@display("p=170,44;b=208,32");
@@ -109,16 +109,16 @@ module Switch
         }
     connections:
         for p=0..numSwitchPorts-1 {
-            port[p] <--> port[p].port;
+            ports[p] <--> port[p].port;
 
             // Loopback for inner switch ports in according ports array.
-            port[p].sw_port$o[p] --> port[p].sw_port$i[p];
-            port[p].sw_sent_port$o[p] --> port[p].sw_sent_port$i[p];
+            ports[p].sw_port$o[p] --> ports[p].sw_port$i[p];
+            ports[p].sw_sent_port$o[p] --> ports[p].sw_sent_port$i[p];
         }
         for p=0..numSwitchPorts-1, for i=p+1..numSwitchPorts-1 {
-            port[p].sw_port[i] <--> port[i].sw_port[p];
+            ports[p].sw_port[i] <--> ports[i].sw_port[p];
             //port[p].sw_out[i] --> port[i].sw_in[p];
-            port[p].sw_sent_port[i] <--> port[i].sw_sent_port[p];
+            ports[p].sw_sent_port[i] <--> ports[i].sw_sent_port[p];
             //port[p].sw_out_sent[i] --> port[i].sw_in_sent[p];
         }
 }

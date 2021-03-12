@@ -329,7 +329,7 @@ with a their name (a string), and the JMessage class will read/write them
 via JNI. An example C++ code:
 
    JMessage *jmsg = check_and_cast<JMessage *>(msg);
-   ev << "counter=" << jmsg->getIntJavaField("counter") << endl;
+   EV << "counter=" << jmsg->getIntJavaField("counter") << endl;
 
 The getIntJavaField() method in the above example will first look for a
 

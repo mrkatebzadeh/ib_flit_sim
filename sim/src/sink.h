@@ -24,7 +24,7 @@
 #define __SINK_H
 
 #include <omnetpp.h>
-
+using namespace omnetpp;
 // we use this to track each message
 class MsgTupple {
 public:

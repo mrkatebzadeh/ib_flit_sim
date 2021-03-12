@@ -1101,11 +1101,11 @@
 
 2002-06-27  Andras Varga
 
-        * cexception.cc/h added; most opp_error() calls replaced with
+        * cexception.cc/h added; most error() calls replaced with
         throw new cException(...). Exceptions are caught in
         cSimpleModule::activate() (for activity()-based modules) and
         in cSimulation::doOneEvent() (for handleMessage()-based modules),
-        and converted to 'conventional' opp_error().
+        and converted to 'conventional' error().
 
         * TBD: rethink error handling wrt exceptions!
 
@@ -1200,7 +1200,7 @@
         * cqueue.cc (operator=): Bugfix: iteration order changed from
         head->tail to tail->head. Since unsorted insertion is performed at
         the destination queue's head, this preserves element order. Fix
-        provided by José Afonso <jaa@dei.uminho.pt>
+        provided by Josï¿½ Afonso <jaa@dei.uminho.pt>
 
 2002-02-11  Ulrich Kaage  <kaage@int.uni-karlsruhe.de>
 
@@ -1214,7 +1214,7 @@
         allocation table size failed. New table size was always 0
         (insert): check that enum strings have different keys. Otherwise
         abort
-        (insert): use opp_error instead of fprintf for error messages
+        (insert): use error instead of fprintf for error messages
 
 2002-01-23 Andras Varga
 
@@ -1912,10 +1912,10 @@
 
 1999-01-26  Andras Varga
 
-        * calls to simulation.error() replaced by opp_error() to avoid
+        * calls to simulation.error() replaced by error() to avoid
         having to #include csimul.cc (and half the sim. kernel with it) in
         each file; similar for opp_warning() and
-        opp_terminate(). opp_terminate() is similar to opp_error(), only
+        opp_terminate(). opp_terminate() is similar to error(), only
         it does not include the word "error" in the message.
 
         * requires updated Envir and user interface libraries

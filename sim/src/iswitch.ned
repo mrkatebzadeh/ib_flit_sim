@@ -93,7 +93,7 @@ module ISwitch
             parameters:
                 numPorts = numSwitchPorts;
         }
-        port[numSwitchPorts]: ISwitchPort {
+        ports[numSwitchPorts]: ISwitchPort {
             parameters:
                 numSwitchPorts = numSwitchPorts;
                 @display("p=90,44;b=48,32");
@@ -104,16 +104,16 @@ module ISwitch
         }
     connections:
         for p=0..numSwitchPorts-1 {
-            port[p] <--> port[p].port;
+            ports[p] <--> ports[p].port;
 
             // Loopback for inner switch ports in according ports array.
-            port[p].sw_port$o[p] --> port[p].sw_port$i[p];
-            port[p].sw_sent_port$o[p] --> port[p].sw_sent_port$i[p];
+            ports[p].sw_port$o[p] --> ports[p].sw_port$i[p];
+            ports[p].sw_sent_port$o[p] --> ports[p].sw_sent_port$i[p];
         }
         for p=0..numSwitchPorts-1, for i=p+1..numSwitchPorts-1 {
-            port[p].sw_port[i] <--> port[i].sw_port[p];
+            ports[p].sw_port[i] <--> ports[i].sw_port[p];
             //port[p].sw_out[i] --> port[i].sw_in[p];
-            port[p].sw_sent_port[i] <--> port[i].sw_sent_port[p];
+            ports[p].sw_sent_port[i] <--> ports[i].sw_sent_port[p];
             //port[p].sw_out_sent[i] --> port[i].sw_in_sent[p];
         }
 }

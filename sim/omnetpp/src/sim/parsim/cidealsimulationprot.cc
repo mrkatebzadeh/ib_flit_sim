@@ -104,7 +104,7 @@ cMessage *cIdealSimulationProtocol::getNextEvent()
     // if we reached the next external event in the log file, do it
     if (msg->getSrcProcId()==nextExternalEvent.srcProcId && msgTime==nextExternalEvent.t)
     {
-        if (debug) ev << "expected external event (srcProcId=" << msg->getSrcProcId()
+        if (debug) EV << "expected external event (srcProcId=" << msg->getSrcProcId()
                       << " t=" << nextExternalEvent.t << ") has already arrived, good!\n";
         readNextRecordedEvent();
         msg->setSchedulingPriority(0);
@@ -115,7 +115,7 @@ cMessage *cIdealSimulationProtocol::getNextEvent()
     ASSERT(msgTime > nextExternalEvent.t);
     if (debug)
     {
-        ev << "next local event at " << msgTime << " is PAST the next external event "
+        EV << "next local event at " << msgTime << " is PAST the next external event "
               "expected for t=" << nextExternalEvent.t << " -- waiting...\n";
     }
 
@@ -156,7 +156,7 @@ void cIdealSimulationProtocol::readNextRecordedEvent()
     // get next entry from table
     nextExternalEvent = table[nextPos++];
 
-    if (debug) ev << "next expected external event: srcProcId=" << nextExternalEvent.srcProcId
+    if (debug) EV << "next expected external event: srcProcId=" << nextExternalEvent.srcProcId
                   << " t=" << nextExternalEvent.t << "\n";
 }
 

@@ -61,7 +61,7 @@
 
 #include <omnetpp.h>
 #include <vector>
-
+using namespace omnetpp;
 //
 // A single entry in the arbitration table
 //

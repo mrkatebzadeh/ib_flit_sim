@@ -466,7 +466,7 @@
 	  This applies to message fields within .msg files as well: some of
 	  the "double" ones may need to be changed to "simtime_t".
 	- when conversion to double is still needed, use SIMTIME_DBL(t) or t.dbl().
-	- ev << simtimeToStr(t) is to be changed to: ev << t;
+	- EV << simtimeToStr(t) is to be changed to: EV << t;
 
 	Gate handling:
 	- introduced inout gates, which resulted in some changes listed below
@@ -1270,7 +1270,7 @@
         ev<< output is disabled (e.g. Express mode) so executing ev<< is
         a waste of CPU cycles. To save CPU cycles, one can write code like:
            if (!ev.disabled())
-               ev << "Packet " << msg->name() << " received\n";
+               EV << "Packet " << msg->name() << " received\n";
         or (not that ?: binds looser than <<!!!):
            #define EV  ev.disabled()?ev:ev
            EV << "Packet " << msg->name() << " received\n";
@@ -1931,7 +1931,7 @@
 
 2002-06-27  Andras Varga
 
-        * cexception.h added; methods that formerly called opp_error() now
+        * cexception.h added; methods that formerly called error() now
         throw exception: throw new cException(...).
 
 2002-06-17  Andras Varga
