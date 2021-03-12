@@ -1,6 +1,6 @@
 FROM omnetpp/omnetpp-gui:u18.04-5.5.1
 
-MAINTAINER M.R. Siavash Katebzadeh <mr.katebzadeh@gmail.com>
+LABEL maintainer="M.R. Siavash Katebzadeh <mr.katebzadeh@gmail.com>"
 
 LABEL Description="Docker image for Omnet++ version 4.2.2 and ib_flit_sim."
 
@@ -22,19 +22,12 @@ RUN apt-get install -y \
     openssh-server \
     xvfb
 
+RUN apt-get clean && \
+    rm -rf /var/lib/apt
 
 #RUN pip install compiledb
 
-# sshd
-RUN mkdir /var/run/sshd
 RUN echo 'root:hi' | chpasswd
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
-
-EXPOSE 22
 
 # Create working directory
 VOLUME ["/opt/ib"]
@@ -51,9 +44,8 @@ ENV d /opt/ib/sim
 
 ENV NEDPATH $d/src:$d/examples
 
+USER root
 #ENTRYPOINT service ssh restart && bash
 ENTRYPOINT bash
 
 # Cleanup
-RUN apt-get clean && \
-    rm -rf /var/lib/apt

@@ -5,11 +5,10 @@ services:
     build: .
     volumes:
       - .:/opt/ib/
-      - /tmp/.X11-unix:/tmp/.X11-unix
     expose:
       - "22"
     environment:
-      - XSOCKET:$XSOCKET
       - VIRTUAL_PORT=22
       - DISPLAY=$DISPLAY
+      - XSOCKET=$XSOCKET
       - XAUTHORITY=$XAUTHORITY
