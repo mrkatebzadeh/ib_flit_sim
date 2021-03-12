@@ -75,7 +75,7 @@ void IBVLArb::setVLArbParams(const char *cfgStr, ArbTableEntry *tbl)
 
 void IBVLArb::initialize()
 {
-  double coreFreq_hz = par("coreFreq");
+  int coreFreq_hz = par("coreFreq");
   int    busWidth_B = par("busWidth");
   // read parameters
   hcaArb = par("isHcaArbiter");

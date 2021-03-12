@@ -33,6 +33,7 @@ void Pktfwd::initialize() {
 
 	// setup pointer to FDB
 	const char *fdbsFile = par("fdbsVecFile");
+	int fdbIdx = par("fdbIndex");
 	vecFiles *vecMgr = vecFiles::get();
 	FDB = vecMgr->getIntVec(fdbsFile, fdbIdx);
 	if (FDB == NULL) {
