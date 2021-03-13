@@ -362,7 +362,7 @@ void IBOutBuf::finish()
     EV << "OBUF STAT ---------------------------------------" << endl;
    int microsecond = 1000000;
    EV << getFullPath() << endl;
-   EV << "   Data Packet Q time " << simTime().getScale() << endl;
+   EV << "   Data Packet Q time (scale: " << simTime().getScale() << ")" << endl;
    EV << "Num: "  << packetStoreHist.getCount() << endl;
    EV << "Avg: "  << packetStoreHist.getMean() * microsecond << endl;
    EV << "Max: "  << packetStoreHist.getMax()* microsecond << endl;

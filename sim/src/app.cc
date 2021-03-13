@@ -231,9 +231,9 @@ void IBApp::handleMessage(cMessage *p_msg){
        << " sending new app message " << p_new->getName()
        << endl;
 
-  } else if (lastSendTime == 0) {
-      lastSendTime = simTime();
   }
+  lastSendTime = simTime();
+  
 }
 
 void IBApp::finish()
