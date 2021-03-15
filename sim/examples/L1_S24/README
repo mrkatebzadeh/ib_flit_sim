@@ -1,0 +1,8 @@
+This directory holds a 24 nodes fabric built with a switch of radix 24 
+in 1 level.
+
+To profile:
+./profile.sh
+
+To run: 
+$d/ib_flit_sim_dbg -f L1_S24.ini -u Cmdenv

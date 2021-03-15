@@ -1,0 +1,5 @@
+results
+results/*
+.cmdenv-log
+L1_S24.apps.ini
+L1_S24.ned
