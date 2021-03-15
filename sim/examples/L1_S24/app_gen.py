@@ -20,8 +20,8 @@ class App:
     def __str__(self):
         return "id: {}, sq: {}, gap: {}, length: {}".format(self.id, self.sq, self.gap, self.length)
 
-gaps = [1, 10, 100, 1000]
-lengths = [512, 512*8, 512*32, 512*128, 512*512, 512*2048]
+gaps = [1, 100, 1000, 10000]
+lengths = [512, 512*32, 512*128, 512*512, 512*1024, 512*2048]
 
 
 apps = []
@@ -32,10 +32,12 @@ for gap in gaps:
     for length in lengths:
         apps.append(App(id, sq, gap, length))
         id += 1
-
-for app in apps:
-    disable = 1
-    if str(app.id) == active_app or active_app == "-1":
-        disable = 0
-    print(template.format(app.id, disable, app.sq, app.gap, app.length))
+with open('results/app_table.csv', 'w') as table:
+    table.write("{},{},{}\n".format("App", "Computation", "Communication"))
+    for app in apps:
+        disable = 1
+        if str(app.id) == active_app or active_app == "-1":
+            disable = 0
+        print(template.format(app.id, disable, app.sq, app.gap, app.length))
+        table.write("{},{},{}\n".format(app.id, app.gap, app.length))
 

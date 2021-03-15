@@ -1,0 +1,35 @@
+#!/bin/bash
+
+RESULT_PATH=${1:-./}
+APPS=${2:-24}
+OUTPUT=${3:-"$RESULT_PATH/profile_table.csv"}
+
+echo "Extracting Profiling data from " $RESULT_PATH " for " $APPS " apps."
+
+TEMP=_temp.csv
+printf "%s,%s,%s\n" "app" "bw" "time" > $TEMP
+for app in `seq 1 $APPS`; do
+    for bw in `seq 1 10`; do
+        bw_v=$(python -c "print($bw * 10)")
+        #echo "Profile record " $app " with " $bw_v"% of bw."
+        filename=${app}_${bw}
+        value=$(grep -rI "L1_S${APPS}.H_${app}_U1.app app finished at" "$RESULT_PATH/$filename" | awk '{print $6}')
+        printf "%d,%d,%f\n" $app $bw_v $value >> $TEMP
+         
+    done
+done
+
+echo "Calculating slowdown for " $APPS " apps."
+
+printf "%s,%s,%s,%s\n" "App" "BW" "Time" "Slowdown" > $OUTPUT
+for app in `seq 1 $APPS`; do
+    isolated=$(grep -rI "^${app},100" "$TEMP" | awk -F"," '{print $3}')
+    for bw in `seq 1 10`; do
+        bw_v=$(python -c "print($bw * 10)")
+        ptime=$(grep -rI "^${app},${bw_v}," "$TEMP" | awk -F"," '{print $3}')
+        #echo ${app} ${bw_v} $ptime
+        slowdown=$(python -c "print($ptime / $isolated)")
+        printf "%d,%d,%f,%f\n" $app $bw_v $ptime $slowdown >> $OUTPUT
+    done
+done
+        

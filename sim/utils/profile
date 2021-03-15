@@ -1,0 +1,26 @@
+#!/bin/sh
+
+simulation=$1
+app=$2
+
+cp -r /opt/ib/sim/ /root
+cd /root/sim/examples/$simulation
+mkdir -p results   
+
+./app_gen.py $app > ${simulation}.apps.ini    
+echo "We are at `pwd`"
+export NEDPATH=/root/sim/src:/root/sim/examples
+ 
+for i in `seq 1 10`; do
+    bw=$(python -c "print($i * 0.1)")
+    sed "s/available_bw = 1.0/available_bw = ${bw}/g" ${simulation}.ned_template > ${simulation}.ned
+    echo "Started: " $app " with bw: " $i"0%" 
+    /root/sim/src/ib_flit_sim_dbg -f ${simulation}.ini -u Cmdenv > results/"${app}"_$i
+    echo "Finished: " $app " with bw: " $i"0%" 
+done
+cd results
+rm -rf *.sca *.vci *.vec
+
+mkdir -p /opt/ib/sim/examples/$simulation/results
+cp -r * /opt/ib/sim/examples/$simulation/results
+
