@@ -32,4 +32,4 @@ for app in `seq 1 $APPS`; do
         printf "%d,%d,%f,%f\n" $app $bw_v $ptime $slowdown >> $OUTPUT
     done
 done
-        
+rm -rf $TEMP
