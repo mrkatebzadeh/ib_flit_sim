@@ -13,7 +13,7 @@ RUN apt-get install -y \
     bison \
     flex \
     perl \
-    python-pip \
+    python3-pip \
     libxml2-dev \
     zlib1g-dev \
     default-jre \
@@ -25,7 +25,9 @@ RUN apt-get install -y \
 RUN apt-get clean && \
     rm -rf /var/lib/apt
 
-#RUN pip install compiledb
+RUN pip3 install compiledb
+RUN pip3 install seaborn
+
 
 RUN echo 'root:hi' | chpasswd
 RUN cd /root/omnetpp && make -j 4 MODE=debug
@@ -46,6 +48,6 @@ ENV NEDPATH $d/src:$d/examples
 
 USER root
 #ENTRYPOINT service ssh restart && bash
-ENTRYPOINT bash
+#ENTRYPOINT bash
 
 # Cleanup
