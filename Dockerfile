@@ -28,7 +28,7 @@ RUN apt-get clean && \
 #RUN pip install compiledb
 
 RUN echo 'root:hi' | chpasswd
-
+RUN cd /root/omnetpp && make -j 4 MODE=debug
 # Create working directory
 VOLUME ["/opt/ib"]
 WORKDIR /opt/ib
