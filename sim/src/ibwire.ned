@@ -25,10 +25,11 @@ package ib_model;
 
 channel IBWire extends ned.DatarateChannel
 {
+      double available_bw = default(1.0);
       double width;                 // the output link width ,4,8,12 lanes
       double speed @unit(Gbps);    // the output speed 2.5, 5.0, 10.0
       
-      datarate = width * speed * 0.8; // Disparity - 8b/10b encoding
+      datarate = available_bw * width * speed * 0.8; // Disparity - 8b/10b encoding
 }
 
 //
