@@ -8,7 +8,7 @@
 
 #cd ${CW}
 make makefiles
-#make -Bnwk | compiledb -o compile_commands.json
+make -Bnwk | compiledb -o compile_commands.json
 #make MODE=release
 make -j4 MODE=debug CC=gcc CXX=g++
 #make -j 4
