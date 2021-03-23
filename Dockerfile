@@ -40,7 +40,8 @@ ENV DISPLAY :0
 
 # Set path for compilation
 ENV PATH $PATH:/opt/ib/sim/omnetpp/bin
-
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
 
 ENV d /opt/ib/sim
 
