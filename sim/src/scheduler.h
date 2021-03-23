@@ -14,8 +14,9 @@
 
 #include <omnetpp.h>
 #include <vector>
-#include "ib_m.h"
 #include <cstring>
+#include <fstream>
+#include "ib_m.h"
 using namespace omnetpp;
 
 #define VERBOSE 0
@@ -60,6 +61,7 @@ class IBScheduler : public cSimpleModule
     // methods
  private:
 
+  void loadProfileTable(const char* profileTableFile);
   void sendSLOut(IBScheduleRepMsg *p_msg);
   void handleScheduleReq(IBScheduleReqMsg *p_msg);
   int calculateSLbyIB(IBScheduleReqMsg *p_msg);

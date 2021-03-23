@@ -35,6 +35,42 @@ void IBScheduler::initialize() {
         algorithm = IB;
         EV << "Scheduler algorithm not found. Fallback to IB" << endl;
     }
+
+    const char *profileTableFile = par("profileTableFile");
+    loadProfileTable(profileTableFile);
+}
+
+void IBScheduler::loadProfileTable(const char* profileTableFile) {
+    std::ifstream myFile(profileTableFile);
+    std::string line, colname;
+    double val;
+
+    if(myFile.good()) {
+        // Extract the first line in the file
+        std::getline(myFile, line);
+    }
+
+    // Read data, line by line
+    while(std::getline(myFile, line)) {
+        // Create a stringstream of the current line
+        ProfileRecord pr;
+        std::stringstream ss(line);
+
+        ss >> val;
+        pr.app = (int) val;
+        if(ss.peek() == ',') ss.ignore();
+        ss >> val;
+        pr.bw = (int) val;
+        if(ss.peek() == ',') ss.ignore();
+        ss >> val;
+        pr.time =  val;
+        if(ss.peek() == ',') ss.ignore();
+        ss >> val;
+        pr.slowdown = val;
+        profileTable.push_back(pr);
+    }
+
+    myFile.close();
 }
 
 void IBScheduler::sendSLOut(IBScheduleRepMsg *p_msg) {
@@ -107,6 +143,7 @@ void IBScheduler::handleMessage(cMessage *p_msg) {
 
 void IBScheduler::finish() {
   EV << "Scheduler STAT ----------------------------------------" << endl;
+  EV << "Algorithm: " << algorithm << endl;
 }
 
 IBScheduler::~IBScheduler() {

@@ -55,6 +55,7 @@ network L1_S8
         }
         Scheduler_0: IBScheduler {
             parameters:
+                algorithm = "ib";
                 numSchedulerPorts = 8;
                 networkDelay = 0;
                 computeDelay = 0;

@@ -13,6 +13,7 @@ simple IBScheduler
 {
     parameters:
         string algorithm;
+        string profileTableFile;
         int numSchedulerPorts;
         int networkDelay @unit(ns);
         int computeDelay @unit(ns);
