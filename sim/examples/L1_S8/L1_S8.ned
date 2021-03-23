@@ -53,6 +53,14 @@ network L1_S8
             gates:
                 port[8];
         }
+        Scheduler_0: IBScheduler {
+            parameters:
+                numSchedulerPorts = 8;
+                networkDelay = 0;
+                computeDelay = 0;
+            gates:
+                ports[8];
+        }
 
     connections:
         H_1_U1.port <--> IB4XSDRWire <--> SW_L0_0_0_U1.port[0];
@@ -64,4 +72,12 @@ network L1_S8
         H_7_U1.port <--> IB4XSDRWire <--> SW_L0_0_0_U1.port[6];
         H_8_U1.port <--> IB4XSDRWire <--> SW_L0_0_0_U1.port[7];
 
+        H_1_U1.schedule <--> Scheduler_0.ports[0];
+        H_2_U1.schedule <--> Scheduler_0.ports[1];
+        H_3_U1.schedule <--> Scheduler_0.ports[2];
+        H_4_U1.schedule <--> Scheduler_0.ports[3];
+        H_5_U1.schedule <--> Scheduler_0.ports[4];
+        H_6_U1.schedule <--> Scheduler_0.ports[5];
+        H_7_U1.schedule <--> Scheduler_0.ports[6];
+        H_8_U1.schedule <--> Scheduler_0.ports[7];
 }
