@@ -13,9 +13,34 @@
 #define __SCHEDULE_H
 
 #include <omnetpp.h>
+#include <vector>
+#include <cstring>
 using namespace omnetpp;
 
 #define VERBOSE 0
+
+enum Algorithm {
+    IB,
+    IDEALMAXMIN,
+    BESTFITSMART,
+    HIERARCHICALSMART,
+    IDEALSMART
+};
+
+struct ProfileRecord {
+    int app;
+    int bw;
+    double time;
+    double slowdown;
+};
+
+struct BandwidthAllocationRecord {
+    int app;
+    int src;
+    int dst;
+    int sl;
+    int bw;
+};
 
 //
 // Allocates BW and Assigns SL
@@ -24,9 +49,12 @@ class IBScheduler : public cSimpleModule
 {
  private:
   // parameters:
+  Algorithm algorithm;
   int numSchedulerPorts;
   int networkDelay_ns;
   int computeDelay_ns;
+  std::vector<ProfileRecord> profileTable;
+  std::vector<BandwidthAllocationRecord> allocationTable;
 
     // methods
  private:

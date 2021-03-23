@@ -16,6 +16,20 @@ void IBScheduler::initialize() {
     numSchedulerPorts = par("numSchedulerPorts");
     networkDelay_ns = par("networkDelay");
     computeDelay_ns = par("computeDelay");
+    if(strcmp(par("algorithm"), "ib") == 0) {
+        algorithm = IB;
+    } else if(strcmp(par("algorithm"), "idealmaxmin") == 0) {
+        algorithm = IDEALMAXMIN;
+    } else if(strcmp(par("algorithm"), "bestfitsmart") == 0){
+        algorithm = BESTFITSMART;
+    } else if(strcmp(par("algorithm"), "hierarchicalsmart") == 0) {
+        algorithm = HIERARCHICALSMART;
+    } else if(strcmp(par("algorithm"), "idealsmart") == 0) {
+        algorithm = IDEALSMART;
+    } else {
+        algorithm = IB;
+        EV << "Scheduler algorithm not found. Fallback to IB" << endl;
+    }
 }
 
 void IBScheduler::sendSLOut(IBScheduleRepMsg *p_msg) {

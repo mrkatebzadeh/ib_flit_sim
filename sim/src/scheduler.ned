@@ -12,6 +12,7 @@ package ib_model;
 simple IBScheduler
 {
     parameters:
+        string algorithm;
         int numSchedulerPorts;
         int networkDelay @unit(ns);
         int computeDelay @unit(ns);
