@@ -115,7 +115,7 @@ int IBGenerator::isRemoteHoQFree(int vl){
 
 unsigned int IBGenerator::vlBySQ(unsigned sq) 
 {
-  return(sq);
+  return currentSL;
 }
 
 // scan through the available applications and schedule next one
@@ -144,6 +144,8 @@ bool IBGenerator::arbitrateApps()
       unsigned vl = vlBySQ(appMsgs[a]->getSQ());
       if ((unsigned)VLQ[vl].length() < maxQueuedPerVL) {
         curApp = a;
+        currentSL = vl;
+
         EV << "-I-" << getFullPath() << " arbitrate apps selected:" 
            << a << endl;
         found = true;
@@ -184,6 +186,16 @@ void IBGenerator::getNextAppMsg()
   unsigned int thisAppIdx = p_msg->getAppIdx();
   unsigned int thisPktDst = p_msg->getDstLid();
 
+  {
+    char name[256];
+    sprintf(name, "schedule-request-%d-%d-%d-%d", thisAppIdx, srcLid, thisPktDst, currentSL);
+    IBScheduleReqMsg *s_msg = new IBScheduleReqMsg(name, IB_SCHEDULE_REQ_MSG);
+    s_msg->setAppIdx(thisAppIdx);
+    s_msg->setSrcLid(srcLid);
+    s_msg->setDstLid(thisPktDst);
+    s_msg->setSL(currentSL);
+    sendScheduleOut(s_msg);
+  }
   // now make the new FLIT:
   IBDataMsg *p_cred;
   char name[128];
@@ -312,6 +324,14 @@ void IBGenerator::handleApp(IBAppMsg *p_msg){
   genNextAppFLIT();
 }
 
+void IBGenerator::handleSchedule(IBScheduleRepMsg *p_msg){
+    currentSL = p_msg->getNewSL();
+}
+
+void IBGenerator::sendScheduleOut(IBScheduleReqMsg *p_msg){
+    send(p_msg, "schedule$o");
+}
+
 // send out data and wait for it to clear
 void IBGenerator::sendDataOut(IBDataMsg *p_msg){
   unsigned int bytes = p_msg->getByteLength();
@@ -370,6 +390,8 @@ void IBGenerator::handleMessage(cMessage *p_msg) {
     handleSent((IBSentMsg *)p_msg);
   } else if ( msgType == IB_APP_MSG ) {
     handleApp((IBAppMsg*)p_msg);
+  } else if ( msgType == IB_SCHEDULE_REP_MSG ) {
+    handleSchedule((IBScheduleRepMsg *)p_msg);
   } else {
     handlePush(p_msg);
   }

@@ -113,6 +113,7 @@ class IBGenerator : public cSimpleModule
    
   // - VL
   unsigned int maxVL;
+  int currentSL;
 
   // state
   unsigned int msgIdx;              // count number of messages injected
@@ -144,6 +145,8 @@ class IBGenerator : public cSimpleModule
   unsigned int vlBySQ(unsigned sq);
   int  isRemoteHoQFree(int vl);
   void sendDataOut(IBDataMsg *p_msg); 
+  void sendScheduleOut(IBScheduleReqMsg *p_msg); 
+  void handleSchedule(IBScheduleRepMsg *p_msg); 
   void handlePush(cMessage *msg);
   void handleSent(IBSentMsg *p_sent);
   void handleApp(IBAppMsg *p_msg);

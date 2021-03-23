@@ -32,11 +32,12 @@ simple IBGenerator
   // - shape
   volatile double flit2FlitGap @unit(ns); // extra delay between flits
   volatile double pkt2PktGap @unit(ns); // extra delay between packets
-   
+
   // - SQ to VL TBD
   int maxVL;
  gates:
   input sent;
   output out;
   inout  in[]; // where app messages comes in
+  inout schedule;
 }

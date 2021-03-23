@@ -29,6 +29,7 @@ module HCA
         @display("bgb=340,225;i=device/server2");
     gates:
         inout port;
+        inout schedule;
 
     submodules:
         app: IBApp {
@@ -92,4 +93,5 @@ module HCA
 
         port$i --> ibuf.in;
         obuf.out --> port$o;
+        schedule <--> gen.schedule;
 }
