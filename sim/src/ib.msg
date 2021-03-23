@@ -34,6 +34,8 @@ enum IB_MSGS
   IB_APP_MSG      = 11;
   IB_PUSH_MSG     = 12;
   IB_TQ_LOAD_MSG  = 13; 
+  IB_SCHEDULE_REQ_MSG = 14;
+  IB_SCHEDULE_REP_MSG = 15;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -44,6 +46,19 @@ enum IB_MSGS
 //
 // Base class for all type of IB wire messages
 //
+message IBScheduleReqMsg extends cPacket
+{
+    int appIdx;
+    int srcLid;
+    int dstLid;
+    int SL;
+}
+
+message IBScheduleRepMsg extends cPacket
+{
+    int dstLid;
+    int newSL;
+}
 
 message IBWireMsg extends cPacket
 {
