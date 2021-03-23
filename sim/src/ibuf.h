@@ -124,7 +124,7 @@ class IBInBuf : public cSimpleModule
   // data strcture
   int numBeingSent;   // Number of packets being currently sent
   cQueue **Q;         // Incoming packets Q per VL per out port
-  int hoqOutPort[8];  // The output port the packet at the HOQ is targetted to
+  std::vector<int> hoqOutPort;  // The output port the packet at the HOQ is targetted to
   std::vector<unsigned int> staticFree;  // number of free credits per VL
   std::vector<long> ABR;    // total number of received credits per VL
   unsigned int thisPortNum; // holds the port num this is part of
@@ -132,7 +132,7 @@ class IBInBuf : public cSimpleModule
   // there is only one packet stream allowed on the input so we track its
   // parameters simply by having the "current" values. We check for mix on the
   // push handler
-  int curPacketId; 
+  int curPacketId;
   int curPacketSrcLid;
   std::string curPacketName;
   unsigned int curPacketCredits;
@@ -149,7 +149,7 @@ class IBInBuf : public cSimpleModule
   Pktfwd* pktfwd;
 
   // statistics
-  cLongHistogram staticUsageHist[8];
+  std::vector<cLongHistogram> staticUsageHist;
   cOutVector usedStaticCredits;
   cOutVector CredChosenPort;
   cOutVector dsLidDR;
@@ -179,7 +179,7 @@ class IBInBuf : public cSimpleModule
  public:
   // return 1 if incremented the number of parallel sends
   int incrBusyUsedPorts();
-  
+
 };
 
 #endif

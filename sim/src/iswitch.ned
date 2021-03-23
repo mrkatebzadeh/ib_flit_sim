@@ -23,6 +23,7 @@ module ISwitchPort
 {
     parameters:
         int numSwitchPorts;
+        int switchMaxVL = default(1);
 
         @display("bgb=249,215");
     gates:
@@ -33,10 +34,12 @@ module ISwitchPort
     submodules:
         obuf: IBOutBuf {
             parameters:
+                maxVL = switchMaxVL;
                 @display("i=block/boundedqueue;p=76,80");
         }
         ibuf: IBInBuf {
             parameters:
+                maxVL = switchMaxVL;
                 isHcaIBuf = 0;
                 numPorts = numSwitchPorts;
                 @display("i=block/subqueue;p=191,80");
@@ -46,10 +49,10 @@ module ISwitchPort
         }
         vlarb: IBVLArb {
             parameters:
+                maxVL = switchMaxVL;
                 isHcaArbiter = 0;
                 numPorts = numSwitchPorts;
-		useFCFSRQArb = true;
-		maxVL = 80;
+		        useFCFSRQArb = true;
                 @display("p=191,156;i=block/dispatch");
             gates:
                 in[numSwitchPorts];
@@ -80,10 +83,10 @@ module ISwitchPort
 module ISwitch
 {
     parameters:
-        double numSwitchPorts;     // Total num of switch ports
-        double ISWDelay @unit(ns); // Delay brought by IBUF in SWitch
-        double VSWDelay @unit(ns); // Delay in ns brought by IBUF in SWitch
-		  string pktFwdType;         // The type of the packet forwarding engine to use
+        int numSwitchPorts;     // Total num of switch ports
+        int ISWDelay @unit(ns); // Delay brought by IBUF in SWitch
+        int VSWDelay @unit(ns); // Delay in ns brought by IBUF in SWitch
+		string pktFwdType;         // The type of the packet forwarding engine to use
         @display("i=abstract/router");
     gates:
         inout port[];
@@ -104,7 +107,7 @@ module ISwitch
         }
     connections:
         for p=0..numSwitchPorts-1 {
-            ports[p] <--> ports[p].port;
+            port[p] <--> ports[p].port;
 
             // Loopback for inner switch ports in according ports array.
             ports[p].sw_port$o[p] --> ports[p].sw_port$i[p];

@@ -31,18 +31,17 @@ using namespace std;
 
 Define_Module( IBVLArb );
 
-void IBVLArb::setVLArbParams(const char *cfgStr, ArbTableEntry *tbl)
-{
-  int idx = 0;
+void IBVLArb::setVLArbParams(const char *cfgStr, std::vector<ArbTableEntry> &tbl) {
+  unsigned int idx = 0;
   char *buf, *p_vl, *p_weight;
   buf = new char[strlen(cfgStr)+1];
   strcpy(buf, cfgStr);
   p_vl = strtok(buf, ":");
-  while (p_vl && (idx < 8)) {
-    int vl = atoi(p_vl);
-    if (vl > 8) {
-      error("-E- %s VL: %d > 8 in VLA: %s ",
-                getFullPath().c_str(), vl, cfgStr);
+  while (p_vl && (idx < maxVL)) {
+    unsigned int vl = atoi(p_vl);
+    if (vl > maxVL) {
+      error("-E- %s VL: %d > %d in VLA: %s ",
+                getFullPath().c_str(), vl, maxVL,  cfgStr);
     }
 
     int weight;
@@ -56,19 +55,22 @@ void IBVLArb::setVLArbParams(const char *cfgStr, ArbTableEntry *tbl)
       error("-E- %s weight: %d > 255 in VLA: %s",
                 getFullPath().c_str(), weight, cfgStr);
     }
-
-    tbl[idx].VL = vl;
-    tbl[idx].weight = weight;
-    tbl[idx].used = 0;
+    ArbTableEntry newEntry;
+    newEntry.VL = vl;
+    newEntry.weight = weight;
+    newEntry.used = 0;
+    tbl.push_back(newEntry);
     idx++;
     p_vl = strtok(NULL, ":");
   }
 
   // the rest are zeros
-  for (;idx < 8; idx++ ) {
-    tbl[idx].VL = 0;
-    tbl[idx].weight = 0;
-    tbl[idx].used = 0;
+  for (;idx < maxVL; idx++ ) {
+    ArbTableEntry newEntry;
+    newEntry.VL = 0;
+    newEntry.weight = 0;
+    newEntry.used = 0;
+    tbl.push_back(newEntry);
   }
   delete [] buf;
 }
@@ -386,7 +388,7 @@ IBVLArb::firstComeFirstServeNextRQForVL(int numCredits, unsigned int curPortNum,
 // * Update the port number
 // * update the VL
 int
-IBVLArb::findNextSend( unsigned int &curIdx, ArbTableEntry *Tbl,
+IBVLArb::findNextSend( unsigned int &curIdx, std::vector<ArbTableEntry> &Tbl,
                        unsigned int &curPortNum, unsigned int &curVl )
 {
   int idx;

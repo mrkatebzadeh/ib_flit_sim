@@ -26,6 +26,7 @@ module HCA
 {
     parameters:
         int srcLid;
+        int HCAMaxVL = default(1);
         @display("bgb=340,225;i=device/server2");
     gates:
         inout port;
@@ -39,26 +40,26 @@ module HCA
         gen: IBGenerator {
             parameters:
                 srcLid = srcLid;
-                maxVL = 7;
+                maxVL = HCAMaxVL;
                 @display("i=block/source;p=246,170");
             gates:
                 in[1];
         }
         sink: IBSink {
             parameters:
-                maxVL = 7;
+                maxVL = HCAMaxVL;
                 @display("i=block/sink;p=248,74");
         }
         obuf: IBOutBuf {
             parameters:
-                maxVL = 7;
+                maxVL = HCAMaxVL;
                 @display("i=block/queue;p=69,169");
         }
         ibuf: IBInBuf {
             parameters:
                 isHcaIBuf = 1;
                 numPorts = 1;
-                maxVL = 7;
+                maxVL = HCAMaxVL;
                 @display("i=block/subqueue;p=69,74");
             gates:
                 out[1];
@@ -66,7 +67,7 @@ module HCA
         }
         vlarb: IBVLArb {
             parameters:
-                maxVL = 7;
+                maxVL = HCAMaxVL;
                 highVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
                 lowVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
                 vlHighLimit = 4;

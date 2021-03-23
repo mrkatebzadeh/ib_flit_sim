@@ -46,7 +46,7 @@ network L1_S8
                 srcLid = 8;
                 @display("p=277,39");
         }
-        SW_L0_0_0_U1: Switch {
+        SW_L0_0_0_U1: ISwitch {
             parameters:
                 numSwitchPorts = 8;
                 @display("p=232,136");

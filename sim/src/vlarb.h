@@ -82,9 +82,9 @@ class IBVLArb: public cSimpleModule
 
   // parameters:
   int vlHighLimit;          // Max number of credits sent from High till Low
-  ArbTableEntry HighTbl[8]; // The High Priority Arbitration Table
-  ArbTableEntry LowTbl[8];  // The Low Priority Arbitration Table
-  int           hcaArb;     // If 1 means the arbiter is an HCA arbiter
+  std::vector<ArbTableEntry> HighTbl; // The High Priority Arbitration Table
+  std::vector<ArbTableEntry> LowTbl;  // The Low Priority Arbitration Table
+  int hcaArb;               // If 1 means the arbiter is an HCA arbiter
   int recordVectors;        // Control recording of vectors
   unsigned int maxVL;       // Maximum value of VL
   int VSWDelay;             // Delay brought by VLArb in Switch [ns] (SW par)
@@ -105,7 +105,7 @@ class IBVLArb: public cSimpleModule
   simtime_t lastSendTime;  // store the last arbitration send
 
   // methods
-  void setVLArbParams(const char *cfgStr, ArbTableEntry *tbl);
+  void setVLArbParams(const char *cfgStr, std::vector<ArbTableEntry> &tbl);
   void sendOutMessage(IBDataMsg *p_msg);
   void sendSentMessage(unsigned int portNum, unsigned int vl);
   int  isValidArbitration(unsigned int portNum, unsigned int vl,
@@ -114,7 +114,7 @@ class IBVLArb: public cSimpleModule
 							int &nextPortNum);
   int firstComeFirstServeNextRQForVL(int numCredits, unsigned int curPortNum, short int vl,
   							   int &nextPortNum);
-  int  findNextSend( unsigned int &curIdx, ArbTableEntry *Tbl,
+  int  findNextSend( unsigned int &curIdx, std::vector<ArbTableEntry> &Tbl,
 			   unsigned int &curPortNum, unsigned int &curVl );
   int  findNextSendOnVL0( unsigned int &curPortNum );
   void displayState();

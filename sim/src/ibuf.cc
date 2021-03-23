@@ -58,20 +58,20 @@ void IBInBuf::initialize()
   numDroppedCredits = 0;
   WATCH(numDroppedCredits);
   maxVL = par("maxVL");
-  
+  staticUsageHist = std::vector<cLongHistogram>(maxVL + 1);
   Q = new cQueue*[gateSize("out")];
   for (int pn = 0; pn < gateSize("out"); pn++) {
     Q[pn] = new cQueue[maxVL+1];
   }
   maxBeingSent = par("maxBeingSent");
   numPorts = par("numPorts");
-  totalBufferSize = par("totalBufferSize");      
-  
+  totalBufferSize = par("totalBufferSize");
+
   width = par("width");
   totalBufferSize = totalBufferSize*width/4;
-  
+
   hcaIBuf = par("isHcaIBuf");
-  auto simulation = getSimulation(); 
+  auto simulation = getSimulation();
   if (hcaIBuf) {
     EV << "-I- " << getFullPath() << " is HCA IBuf" << endl;
     pktfwd = NULL;
@@ -96,9 +96,7 @@ void IBInBuf::initialize()
   unsigned int totStatic = 0;
   int val;
   for (unsigned int vl = 0; vl < maxVL+1; vl++ ) {
-    char parName[12];
-    sprintf(parName,"maxStatic%d", vl);
-    val = par(parName);
+    val = par("maxStatic");
     val = val*width/4;
     maxStatic.push_back(val);
     totStatic += val;

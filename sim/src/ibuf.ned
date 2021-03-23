@@ -41,14 +41,7 @@ simple IBInBuf
   bool lossyMode;
 
   // Each VL is assigned a max number of static credits 
-  int maxStatic0;
-  int maxStatic1;
-  int maxStatic2;
-  int maxStatic3;
-  int maxStatic4;
-  int maxStatic5;
-  int maxStatic6;
-  int maxStatic7;
+  int maxStatic;
  gates:
   input in;
   input sent[];
