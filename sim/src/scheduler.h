@@ -14,6 +14,7 @@
 
 #include <omnetpp.h>
 #include <vector>
+#include "ib_m.h"
 #include <cstring>
 using namespace omnetpp;
 
@@ -61,6 +62,11 @@ class IBScheduler : public cSimpleModule
 
   void sendSLOut(IBScheduleRepMsg *p_msg);
   void handleScheduleReq(IBScheduleReqMsg *p_msg);
+  int calculateSLbyIB(IBScheduleReqMsg *p_msg);
+  int calculateSLbyIdealMaxMin(IBScheduleReqMsg *p_msg);
+  int calculateSLbyBestFitSmart(IBScheduleReqMsg *p_msg);
+  int calculateSLbyHierarchicalSmart(IBScheduleReqMsg *p_msg);
+  int calculateSLbyIdealSmart(IBScheduleReqMsg *p_msg);
   virtual ~IBScheduler();
  protected:
   virtual void initialize();

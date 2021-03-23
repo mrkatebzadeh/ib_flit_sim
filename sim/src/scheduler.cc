@@ -18,14 +18,19 @@ void IBScheduler::initialize() {
     computeDelay_ns = par("computeDelay");
     if(strcmp(par("algorithm"), "ib") == 0) {
         algorithm = IB;
+        EV << "Scheduler algorithm: IB" << endl;
     } else if(strcmp(par("algorithm"), "idealmaxmin") == 0) {
         algorithm = IDEALMAXMIN;
+        EV << "Scheduler algorithm: IdealMaxMin" << endl;
     } else if(strcmp(par("algorithm"), "bestfitsmart") == 0){
         algorithm = BESTFITSMART;
+        EV << "Scheduler algorithm: BestFitSmart" << endl;
     } else if(strcmp(par("algorithm"), "hierarchicalsmart") == 0) {
         algorithm = HIERARCHICALSMART;
+        EV << "Scheduler algorithm: HierarchicalSmart" << endl;
     } else if(strcmp(par("algorithm"), "idealsmart") == 0) {
         algorithm = IDEALSMART;
+        EV << "Scheduler algorithm: IdealSmart" << endl;
     } else {
         algorithm = IB;
         EV << "Scheduler algorithm not found. Fallback to IB" << endl;
@@ -42,10 +47,58 @@ void IBScheduler::handleScheduleReq(IBScheduleReqMsg *p_msg) {
     sprintf(name, "schedule-response-%d-%d", sl + 1, p_msg->getSrcLid());
     IBScheduleRepMsg *r_msg = new IBScheduleRepMsg(name, IB_SCHEDULE_REP_MSG);
 
-    r_msg->setNewSL(4);
+    int newSL = sl;
+    switch(algorithm){
+        case IB:
+            newSL = calculateSLbyIB(p_msg);
+            break;
+        case IDEALMAXMIN:
+            newSL = calculateSLbyIdealMaxMin(p_msg);
+            break;
+        case BESTFITSMART:
+            newSL = calculateSLbyBestFitSmart(p_msg);
+            break;
+        case HIERARCHICALSMART:
+            newSL = calculateSLbyHierarchicalSmart(p_msg);
+            break;
+        case IDEALSMART:
+            newSL = calculateSLbyIdealSmart(p_msg);
+            break;
+        default:
+            EV << "Scheduler algorithm not found. Fallback to IB" << endl;
+            newSL = calculateSLbyIB(p_msg);
+            break;
+    }
+    r_msg->setNewSL(newSL);
     r_msg->setDstLid(p_msg->getSrcLid() - 1);
 
     sendSLOut(r_msg);
+}
+
+int IBScheduler::calculateSLbyIB(IBScheduleReqMsg *p_msg) {
+
+    return 1;
+}
+
+int IBScheduler::calculateSLbyIdealMaxMin(IBScheduleReqMsg *p_msg) {
+    int appId = p_msg->getAppIdx();
+
+    return appId;
+}
+
+int IBScheduler::calculateSLbyBestFitSmart(IBScheduleReqMsg *p_msg) {
+
+    return 0; //TODO
+}
+
+int IBScheduler::calculateSLbyHierarchicalSmart(IBScheduleReqMsg *p_msg) {
+
+    return 0; //TODO
+}
+
+int IBScheduler::calculateSLbyIdealSmart(IBScheduleReqMsg *p_msg) {
+
+    return 0; //TODO
 }
 
 void IBScheduler::handleMessage(cMessage *p_msg) {
