@@ -68,8 +68,6 @@ module HCA
         vlarb: IBVLArb {
             parameters:
                 maxVL = HCAMaxVL;
-                highVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
-                lowVLArbEntries = "0:1 1:1 2:1 3:1 4:1 5:1 6:1 7:1";
                 vlHighLimit = 4;
                 isHcaArbiter = 1;
                 numPorts = 1;
