@@ -55,6 +55,7 @@ void IBInBuf::parseIntListParam(char *parName, int numEntries,
 void IBInBuf::initialize()
 {
   lossyMode = par("lossyMode");
+  verbose = par("verbose");
   numDroppedCredits = 0;
   WATCH(numDroppedCredits);
   maxVL = par("maxVL");
@@ -475,17 +476,17 @@ void IBInBuf::handleMessage(cMessage *p_msg)
 
 void IBInBuf::finish()
 {
-    if(VERBOSE){
+    if(verbose){
     EV << "IBUF STAT ---------------------------------------" << endl;
-  for (unsigned int vl = 0; vl < maxVL+1; vl++ ) {
-       EV << getFullPath() << " VL:" << vl;
-       EV << "      Used Static Credits" <<endl;
-       EV << "Num: " << staticUsageHist[vl].getCount() <<endl;
-       EV << "Avg: " << staticUsageHist[vl].getMean() << endl;
-       EV << "Max: " << staticUsageHist[vl].getMax() << endl;
-       EV << "Std: " << staticUsageHist[vl].getStddev() << endl;
+    for (unsigned int vl = 0; vl < maxVL+1; vl++ ) {
+         EV << getFullPath() << " VL:" << vl;
+         EV << "      Used Static Credits" <<endl;
+         EV << "Num: " << staticUsageHist[vl].getCount() <<endl;
+         EV << "Avg: " << staticUsageHist[vl].getMean() << endl;
+         EV << "Max: " << staticUsageHist[vl].getMax() << endl;
+         EV << "Std: " << staticUsageHist[vl].getStddev() << endl;
 
-  } 
+    } 
   if (lossyMode)
 	 recordScalar("numDroppedCredits", numDroppedCredits);
     }

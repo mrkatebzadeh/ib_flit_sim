@@ -64,6 +64,7 @@ void IBGenerator::initialize() {
   maxContPkts = par("maxContPkts");
   maxQueuedPerVL = par("maxQueuedPerVL");
 
+  verbose = par("verbose");
   pushMsg = new cMessage("push1", IB_PUSH_MSG);
 
   // no need for self start
@@ -403,11 +404,11 @@ void IBGenerator::handleMessage(cMessage *p_msg) {
 void IBGenerator::finish()
 {
 
-    if(VERBOSE) {
-  double oBW = totalBytesSent / (simTime() - firstPktSendTime);
-  EV << "GEN STAT ----------------------------------------" << endl;
-  EV << "Output BW (B/s):" << oBW <<endl;
-  EV << "Output BW (MB/s):" << oBW / (1024 * 1024) <<endl;
+    if(verbose) {
+        double oBW = totalBytesSent / (simTime() - firstPktSendTime);
+        EV << "GEN STAT ----------------------------------------" << endl;
+        EV << "Output BW (B/s):" << oBW <<endl;
+        EV << "Output BW (MB/s):" << oBW / (1024 * 1024) <<endl;
     }
 
 }

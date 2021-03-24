@@ -28,6 +28,7 @@ simple IBGenerator
   double genDlyPerByte @unit(ns); // the speed of generating new data
   double popDlyPerByte @unit(ns); // the speed of sending to VLA
   int maxQueuedPerVL; // the maximal outstanding FLITs in Q per VL
+  bool verbose = default(false);
 
   // - shape
   volatile double flit2FlitGap @unit(ns); // extra delay between flits

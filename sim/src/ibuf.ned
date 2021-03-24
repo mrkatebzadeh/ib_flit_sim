@@ -39,6 +39,7 @@ simple IBInBuf
   int maxVL;
   // declares the buffer as lossy - drop packets if full but lie about the free credits
   bool lossyMode;
+  bool verbose = default(false);
 
   // Each VL is assigned a max number of static credits 
   int maxStatic;

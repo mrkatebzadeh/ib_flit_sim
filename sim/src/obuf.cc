@@ -29,6 +29,7 @@ Define_Module( IBOutBuf );
 void IBOutBuf::initialize()
 {
   // read parameters
+  verbose = par("verbose");
   qSize = par("size");
   maxVL = par("maxVL");
 
@@ -358,30 +359,30 @@ void IBOutBuf::handleMessage(cMessage *p_msg)
 
 void IBOutBuf::finish()
 {
-    if(VERBOSE) {
-    EV << "OBUF STAT ---------------------------------------" << endl;
-   int microsecond = 1000000;
-   EV << getFullPath() << endl;
-   EV << "   Data Packet Q time (scale: " << simTime().getScale() << ")" << endl;
-   EV << "Num: "  << packetStoreHist.getCount() << endl;
-   EV << "Avg: "  << packetStoreHist.getMean() * microsecond << endl;
-   EV << "Max: "  << packetStoreHist.getMax()* microsecond << endl;
-   EV << "Std: "  << packetStoreHist.getStddev()* microsecond << endl;
-     // EV << "STAT: " << getFullPath() << " Q depth num/avg/max/std:"
-     // << qDepthHist.getCount() << " / "
-     // << qDepthHist.getMean() << " / "
-     // << qDepthHist.getMax() << " / "
-     // << qDepthHist.getStddev() << endl;
-     // EV << "STAT: " << getFullPath() << " FlowControl Delay num/avg/max/std:"
-     // << flowControlDelay.getCount() << " / "
-     // << flowControlDelay.getMean() << " / "
-     // << flowControlDelay.getMax() << " / "
-     // << flowControlDelay.getStddev() << endl;
+   if(verbose) {
+       EV << "OBUF STAT ---------------------------------------" << endl;
+       int microsecond = 1000000;
+       EV << getFullPath() << endl;
+       EV << "   Data Packet Q time (scale: " << simTime().getScale() << ")" << endl;
+       EV << "Num: "  << packetStoreHist.getCount() << endl;
+       EV << "Avg: "  << packetStoreHist.getMean() * microsecond << endl;
+       EV << "Max: "  << packetStoreHist.getMax()* microsecond << endl;
+       EV << "Std: "  << packetStoreHist.getStddev()* microsecond << endl;
+       // EV << "STAT: " << getFullPath() << " Q depth num/avg/max/std:"
+       // << qDepthHist.getCount() << " / "
+       // << qDepthHist.getMean() << " / "
+       // << qDepthHist.getMax() << " / "
+       // << qDepthHist.getStddev() << endl;
+       // EV << "STAT: " << getFullPath() << " FlowControl Delay num/avg/max/std:"
+       // << flowControlDelay.getCount() << " / "
+       // << flowControlDelay.getMean() << " / "
+       // << flowControlDelay.getMax() << " / "
+       // << flowControlDelay.getStddev() << endl;
 
-	double oBW = totalBytesSent / (simTime() - firstPktSendTime);
-	recordScalar("Output BW (Byte/s)", oBW);
-	recordScalar("Output BW (MB/s)", oBW / (1024 * 1024));
-	flitsSources.record();
+       double oBW = totalBytesSent / (simTime() - firstPktSendTime);
+       recordScalar("Output BW (Byte/s)", oBW);
+       recordScalar("Output BW (MB/s)", oBW / (1024 * 1024));
+       flitsSources.record();
     }
 	// EV << "STAT: " << getFullPath() << " Flit Sources:" << endl << flitsSources.detailedInfo() << endl;
 }

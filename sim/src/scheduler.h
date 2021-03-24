@@ -19,8 +19,6 @@
 #include "ib_m.h"
 using namespace omnetpp;
 
-#define VERBOSE 0
-
 enum Algorithm {
     IB,
     IDEALMAXMIN,

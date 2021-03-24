@@ -93,7 +93,6 @@
 #include <omnetpp.h>
 using namespace omnetpp;
 
-#define VERBOSE 0
 //
 // Generates IB Packet Credit (messages); see NED file for more info.
 //
@@ -132,6 +131,7 @@ class IBGenerator : public cSimpleModule
   unsigned int totalBytesSent; // total number of bytes sent
   simtime_t timeLastSent; // Time last flit was sent
 
+  bool verbose;
   // methods
  private:
   

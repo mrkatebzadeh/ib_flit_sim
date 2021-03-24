@@ -56,7 +56,6 @@
 #include <omnetpp.h>
 #include <vector>
 #include "ib_m.h"
-#define VERBOSE 0
 using namespace omnetpp;
 //
 // Output Buffer for sending IB FLITs and VL credit updates
@@ -86,6 +85,7 @@ class IBOutBuf : public cSimpleModule
   std::vector<long> prevSentFCTBS; // Sent FCTBS per VL
   std::vector<long> FCTBS; // num data packet flits sent total in this VL
   std::vector<long> FCCL;  // Pending value to be sent on next Credits update
+  bool verbose;
 
   // Methods
   void sendOutMessage(IBWireMsg *p_msg);
