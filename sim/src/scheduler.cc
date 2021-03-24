@@ -117,9 +117,9 @@ int IBScheduler::calculateSLbyIB(IBScheduleReqMsg *p_msg) {
 }
 
 int IBScheduler::calculateSLbyIdealMaxMin(IBScheduleReqMsg *p_msg) {
-    int appId = p_msg->getAppIdx();
+    int srcLid = p_msg->getSrcLid();
 
-    return appId;
+    return srcLid;
 }
 
 int IBScheduler::calculateSLbyBestFitSmart(IBScheduleReqMsg *p_msg) {
