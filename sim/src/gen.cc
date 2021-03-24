@@ -45,7 +45,8 @@ void IBGenerator::initialize() {
   srcLid = par("srcLid");
   flitSize_B = par("flitSize"); 
   genDlyPerByte_ns = par("genDlyPerByte");
-
+  maxVL = par("maxVL");
+  VLQ = std::vector<cQueue>(maxVL);
   // statistics
   timeLastSent = 0;
   totalBytesSent = 0;
@@ -195,6 +196,7 @@ void IBGenerator::getNextAppMsg()
     s_msg->setDstLid(thisPktDst);
     s_msg->setSL(currentSL);
     sendScheduleOut(s_msg);
+    EV << "-I-" << getFullPath() << "SL request sent from: " << srcLid << " as: " << currentSL << endl;
   }
   // now make the new FLIT:
   IBDataMsg *p_cred;
@@ -326,6 +328,7 @@ void IBGenerator::handleApp(IBAppMsg *p_msg){
 
 void IBGenerator::handleSchedule(IBScheduleRepMsg *p_msg){
     currentSL = p_msg->getNewSL();
+    EV << "-I-" << getFullPath() << "SL reply recevied: " << currentSL << endl;
 }
 
 void IBGenerator::sendScheduleOut(IBScheduleReqMsg *p_msg){
