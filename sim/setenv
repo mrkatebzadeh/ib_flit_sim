@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export d=`pwd`
+
+export NEDPATH=$d/src:$d/examples
+
