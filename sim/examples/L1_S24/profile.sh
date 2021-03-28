@@ -1,7 +1,7 @@
 #!/bin/sh
 
-for app in `seq 2 24`; do
-    ./app_gen.py $app > L1_S24.apps.ini        
+for app in `seq 1 24`; do
+    ./app_gen.py $app > L1_S24.apps.ini
     for i in `seq 1 10`; do
         bw=$(python -c "print($i * 0.1)")
         sed "s/available_bw = 1.0/available_bw = ${bw}/g" L1_S24.ned_template > L1_S24.ned

@@ -128,13 +128,22 @@ network L1_S24
                 srcLid = 24;
                 @display("p=277,39");
         }
-        SW_L0_0_0_U1: Switch {
+        SW_L0_0_0_U1: ISwitch {
             parameters:
                 numSwitchPorts = 24;
                 @display("p=232,136");
             gates:
                 port[24];
         }
+        Scheduler_0: IBScheduler {
+            parameters:
+                numSchedulerPorts = 24;
+                networkDelay = 0;
+                computeDelay = 0;
+            gates:
+                ports[24];
+        }
+
 
     connections:
         H_1_U1.port <--> IB4XFDRWire {available_bw=available_bw;} <--> SW_L0_0_0_U1.port[0];
@@ -161,4 +170,29 @@ network L1_S24
         H_22_U1.port <--> IB4XFDRWire {available_bw=available_bw;} <--> SW_L0_0_0_U1.port[21];
         H_23_U1.port <--> IB4XFDRWire {available_bw=available_bw;} <--> SW_L0_0_0_U1.port[22];
         H_24_U1.port <--> IB4XFDRWire {available_bw=available_bw;} <--> SW_L0_0_0_U1.port[23];
+
+        H_1_U1.schedule <--> Scheduler_0.ports[0];
+        H_2_U1.schedule <--> Scheduler_0.ports[1];
+        H_3_U1.schedule <--> Scheduler_0.ports[2];
+        H_4_U1.schedule <--> Scheduler_0.ports[3];
+        H_5_U1.schedule <--> Scheduler_0.ports[4];
+        H_6_U1.schedule <--> Scheduler_0.ports[5];
+        H_7_U1.schedule <--> Scheduler_0.ports[6];
+        H_8_U1.schedule <--> Scheduler_0.ports[7];
+        H_9_U1.schedule <--> Scheduler_0.ports[8];
+        H_10_U1.schedule <--> Scheduler_0.ports[9];
+        H_11_U1.schedule <--> Scheduler_0.ports[10];
+        H_12_U1.schedule <--> Scheduler_0.ports[11];
+        H_13_U1.schedule <--> Scheduler_0.ports[12];
+        H_14_U1.schedule <--> Scheduler_0.ports[13];
+        H_15_U1.schedule <--> Scheduler_0.ports[14];
+        H_16_U1.schedule <--> Scheduler_0.ports[15];
+        H_17_U1.schedule <--> Scheduler_0.ports[16];
+        H_18_U1.schedule <--> Scheduler_0.ports[17];
+        H_19_U1.schedule <--> Scheduler_0.ports[18];
+        H_20_U1.schedule <--> Scheduler_0.ports[19];
+        H_21_U1.schedule <--> Scheduler_0.ports[20];
+        H_22_U1.schedule <--> Scheduler_0.ports[21];
+        H_23_U1.schedule <--> Scheduler_0.ports[22];
+        H_24_U1.schedule <--> Scheduler_0.ports[23];
 }
