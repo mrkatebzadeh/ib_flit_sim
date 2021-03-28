@@ -112,7 +112,7 @@ class IBGenerator : public cSimpleModule
    
   // - VL
   unsigned int maxVL;
-  int currentSL;
+  int currentSL = 0;
 
   // state
   unsigned int msgIdx;              // count number of messages injected

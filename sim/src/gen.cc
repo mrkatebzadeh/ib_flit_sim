@@ -405,8 +405,9 @@ void IBGenerator::finish()
 {
 
     if(verbose) {
-        double oBW = totalBytesSent / (simTime() - firstPktSendTime);
         EV << "GEN STAT ----------------------------------------" << endl;
+        EV << "Current SL: " << currentSL << endl;
+        double oBW = totalBytesSent / (simTime() - firstPktSendTime);
         EV << "Output BW (B/s):" << oBW <<endl;
         EV << "Output BW (MB/s):" << oBW / (1024 * 1024) <<endl;
     }
