@@ -8,3 +8,4 @@ compile_commands.json
 src/ib_flit_sim
 src/ib_flit_sim_dbg
 src/Makefile
+.cache
