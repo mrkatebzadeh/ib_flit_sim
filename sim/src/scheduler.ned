@@ -17,6 +17,8 @@ simple IBScheduler
         int numSchedulerPorts;
         int networkDelay @unit(ns);
         int computeDelay @unit(ns);
+		int availableSLs = default(8);
+		int availableVLs = default(2);
         @display("i=abstract/router");
     gates:
         inout ports[];

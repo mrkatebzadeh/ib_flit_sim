@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////
 //
 //
+#include <cmath>
 #include <numeric>
 #include "ib_m.h"
 #include "scheduler.h"
@@ -17,6 +18,8 @@ void IBScheduler::initialize() {
     numSchedulerPorts = par("numSchedulerPorts");
     networkDelay_ns = par("networkDelay");
     computeDelay_ns = par("computeDelay");
+    available_SLs = par("availableSLs");
+    available_VLs = par("availableVLs");
     if(strcmp(par("algorithm"), "ib") == 0) {
         algorithm = IB;
         EV << "Scheduler algorithm: IB" << endl;
@@ -40,6 +43,9 @@ void IBScheduler::initialize() {
     const char *profileTableFile = par("profileTableFile");
     loadProfileTable(profileTableFile);
 	generateSlowdownTable();
+	generateSensitivityTable();
+	clusterApplications();
+	clusterSLs();
 }
 
 void IBScheduler::loadProfileTable(const char* profileTableFile) {
@@ -86,6 +92,76 @@ void IBScheduler::generateSensitivityTable() {
 	for(auto app : slowdown_table) {
 		sensitivity_table[app.first] = std::accumulate(app.second.begin(), app.second.end(), 0.0) / app.second.size();
 	}
+}
+
+void IBScheduler::clusterApplications() {
+	int npoints = sensitivity_table.size();
+	int opt_method = HCLUST_METHOD_SINGLE;
+
+	double *distmat = new double[(npoints * (npoints - 1)) / 2];
+	int k = 0;
+
+	for (int i = 0; i < npoints; i++) {
+    	for (int j = i + 1; j < npoints; j++) {
+    		distmat[k] = std::fabs(sensitivity_table[i] - sensitivity_table[j]);
+    		k++;
+    	}
+  	}
+
+	// clustering call
+  	int *merge = new int[2 * (npoints - 1)];
+  	double *height = new double[npoints - 1];
+  	hclust_fast(npoints, distmat, opt_method, merge, height);
+
+  	int *labels = new int[npoints];
+  	cutree_k(npoints, merge, available_SLs, labels);
+
+	for (int i = 0; i < npoints; i++) {
+		sl_to_app_table[labels[i]].push_back(i);
+		app_to_sl_table.push_back(labels[i]);
+	}
+
+	// clean up
+	delete[] distmat;
+	delete[] merge;
+	delete[] height;
+	delete[] labels;
+
+}
+
+void IBScheduler::clusterSLs() {
+	int npoints = available_SLs;
+	int opt_method = HCLUST_METHOD_SINGLE;
+
+	double *distmat = new double[(npoints * (npoints - 1)) / 2];
+	int k = 0;
+
+	for (int i = 0; i < npoints; i++) {
+		double sl1 = std::accumulate(sl_to_app_table[i].begin(), sl_to_app_table[i].end(), 0.0) / sl_to_app_table[i].size();
+    	for (int j = i + 1; j < npoints; j++) {
+			double sl2 = std::accumulate(sl_to_app_table[j].begin(), sl_to_app_table[j].end(), 0.0) / sl_to_app_table[j].size();
+    		distmat[k] = std::fabs(sl1 - sl2);
+    		k++;
+    	}
+  	}
+
+	// clustering call
+  	int *merge = new int[2 * (npoints - 1)];
+  	double *height = new double[npoints - 1];
+  	hclust_fast(npoints, distmat, opt_method, merge, height);
+
+  	int *labels = new int[npoints];
+  	cutree_k(npoints, merge, available_VLs, labels);
+
+	for (int i = 0; i < npoints; i++) {
+		sl_to_vl_table.push_back(labels[i]);
+	}
+
+	// clean up
+	delete[] distmat;
+	delete[] merge;
+	delete[] height;
+	delete[] labels;
 }
 
 void IBScheduler::sendSLOut(IBScheduleRepMsg *p_msg) {
@@ -143,8 +219,9 @@ int IBScheduler::calculateSLbyBestFitSmart(IBScheduleReqMsg *p_msg) {
 }
 
 int IBScheduler::calculateSLbyHierarchicalSmart(IBScheduleReqMsg *p_msg) {
+    int srcLid = p_msg->getSrcLid();
 
-    return 0; //TODO
+    return app_to_sl_table[srcLid];
 }
 
 int IBScheduler::calculateSLbyIdealSmart(IBScheduleReqMsg *p_msg) {

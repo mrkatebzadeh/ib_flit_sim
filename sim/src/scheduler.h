@@ -17,6 +17,8 @@
 #include <cstring>
 #include <fstream>
 #include "ib_m.h"
+#include "hirarchical_cluster.h"
+
 using namespace omnetpp;
 
 enum Algorithm {
@@ -53,19 +55,24 @@ class IBScheduler : public cSimpleModule
   int numSchedulerPorts;
   int networkDelay_ns;
   int computeDelay_ns;
-  int available_SLs = 255;
+  int available_SLs;
+  int available_VLs;
   std::vector<ProfileRecord> profile_table;
   std::vector<BandwidthAllocationRecord> allocation_table;
 
   std::map<int, std::vector<double>> slowdown_table;
   std::map<int, double> sensitivity_table;
-    // methods
- private:
+  std::map<int, std::vector<int>> sl_to_app_table;
+  std::vector<int> app_to_sl_table;
+  std::vector<int> sl_to_vl_table;
 
+
+  // methods
   void loadProfileTable(const char* profileTableFile);
   void generateSlowdownTable();
   void generateSensitivityTable();
   void clusterApplications();
+  void clusterSLs();
   void sendSLOut(IBScheduleRepMsg *p_msg);
   void handleScheduleReq(IBScheduleReqMsg *p_msg);
   int calculateSLbyIB(IBScheduleReqMsg *p_msg);
