@@ -53,13 +53,19 @@ class IBScheduler : public cSimpleModule
   int numSchedulerPorts;
   int networkDelay_ns;
   int computeDelay_ns;
-  std::vector<ProfileRecord> profileTable;
-  std::vector<BandwidthAllocationRecord> allocationTable;
+  int available_SLs = 255;
+  std::vector<ProfileRecord> profile_table;
+  std::vector<BandwidthAllocationRecord> allocation_table;
 
+  std::map<int, std::vector<double>> slowdown_table;
+  std::map<int, double> sensitivity_table;
     // methods
  private:
 
   void loadProfileTable(const char* profileTableFile);
+  void generateSlowdownTable();
+  void generateSensitivityTable();
+  void clusterApplications();
   void sendSLOut(IBScheduleRepMsg *p_msg);
   void handleScheduleReq(IBScheduleReqMsg *p_msg);
   int calculateSLbyIB(IBScheduleReqMsg *p_msg);

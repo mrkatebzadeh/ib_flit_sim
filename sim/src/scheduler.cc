@@ -7,6 +7,7 @@
 ///////////////////////////////////////////////////////////////////////////
 //
 //
+#include <numeric>
 #include "ib_m.h"
 #include "scheduler.h"
 
@@ -38,6 +39,7 @@ void IBScheduler::initialize() {
 
     const char *profileTableFile = par("profileTableFile");
     loadProfileTable(profileTableFile);
+	generateSlowdownTable();
 }
 
 void IBScheduler::loadProfileTable(const char* profileTableFile) {
@@ -67,10 +69,23 @@ void IBScheduler::loadProfileTable(const char* profileTableFile) {
         if(ss.peek() == ',') ss.ignore();
         ss >> val;
         pr.slowdown = val;
-        profileTable.push_back(pr);
+        profile_table.push_back(pr);
     }
 
     myFile.close();
+}
+
+void IBScheduler::generateSlowdownTable() {
+	for(auto record : profile_table) {
+		slowdown_table[record.app].push_back(record.slowdown);
+	}
+}
+
+void IBScheduler::generateSensitivityTable() {
+	// For now, just simple average. //TODO weighted average
+	for(auto app : slowdown_table) {
+		sensitivity_table[app.first] = std::accumulate(app.second.begin(), app.second.end(), 0.0) / app.second.size();
+	}
 }
 
 void IBScheduler::sendSLOut(IBScheduleRepMsg *p_msg) {
