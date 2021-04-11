@@ -93,4 +93,5 @@ module HCA
         port$i --> ibuf.in;
         obuf.out --> port$o;
         schedule <--> gen.schedule;
+		gen.vlarb_schedule --> vlarb.schedule;
 }

@@ -22,6 +22,7 @@ simple IBScheduler
         @display("i=abstract/router");
     gates:
         inout ports[];
+        output switch_ports[];
 }
 
 

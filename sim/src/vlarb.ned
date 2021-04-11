@@ -40,5 +40,6 @@ simple IBVLArb
   input free;
   output out;
   output sent[];
+  input schedule;
 }
 

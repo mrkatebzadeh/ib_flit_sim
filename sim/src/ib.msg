@@ -36,6 +36,8 @@ enum IB_MSGS
   IB_TQ_LOAD_MSG  = 13; 
   IB_SCHEDULE_REQ_MSG = 14;
   IB_SCHEDULE_REP_MSG = 15;
+  IB_SCHEDULE_VLA = 16;
+  IB_SCHEDULE_SCF = 17;
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -58,6 +60,18 @@ message IBScheduleRepMsg extends cPacket
 {
     int dstLid;
     int newSL;
+}
+
+message IBScheduleVLA extends cPacket
+{
+    string high_table;
+	string low_table;
+	string sl_to_vl;
+}
+
+message IBScheduleSCF extends IBScheduleVLA
+{
+    int port;
 }
 
 message IBWireMsg extends cPacket

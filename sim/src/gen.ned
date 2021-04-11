@@ -41,4 +41,5 @@ simple IBGenerator
   output out;
   inout  in[]; // where app messages comes in
   inout schedule;
+  output vlarb_schedule;
 }

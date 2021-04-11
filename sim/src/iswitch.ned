@@ -30,6 +30,7 @@ module ISwitchPort
         inout port;				// port to outside the switch
         inout sw_port[];		// inner switch port (between SwitchPorts)
         inout sw_sent_port[];	// inner sent msgs ports
+		input schedule;
 
     submodules:
         obuf: IBOutBuf {
@@ -57,6 +58,7 @@ module ISwitchPort
             gates:
                 in[numSwitchPorts];
                 sent[numSwitchPorts];
+				schedule;
 
         }
     connections:
@@ -72,6 +74,7 @@ module ISwitchPort
             //sw_in[i] --> vlarb.in[i];
             sw_port$i[i] --> vlarb.in[i];
         }
+		schedule --> vlarb.schedule;
 
         ibuf.rxCred --> obuf.rxCred;
         ibuf.txCred --> vlarb.txCred;
@@ -90,8 +93,16 @@ module ISwitch
         @display("i=abstract/router");
     gates:
         inout port[];
+		input schedule;
 
     submodules:
+		swconfig: SWConfig {
+			parameters:
+				numSwitchPorts = numSwitchPorts;
+			gates:
+				vlarb_schedule[numSwitchPorts];
+				schedule;
+		}
         pktfwd : < pktFwdType > like ib_model.PktFwd_Ifc {
             parameters:
                 numPorts = numSwitchPorts;
@@ -119,4 +130,8 @@ module ISwitch
             ports[p].sw_sent_port[i] <--> ports[i].sw_sent_port[p];
             //port[p].sw_out_sent[i] --> port[i].sw_in_sent[p];
         }
+        for p=0..numSwitchPorts-1 {
+			swconfig.vlarb_schedule[p] --> ports[p].schedule;
+		}
+		schedule --> swconfig.schedule;
 }
