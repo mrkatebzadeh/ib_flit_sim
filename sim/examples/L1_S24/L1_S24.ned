@@ -134,6 +134,7 @@ network L1_S24
                 @display("p=232,136");
             gates:
                 port[24];
+				schedule;
         }
         Scheduler_0: IBScheduler {
             parameters:
@@ -142,6 +143,7 @@ network L1_S24
                 computeDelay = 0;
             gates:
                 ports[24];
+				switch_ports[1];
         }
 
 
@@ -195,4 +197,6 @@ network L1_S24
         H_22_U1.schedule <--> Scheduler_0.ports[21];
         H_23_U1.schedule <--> Scheduler_0.ports[22];
         H_24_U1.schedule <--> Scheduler_0.ports[23];
+
+		Scheduler_0.switch_ports[0] --> SW_L0_0_0_U1.schedule;
 }
