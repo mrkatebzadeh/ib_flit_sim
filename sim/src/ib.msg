@@ -40,6 +40,7 @@ enum IB_MSGS
   IB_SCHEDULE_SCF = 17;
 }
 
+
 ///////////////////////////////////////////////////////////////////////////
 //
 // MESSAGES THAT ARE AVAILABLE ON IB WIRE
@@ -64,6 +65,8 @@ message IBScheduleRepMsg extends cPacket
 
 message IBScheduleVLA extends cPacket
 {
+	int target_id;
+	int target_type;
     string high_table;
 	string low_table;
 	string sl_to_vl;

@@ -168,6 +168,19 @@ void IBScheduler::sendSLOut(IBScheduleRepMsg *p_msg) {
     send(p_msg, "ports$o", p_msg->getDstLid());
 }
 
+void IBScheduler::sendSCFOut(IBScheduleSCF *p_msg) {
+	switch (p_msg->getTarget_type()) {
+		case TARGET_HCA:
+    		send(p_msg, "ports$o",p_msg->getTarget_id());
+		break;
+		case TARGET_SWITCH:
+    		send(p_msg, "switch_ports$o",p_msg->getTarget_id());
+		break;
+		default:
+		break;
+	}
+}
+
 void IBScheduler::handleScheduleReq(IBScheduleReqMsg *p_msg) {
     int sl = p_msg->getSL();
     char name[256];

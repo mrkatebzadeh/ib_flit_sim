@@ -21,6 +21,11 @@
 
 using namespace omnetpp;
 
+enum TARGET_TYPE {
+  TARGET_HCA = 0,
+  TARGET_SWITCH = 1
+};
+
 enum Algorithm {
     IB,
     IDEALMAXMIN,
@@ -74,6 +79,7 @@ class IBScheduler : public cSimpleModule
   void clusterApplications();
   void clusterSLs();
   void sendSLOut(IBScheduleRepMsg *p_msg);
+  void sendSCFOut(IBScheduleSCF *p_msg);
   void handleScheduleReq(IBScheduleReqMsg *p_msg);
   int calculateSLbyIB(IBScheduleReqMsg *p_msg);
   int calculateSLbyIdealMaxMin(IBScheduleReqMsg *p_msg);
